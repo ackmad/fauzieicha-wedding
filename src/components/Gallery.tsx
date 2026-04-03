@@ -7,7 +7,7 @@ interface GalleryProps {
 }
 
 export default function Gallery({ trans }: GalleryProps) {
-  // Use a richer set of images to make it look "crowded" (ramai) and "heboh"
+  // Enhanced items to create "density" and "wow moment"
   const galleryItems = [
     { src: "/dekor-main.png", delay: "0.1s" },
     { src: "/floral-accent-1.png", delay: "0.2s" },
@@ -21,17 +21,23 @@ export default function Gallery({ trans }: GalleryProps) {
 
   return (
     <section id="section-gallery">
-      <div className="section-bg-texture batik-layer" style={{ opacity: 0.12 }}></div>
+      {/* RICH LAYERING */}
+      <div className="section-bg-texture batik-layer" style={{ opacity: 0.15 }}></div>
+      <div className="gallery-glow">
+        <img src="/light-glow.png" alt="" />
+      </div>
+
       <div className="gallery-dekor reveal-item">
         <img src="/dekor-main.png" alt="" />
       </div>
-      <div className="parallax-leaf gallery-leaf reveal-item" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
+
+      <div className="parallax-leaf gallery-leaf reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
         <img src="/parallax-leaves.png" alt="" />
       </div>
       
       <div className="section-inner">
-        <p className="section-label reveal-item">{trans["gallery-label"]}</p>
-        <h2 className="section-title reveal-item">{trans["gallery-title"]}</h2>
+        <p className="section-label reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>{trans["gallery-label"]}</p>
+        <h2 className="section-title reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>{trans["gallery-title"]}</h2>
         
         <div className="gallery-grid">
           {galleryItems.map((item, i) => (
@@ -40,11 +46,19 @@ export default function Gallery({ trans }: GalleryProps) {
               className="gallery-item reveal-item" 
               style={{ "--reveal-delay": item.delay } as React.CSSProperties}
             >
-              <div className="gallery-img-wrap">
+              {/* GOLD FRAME FOR EVERY PHOTO */}
+              <div className="gallery-img-wrap" style={{ border: "3px solid var(--gold)", borderRadius: "30px", overflow: "hidden" }}>
                 <img 
                   src={item.src} 
                   alt={`Galeri ${i + 1}`} 
-                  style={{ objectFit: "contain", width: "100%", height: "100%", padding: "20px", background: "white" }} 
+                  style={{ 
+                    objectFit: "contain", 
+                    width: "100%", 
+                    height: "100%", 
+                    padding: "25px", 
+                    background: "rgba(255,255,255,0.05)",
+                    transition: "transform 0.8s var(--ease-out)"
+                  }} 
                 />
               </div>
             </div>

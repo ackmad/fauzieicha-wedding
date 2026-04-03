@@ -25,31 +25,34 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
 
   return (
     <section id="section-couple" ref={sectionRef}>
-      {/* RICH LAYERING BASE */}
+      {/* BASE LAYERS */}
       <div className="couple-bg-pattern"></div>
-      <div className="couple-glow-center">
-        <img src="/light-glow.png" alt="" />
-      </div>
       
-      {/* WOW MOMENT: MASSIVE GUNUNGAN */}
-      <div className={`couple-gunungan-wow ${revealed ? "revealed" : ""}`}>
+      {/* WOW MOMENT: MASSIVE GUNUNGAN (Behind content) */}
+      <div className={`couple-gunungan-wow ${revealed ? "revealed" : ""}`} style={{ zIndex: 1 }}>
         <img src="/gunungan-jawa.png" alt="" className="gunungan-reveal-img" />
       </div>
 
-      {/* PARALLAX ELEMENTS */}
-      <div className="parallax-leaves-wrap">
-        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ top: "10%", left: "5%", animationDelay: "0ms" }} />
-        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ bottom: "15%", right: "8%", animationDelay: "-3000ms", transform: "scaleX(-1)" }} />
+      {/* AMBIENT GLOW */}
+      <div className="couple-glow-center" style={{ zIndex: 2 }}>
+        <img src="/light-glow.png" alt="" />
       </div>
 
-      <div className={`couple-content-wrap ${revealed ? "revealed" : ""}`}>
+      {/* PARALLAX ELEMENTS */}
+      <div className="parallax-leaves-wrap" style={{ zIndex: 5 }}>
+        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ top: "5%", left: "0", opacity: 0.3, width: "150px" }} />
+        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ top: "40%", right: "-20px", opacity: 0.2, width: "120px", transform: "scaleX(-1)" }} />
+      </div>
+
+      {/* MAIN CONTENT (On top) */}
+      <div className={`section-inner couple-content-wrap ${revealed ? "revealed" : ""}`} style={{ zIndex: 10 }}>
         <p className="couple-inviting reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>{trans["inviting-text"]}</p>
         <p className="bismillah-text reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
         
         <div className="couple-main-names">
           <div className="name-main reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>{basics.groomName}</div>
           <div className="couple-and-divider reveal-item" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
-            <img src="/ornamen-jawa.png" alt="&" className="name-divider-img" />
+            <img src="/ornamen-jawa.png" alt="&" className="name-divider-img" style={{ maxWidth: "120px" }} />
           </div>
           <div className="name-main reveal-item" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>{basics.brideName}</div>
         </div>
@@ -62,11 +65,11 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
         <p className="opening-verse reveal-item" style={{ "--reveal-delay": "1.3s" } as React.CSSProperties}>{trans["verse-text"]}</p>
       </div>
 
-      {/* FLORAL OVERLAYS */}
-      <div className={`couple-floral-accent left ${revealed ? "revealed" : ""}`}>
+      {/* FLORAL OVERLAYS (Foreground) */}
+      <div className={`couple-floral-accent left ${revealed ? "revealed" : ""}`} style={{ zIndex: 20 }}>
         <img src="/floral-accent-1.png" alt="" />
       </div>
-      <div className={`couple-floral-accent right ${revealed ? "revealed" : ""}`}>
+      <div className={`couple-floral-accent right ${revealed ? "revealed" : ""}`} style={{ zIndex: 20 }}>
         <img src="/floral-accent-2.png" alt="" />
       </div>
     </section>
