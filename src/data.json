@@ -1,0 +1,132 @@
+{
+  "basics": {
+    "groomName": "Rizky Aditya Pratama",
+    "brideName": "Amara Putri Soleha",
+    "weddingDate": "Sabtu, 12 April 2025",
+    "footerDate": "12 · 04 · 2025"
+  },
+  "families": {
+    "id": {
+      "groom": "Putra dari Bapak Ahmad Fauzi & Ibu Sri Wahyuni",
+      "bride": "Putri dari Bapak Hendra Santosa & Ibu Dewi Rahayu"
+    },
+    "en": {
+      "groom": "Son of Mr. Ahmad Fauzi & Mrs. Sri Wahyuni",
+      "bride": "Daughter of Mr. Hendra Santosa & Mrs. Dewi Rahayu"
+    }
+  },
+  "events": [
+    {
+      "id": "akad",
+      "type": { "id": "Akad Nikah", "en": "Islamic Marriage Contract" },
+      "name": { "id": "Ijab Kabul", "en": "Sacred Vows" },
+      "time": { "id": "Pukul 08.00 – 10.00 WIB", "en": "08:00 – 10:00 WIB" },
+      "location": "Masjid Al-Hikmah",
+      "address": "Jl. Melati Raya No. 12, Bandung",
+      "mapsLink": "https://maps.google.com"
+    },
+    {
+      "id": "resepsi",
+      "type": { "id": "Resepsi Pernikahan", "en": "Wedding Reception" },
+      "name": { "id": "Walimatul Ursy", "en": "Celebration" },
+      "time": { "id": "Pukul 11.00 – 15.00 WIB", "en": "11:00 – 15:00 WIB" },
+      "location": "Gedung Serbaguna Melati",
+      "address": "Jl. Cendana No. 45, Bandung",
+      "mapsLink": "https://maps.google.com"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2021",
+      "title": { "id": "Awal Pertemuan", "en": "First Encounter" },
+      "text": {
+        "id": "Sebuah pertemuan tak terduga di sebuah seminar kampus menjadi awal dari sebuah kisah yang tak pernah terbayangkan. Dua hati, tanpa disadari, mulai melangkah menuju satu arah.",
+        "en": "A chance encounter at a university seminar became the beginning of a story neither expected. Two hearts, unknowingly, began their journey together."
+      }
+    },
+    {
+      "year": "2023",
+      "title": { "id": "Lamaran", "en": "Engagement" },
+      "text": {
+        "id": "Dengan restu keluarga dan doa yang tulus, sebuah niat mulia disampaikan secara resmi. Sebuah cincin menjadi simbol janji setia untuk melangkah bersama.",
+        "en": "With family's blessings and sincere prayers, a formal proposal was offered. A ring became the symbol of a heartfelt promise to walk side by side."
+      }
+    },
+    {
+      "year": "2025",
+      "title": { "id": "Pernikahan", "en": "The Wedding" },
+      "text": {
+        "id": "Hari ini, dengan penuh syukur dan kebahagiaan, dua jiwa bersatu dalam ikatan pernikahan yang suci. Sebuah lembaran baru dimulai, ditulis bersama dengan cinta dan kesetiaan.",
+        "en": "Today, with gratitude and joy, two souls are united in sacred matrimony. A new chapter begins, written together with love and devotion."
+      }
+    }
+  ],
+  "bankAccounts": [
+    {
+      "id": "acc1",
+      "bank": "Bank BCA",
+      "name": "Rizky Aditya Pratama",
+      "number": "1234 5678 9012"
+    },
+    {
+      "id": "acc2",
+      "bank": "Bank Mandiri",
+      "name": "Amara Putri Soleha",
+      "number": "0987 6543 2109"
+    }
+  ],
+  "translations": {
+    "id": {
+      "the-wedding-of": "The Wedding Of",
+      "open-btn-text": "Buka Undangan",
+      "verse-text": "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya. — Ar-Rum: 21",
+      "events-label": "Tanggal Penting",
+      "events-title": "Simpan Tanggalnya",
+      "maps-btn": "Buka Peta",
+      "story-label": "Kisah Kami",
+      "story-title": "Cerita Cinta",
+      "gallery-label": "Galeri Bunga",
+      "gallery-title": "Mekar Bersama",
+      "wishes-label": "Ucapan & Doa",
+      "wishes-title": "Doa & Harapan",
+      "name-label": "Nama Anda",
+      "wish-label-text": "Pesan & Doa",
+      "submit-btn": "Kirim Ucapan",
+      "amplop-label": "Amplop Digital",
+      "amplop-title": "Hadiah Pernikahan",
+      "amplop-desc": "Doa dan kehadiran Anda adalah hadiah terbesar bagi kami. Namun jika berkenan memberikan tanda kasih, berikut informasi rekening kami.",
+      "copy-btn": "Salin Nomor",
+      "footer-label": "Bersatu dalam Cinta",
+      "footer-made": "Dibuat dengan cinta · Undangan Pernikahan Digital",
+      "wish-placeholder": "Masukkan nama Anda...",
+      "message-placeholder": "Tuliskan doa dan harapan terbaik Anda...",
+      "inviting-text": "Dengan Hormat Mengundang"
+    },
+    "en": {
+      "the-wedding-of": "The Wedding Of",
+      "open-btn-text": "Open Invitation",
+      "verse-text": "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy. — Ar-Rum: 21",
+      "events-label": "The Ceremony",
+      "events-title": "Save The Date",
+      "maps-btn": "Open Maps",
+      "story-label": "Our Journey",
+      "story-title": "Love Story",
+      "gallery-label": "Floral Gallery",
+      "gallery-title": "Blooming Together",
+      "wishes-label": "Send Your Wishes",
+      "wishes-title": "Wishes & Prayers",
+      "name-label": "Your Name",
+      "wish-label-text": "Message & Prayers",
+      "submit-btn": "Send Wishes",
+      "amplop-label": "Digital Gift",
+      "amplop-title": "Wedding Gift",
+      "amplop-desc": "Your prayers and presence are the greatest gifts. However, if you wish to give a token of love, here is our account information.",
+      "copy-btn": "Copy Number",
+      "footer-label": "Together in Love",
+      "footer-made": "Made with love · Digital Wedding Invitation",
+      "wish-placeholder": "Enter your name...",
+      "message-placeholder": "Write your best wishes and prayers...",
+      "inviting-text": "We Cordially Invite You"
+    }
+  }
+}

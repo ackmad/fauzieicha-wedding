@@ -1,65 +1,216 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import weddingData from "../data.json";
+
+// Import Components
+import LanguageToggle from "../components/LanguageToggle";
+import MusicButton from "../components/MusicButton";
+import Cover from "../components/Cover";
+import Couple from "../components/Couple";
+import Events from "../components/Events";
+import Story from "../components/Story";
+import Gallery from "../components/Gallery";
+import Wishes from "../components/Wishes";
+import Gift from "../components/Gift";
+import Footer from "../components/Footer";
 
 export default function Home() {
+  const [currentLang, setCurrentLang] = useState<"id" | "en">("id");
+  const [invitationOpened, setInvitationOpened] = useState(false);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [wishes, setWishes] = useState([
+    { name: 'Keluarga Besar Santosa', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah." },
+    { name: 'Rina & Doni', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.' },
+    { name: 'Tim Kantor Rizky', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.' }
+  ]);
+
+  const [isCoverRemoved, setIsCoverRemoved] = useState(false);
+
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const activeOscNodesRef = useRef<{ osc: OscillatorNode; gain: GainNode }[]>([]);
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  // --- Audio Logic ---
+  const toggleMusic = (forceOn?: boolean) => {
+    const shouldPlay = typeof forceOn === 'boolean' ? forceOn : !musicPlaying;
+    
+    if (shouldPlay) {
+      if (!audioCtxRef.current) {
+        const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtxRef.current = new AudioContextClass();
+        }
+      }
+      if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') audioCtxRef.current.resume();
+
+      const notes = [
+        { freq: 261.63, delay: 0,   dur: 8, gain: 0.035 },
+        { freq: 329.63, delay: 1.5, dur: 8, gain: 0.028 },
+        { freq: 392.00, delay: 3,   dur: 8, gain: 0.022 },
+        { freq: 523.25, delay: 4.5, dur: 8, gain: 0.018 },
+        { freq: 220.00, delay: 0,   dur: 16, gain: 0.02  },
+      ];
+
+      activeOscNodesRef.current = [];
+      notes.forEach(n => {
+        if (!audioCtxRef.current) return;
+        const osc = audioCtxRef.current.createOscillator();
+        const gain = audioCtxRef.current.createGain();
+        const filter = audioCtxRef.current.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.value = 1200;
+        filter.Q.value = 0.5;
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtxRef.current.destination);
+
+        osc.type = 'sine';
+        osc.frequency.value = n.freq;
+        gain.gain.setValueAtTime(0, audioCtxRef.current.currentTime + n.delay);
+        gain.gain.linearRampToValueAtTime(n.gain, audioCtxRef.current.currentTime + n.delay + 2);
+        osc.start(audioCtxRef.current.currentTime + n.delay);
+        activeOscNodesRef.current.push({ osc, gain });
+      });
+      setMusicPlaying(true);
+    } else {
+      activeOscNodesRef.current.forEach(({ osc, gain }) => {
+        if (!audioCtxRef.current) return;
+        gain.gain.linearRampToValueAtTime(0, audioCtxRef.current.currentTime + 1);
+        osc.stop(audioCtxRef.current.currentTime + 1.2);
+      });
+      activeOscNodesRef.current = [];
+      setMusicPlaying(false);
+    }
+  };
+
+  const openInvitation = () => {
+    if (invitationOpened) return;
+    setInvitationOpened(true);
+    
+    setTimeout(() => {
+      document.body.style.overflow = '';
+      setIsCoverRemoved(true); 
+      toggleMusic(true);
+      setTimeout(() => {
+        initScrollReveal();
+        initParallax();
+      }, 50);
+    }, 1100);
+  };
+
+  const toggleLang = () => {
+    setCurrentLang(prev => prev === 'id' ? 'en' : 'id');
+  };
+
+  const submitWish = (e: React.FormEvent) => {
+    e.preventDefault();
+    const nameEl = document.getElementById('wish-name') as HTMLInputElement;
+    const textEl = document.getElementById('wish-text') as HTMLTextAreaElement;
+    const name = nameEl.value.trim();
+    const text = textEl.value.trim();
+    
+    if (!name || !text) {
+      const form = document.getElementById('wish-form');
+      if (form) {
+        form.style.animation = 'none';
+        void (form as HTMLElement).offsetWidth;
+        form.style.animation = 'shake 0.5s ease';
+      }
+      return;
+    }
+    
+    setWishes(prev => [{ name, text }, ...prev]);
+    nameEl.value = '';
+    textEl.value = '';
+  };
+
+  const copyAcc = (num: string, e: React.MouseEvent<HTMLButtonElement>) => {
+    const btn = e.currentTarget;
+    navigator.clipboard.writeText(num.replace(/\s/g, '')).then(() => {
+      btn.classList.add('copied');
+      const span = btn.querySelector('span');
+      if (span) {
+        const prev = span.textContent;
+        span.textContent = currentLang === 'id' ? 'Tersalin ✓' : 'Copied ✓';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          span.textContent = prev;
+        }, 2200);
+      }
+    });
+  };
+
+  const initScrollReveal = () => {
+    const revealTargets = document.querySelectorAll(
+      '.reveal-item, .reveal-scale, .reveal-item-side-left, .reveal-item-side-right, .couple-gunungan-reveal, .couple-and-divider'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '10% 0px' });
+
+    revealTargets.forEach(el => observer.observe(el));
+  };
+
+  const initParallax = () => {
+    const handler = () => {
+      const scrollY = window.scrollY;
+      const leaves = document.querySelectorAll('.story-leaf-1, .gallery-leaf');
+      leaves.forEach((leaf, i) => {
+        const speed = 0.08 + i * 0.03;
+        (leaf as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  };
+
+  useEffect(() => {
+    if (!invitationOpened) {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [invitationOpened]);
+
+  const trans = weddingData.translations[currentLang];
+  const { basics, families, events, timeline, bankAccounts } = weddingData;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
+      
+      <MusicButton 
+        musicPlaying={musicPlaying} 
+        toggleMusic={toggleMusic} 
+        invitationOpened={invitationOpened} 
+      />
+
+      <Cover 
+        isCoverRemoved={isCoverRemoved}
+        invitationOpened={invitationOpened}
+        openInvitation={openInvitation}
+        basics={basics}
+        trans={trans}
+      />
+
+      <div id="transition-overlay" className={invitationOpened ? "flash" : ""}></div>
+
+      <div id="main" className={invitationOpened ? "visible" : ""} style={{ display: invitationOpened ? 'block' : 'none' }} ref={mainRef}>
+        <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
+        <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
+        <Story timeline={timeline} currentLang={currentLang} trans={trans} />
+        <Gallery trans={trans} />
+        <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
+        <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
+        <Footer basics={basics} trans={trans} />
+      </div>
+    </>
   );
 }
