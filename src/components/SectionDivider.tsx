@@ -359,10 +359,10 @@ function DividerGiftFooter() {
             return (
               <line
                 key={i}
-                x1={Math.cos(rad) * 14}
-                y1={Math.sin(rad) * 14}
-                x2={Math.cos(rad) * 22}
-                y2={Math.sin(rad) * 22}
+                x1={Number((Math.cos(rad) * 14).toFixed(4))}
+                y1={Number((Math.sin(rad) * 14).toFixed(4))}
+                x2={Number((Math.cos(rad) * 22).toFixed(4))}
+                y2={Number((Math.sin(rad) * 22).toFixed(4))}
                 stroke="#C9A84C"
                 strokeWidth="1"
                 opacity="0.4"
