@@ -1115,7 +1115,7 @@ section {
 #section-events {
   position: relative;
   min-height: 100vh;
-  background-color: var(--deep-green);
+  background-color: #36493c;
   padding: 100px 20px;
   overflow: hidden;
 }

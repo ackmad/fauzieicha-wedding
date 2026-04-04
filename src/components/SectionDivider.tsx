@@ -60,8 +60,8 @@ function DividerEventsStory() {
         {/* Shadow Layer (Gold/Cream burn) */}
         <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--gold-pale)" opacity="0.3" filter="url(#events-torn)" transform="translate(0, 5)" />
         
-        {/* Main Dark Green Edge */}
-        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--deep-green)" filter="url(#events-torn)" />
+        {/* Main Dark Green Edge matching the Events background exactly */}
+        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="#36493c" filter="url(#events-torn)" />
         
         {/* Ornamental touch */}
         <g transform="translate(1000, 40)" opacity="0.4">
