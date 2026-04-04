@@ -362,37 +362,6 @@ img { display: block; max-width: 100%; }
   filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
 }
 
-.ornament-path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawOrnament 3s ease-out forwards;
-}
-
-@keyframes drawOrnament {
-  to { stroke-dashoffset: 0; }
-}
-
-.shimmer-effect::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 200%; height: 100%;
-  background: linear-gradient(
-    90deg, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: skewX(-25deg);
-  animation: goldShimmerEffect 5s infinite 2s;
-  pointer-events: none;
-}
-
-@keyframes goldShimmerEffect {
-  0% { transform: skewX(-25deg) translateX(-100%); }
-  25%, 100% { transform: skewX(-25deg) translateX(150%); }
-}
-
 #cover-content {
   position: relative;
   z-index: 50; /* Make sure it's above everything */

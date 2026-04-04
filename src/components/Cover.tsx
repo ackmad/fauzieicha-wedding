@@ -36,7 +36,7 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
         <img src="/florals/floral-frame.png" alt="" />
       </div>
       <div id="cover-content">
-        <div id="cover-top-ornament" className="idle-float shimmer-effect">
+        <div id="cover-top-ornament">
           <OrnamenJawa color="var(--gold)" className="ornament-svg" />
         </div>
         <div id="cover-text-block">
