@@ -22,12 +22,15 @@ export const IconStory = ({ className = "", color = "currentColor", style = {} }
 );
 
 export const OrnamenJawa = ({ className = "", color = "currentColor", style = {} }: { className?: string, color?: string, style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 200 60" className={className} style={style} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M100 30C100 30 80 10 60 10C40 10 30 25 30 30C30 35 40 50 60 50C80 50 100 30 100 30ZM100 30C100 30 120 10 140 10C160 10 170 25 170 30C170 35 160 50 140 50C120 50 100 30 100 30Z" stroke={color} strokeWidth="1.5" />
-    <circle cx="100" cy="30" r="5" fill={color} />
-    <path d="M10 30H30M170 30H190" stroke={color} strokeWidth="1" strokeLinecap="round" />
-    <path d="M60 30C60 30 55 25 50 25C45 25 40 30 40 30C40 30 45 35 50 35C55 35 60 30 60 30Z" fill={color} opacity="0.4" />
-    <path d="M140 30C140 30 145 25 150 25C155 25 160 30 160 30C160 30 155 35 150 35C145 35 140 30 140 30Z" fill={color} opacity="0.4" />
+  <svg viewBox="0 0 240 80" className={className} style={style} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Complex Javanese-inspired vector ornament */}
+    <path className="ornament-path" d="M120 40C120 40 105 5 70 5C35 5 20 30 20 40C20 50 35 75 70 75C105 75 120 40 120 40ZM120 40C120 40 135 5 170 5C205 5 220 30 220 40C220 50 205 75 170 75C135 75 120 40 120 40Z" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+    <path className="ornament-path" d="M70 40C70 40 65 30 55 30C45 30 40 40 40 40C40 40 45 50 55 50C65 50 70 40 70 40Z" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="0.5" />
+    <path className="ornament-path" d="M170 40C170 40 175 30 185 30C195 30 200 40 200 40C200 40 195 50 185 50C175 50 170 40 170 40Z" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="0.5" />
+    <circle cx="120" cy="40" r="4" fill={color} />
+    <circle cx="120" cy="40" r="8" stroke={color} strokeWidth="0.8" strokeDasharray="2 4" />
+    <path className="ornament-path" d="M5 40H30M210 40H235" stroke={color} strokeWidth="0.8" strokeLinecap="round" />
+    <path className="ornament-path" d="M70 5C70 5 60 15 50 15M170 5C170 5 180 15 190 15" stroke={color} strokeWidth="0.5" opacity="0.5" />
   </svg>
 );
 
