@@ -14,55 +14,80 @@ interface SectionDividerProps {
   type: DividerType;
 }
 
+const TornPaperFilter = ({ id, scale = 10 }: { id: string, scale?: number }) => (
+  <filter id={id} x="-10%" y="-20%" width="120%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="4" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale={scale} xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+);
+
 /* ─── 1. Couple → Events ────────────────────────────────────────
-   Torn paper organic + hanging florals left/right
-   from: cream/sage → dark-green events bg
+   Both are Dark Green. Let's add an ornamental divider instead
+   of a big block shape. Like a subtle gold brush + hanging florals.
 ─────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "var(--deep-green)", marginTop: "-2px" }}>
-      <div className="sd-floral-left idle-sway" style={{ transformOrigin: "top left", width: "140px" }}>
-        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(-150deg) scaleX(-1)" }} />
+    <div className="sd reveal-up" style={{ background: "transparent", marginTop: "-20px", zIndex: 20 }}>
+      {/* Hanging botanicals */}
+      <div className="sd-floral-left idle-sway" style={{ transformOrigin: "top left", width: "160px", top: "-40px" }}>
+        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(-120deg) scaleX(-1)", opacity: 0.8 }} />
       </div>
-      <div className="sd-floral-right idle-sway" style={{ transformOrigin: "top right", animationDelay: "1s", width: "140px" }}>
-        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(150deg)" }} />
+      <div className="sd-floral-right idle-sway" style={{ transformOrigin: "top right", animationDelay: "1.5s", width: "160px", top: "-20px" }}>
+        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(130deg)", opacity: 0.8 }} />
       </div>
 
-      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L1440,0 L1440,40 Q1080,90 720,40 Q360,-10 0,60 Z" fill="var(--cream)" />
-        <path d="M0,50 Q360,-20 720,30 Q1080,80 1440,30" fill="none" stroke="var(--gold-pale)" strokeWidth="1" opacity="0.4" />
-      </svg>
-    </div>
-  );
-}
-
-function DividerEventsStory() {
-  return (
-    <div className="sd reveal-up" style={{ background: "var(--cream)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L1440,0 L1440,80 C1100,20 900,100 720,70 C540,40 340,120 0,60 Z" fill="var(--deep-green)" />
-        <path d="M0,5 C340,65 540,-15 720,15 C900,45 1100,-35 1440,25" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.3" />
-        
-        <g transform="translate(720, 60)" opacity="0.8">
-          <circle cx="0" cy="0" r="4" fill="var(--gold)"/>
-          <line x1="-30" y1="0" x2="-8" y2="0" stroke="var(--gold)" strokeWidth="1"/>
-          <line x1="8" y1="0" x2="30" y2="0" stroke="var(--gold)" strokeWidth="1"/>
+      <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px" }}>
+        <defs><TornPaperFilter id="couple-torn" scale={15} /></defs>
+        <line x1="10%" y1="30" x2="90%" y2="30" stroke="var(--gold-pale)" strokeWidth="1.5" opacity="0.3" filter="url(#couple-torn)" />
+        <g transform="translate(720, 30)">
+          <circle cx="0" cy="0" r="4" fill="var(--gold)" opacity="0.8"/>
+          <polygon points="-12,0 0,-4 12,0 0,4" fill="var(--gold)"/>
         </g>
       </svg>
     </div>
   );
 }
 
+/* ─── 2. Events → Story ──────────────────────────────────────────
+   Dark Green to Cream. Realistic Torn Edge of dark green over cream.
+─────────────────────────────────────────────────────────────── */
+function DividerEventsStory() {
+  return (
+    <div className="sd reveal-up" style={{ background: "var(--cream)", marginTop: "-2px" }}>
+      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
+        <defs><TornPaperFilter id="events-torn" scale={20} /></defs>
+        
+        {/* Shadow Layer (Gold/Cream burn) */}
+        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--gold-pale)" opacity="0.3" filter="url(#events-torn)" transform="translate(0, 5)" />
+        
+        {/* Main Dark Green Edge */}
+        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--deep-green)" filter="url(#events-torn)" />
+        
+        {/* Ornamental touch */}
+        <g transform="translate(1000, 40)" opacity="0.4">
+          <circle cx="0" cy="0" r="3" fill="var(--gold)"/>
+          <line x1="-30" y1="0" x2="-8" y2="0" stroke="var(--gold)" strokeWidth="1.5" filter="url(#events-torn)"/>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+/* ─── 3. Story → Gallery ─────────────────────────────────────────
+   Cream to Cream. Elegant center ornamental separator.
+─────────────────────────────────────────────────────────────── */
 function DividerStoryGallery() {
   return (
-    <div className="sd reveal-blur" style={{ background: "var(--cream)", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <div className="sd reveal-blur" style={{ background: "var(--cream)", minHeight: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div style={{ position: "relative", width: "100%" }}>
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: "100%", height: "60px" }}>
-          <line x1="10%" y1="30" x2="40%" y2="30" stroke="var(--gold)" strokeWidth="1" opacity="0.3" strokeDasharray="4 6" />
-          <line x1="60%" y1="30" x2="90%" y2="30" stroke="var(--gold)" strokeWidth="1" opacity="0.3" strokeDasharray="4 6" />
-          <g transform="translate(720, 30)">
-            <polygon points="0,-12 8,0 0,12 -8,0" fill="var(--gold)" opacity="0.5"/>
-            <polygon points="0,-6 4,0 0,6 -4,0" fill="var(--gold)"/>
+          <defs><TornPaperFilter id="story-brush" scale={8} /></defs>
+          <path d="M 200 30 Q 720 10 1240 30" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.3" filter="url(#story-brush)" />
+          <path d="M 300 40 Q 720 20 1140 40" fill="none" stroke="var(--gold)" strokeWidth="0.5" opacity="0.2" filter="url(#story-brush)" />
+          <g transform="translate(720, 25)">
+            <path d="M0,0 C-10,-10 -20,0 0,15 C20,0 10,-10 0,0 Z" fill="var(--gold)" opacity="0.7"/>
+            <circle cx="-35" cy="5" r="1.5" fill="var(--gold)" opacity="0.5"/>
+            <circle cx="35" cy="5" r="1.5" fill="var(--gold)" opacity="0.5"/>
           </g>
         </svg>
       </div>
@@ -70,40 +95,62 @@ function DividerStoryGallery() {
   );
 }
 
+/* ─── 4. Gallery → Wishes ────────────────────────────────────────
+   Cream to Sage (#E8EFEA). Torn paper of Cream overlapping Sage.
+─────────────────────────────────────────────────────────────── */
 function DividerGalleryWishes() {
   return (
     <div className="sd reveal-up" style={{ background: "#E8EFEA", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L1440,0 L1440,40 Q1080,90 720,40 Q360,-10 0,60 Z" fill="var(--cream)" />
+      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "100px" }}>
+        <defs><TornPaperFilter id="gallery-torn" scale={16} /></defs>
+        
+        {/* Subtle shadow layer */}
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(36,59,45,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
+        
+        {/* Main cream paper edge */}
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="var(--cream)" filter="url(#gallery-torn)" />
       </svg>
     </div>
   );
 }
 
+/* ─── 5. Wishes → Gift ───────────────────────────────────────────
+   Sage (#E8EFEA) to Cream. Torn paper of Sage over Cream.
+─────────────────────────────────────────────────────────────── */
 function DividerWishesGift() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--cream)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L1440,0 L1440,60 Q1080,-10 720,40 Q360,90 0,40 Z" fill="#E8EFEA" />
-        <g transform="translate(720, 35)">
-          <path d="M0,4 C-4,10 -12,10 -12,4 C-12,-4 0,-12 0,-12 C0,-12 12,-4 12,4 C12,10 4,10 0,4 Z" fill="var(--gold)" opacity="0.6" transform="rotate(180)"/>
-        </g>
-        <line x1="580" y1="35" x2="680" y2="35" stroke="var(--gold)" strokeWidth="0.8" opacity="0.4" className="sd-draw-left"/>
-        <line x1="760" y1="35" x2="860" y2="35" stroke="var(--gold)" strokeWidth="0.8" opacity="0.4" className="sd-draw-right"/>
+      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
+        <defs><TornPaperFilter id="wishes-torn" scale={22} /></defs>
+        
+        {/* Base shadow for depth */}
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="rgba(36,59,45,0.06)" filter="url(#wishes-torn)" transform="translate(0, 8)" />
+        
+        {/* Main Sage Brush/Paper */}
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="#E8EFEA" filter="url(#wishes-torn)" />
+        
+        <path d="M-50,-50 L1490,-50 L1490,40 C1200,0 600,100 -50,20 Z" fill="rgba(255,255,255,0.4)" filter="url(#wishes-torn)" />
       </svg>
     </div>
   );
 }
 
+/* ─── 6. Gift → Footer ───────────────────────────────────────────
+   Cream to Dark Footer (#1a2e20). Elegant torn cream falling over dark.
+─────────────────────────────────────────────────────────────── */
 function DividerGiftFooter() {
   return (
     <div className="sd reveal-up" style={{ background: "#1a2e20", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L1440,0 L1440,60 C1000,-20 440,-20 0,60 Z" fill="var(--cream)" />
-        <path d="M300,50 C600,0 840,0 1140,50" fill="none" stroke="var(--gold)" strokeWidth="1" strokeDasharray="5 5" opacity="0.5"/>
-        <g transform="translate(720, 10)">
-          <polygon points="0,-15 10,0 0,15 -10,0" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.8"/>
+      <svg className="sd-svg" viewBox="0 0 1440 140" preserveAspectRatio="none" style={{ minHeight: "140px" }}>
+        <defs><TornPaperFilter id="gift-torn" scale={14} /></defs>
+        
+        <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z" fill="var(--gold-pale)" opacity="0.4" filter="url(#gift-torn)" transform="translate(0, 6)" />
+        
+        <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z" fill="var(--cream)" filter="url(#gift-torn)" />
+        
+        <g transform="translate(720, 20)">
           <circle cx="0" cy="0" r="3" fill="var(--gold)"/>
+          <path d="M-40,30 Q0,5 40,30" fill="none" stroke="var(--gold)" strokeWidth="1" strokeDasharray="3 4" opacity="0.6"/>
         </g>
       </svg>
     </div>
