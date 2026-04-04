@@ -22,9 +22,9 @@ export default function Home() {
   const [invitationOpened, setInvitationOpened] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [wishes, setWishes] = useState([
-    { name: 'Keluarga Besar', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah." },
-    { name: 'Sahabat Fauzie & Icha', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.' },
-    { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.' }
+    { name: 'Keluarga Besar', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", isAttending: true },
+    { name: 'Sahabat Fauzie & Icha', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.', isAttending: true },
+    { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.', isAttending: false }
   ]);
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
@@ -111,22 +111,16 @@ export default function Home() {
     e.preventDefault();
     const nameEl = document.getElementById('wish-name') as HTMLInputElement;
     const textEl = document.getElementById('wish-text') as HTMLTextAreaElement;
+    const attendanceEl = document.getElementById('wish-attendance') as HTMLSelectElement;
+    
     const name = nameEl.value.trim();
     const text = textEl.value.trim();
+    const isAttending = attendanceEl.value === 'true';
     
-    if (!name || !text) {
-      const form = document.getElementById('wish-form');
-      if (form) {
-        form.style.animation = 'none';
-        void (form as HTMLElement).offsetWidth;
-        form.style.animation = 'shake 0.5s ease';
-      }
-      return;
-    }
+    if (!name || !text) return;
     
-    setWishes(prev => [{ name, text }, ...prev]);
-    nameEl.value = '';
-    textEl.value = '';
+    setWishes(prev => [{ name, text, isAttending }, ...prev]);
+    // Form reset is handled in the child component Wishes.tsx handleSubmit
   };
 
   const copyAcc = (num: string, e: React.MouseEvent<HTMLButtonElement>) => {
