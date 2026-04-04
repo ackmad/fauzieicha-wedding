@@ -22,12 +22,12 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string, scale?: number }) => 
 );
 
   /* ─── 1. Couple → Events ────────────────────────────────────────
-   Deep Green (#2D5A3D) to Dark Sage (#23392b).
+   Deep Green (#2D5A3D) to Dark Sage (#35493b).
    Torn edge of Couple's base blending into Events top.
 ─────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "#23392b", marginTop: "-2px" }}>
+    <div className="sd reveal-up" style={{ background: "#35493b", marginTop: "-2px" }}>
       <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
         <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
         
@@ -51,20 +51,15 @@ function DividerCoupleEvents() {
 function DividerEventsStory() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--cream)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
-        <defs><TornPaperFilter id="events-torn" scale={20} /></defs>
-        
-        {/* Shadow Layer (Gold/Cream burn) */}
-        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--gold-pale)" opacity="0.3" filter="url(#events-torn)" transform="translate(0, 5)" />
-        
-        {/* Main Dark Green Edge matching the Events background exactly */}
-        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="#23392b" filter="url(#events-torn)" />
-        
-        {/* Ornamental touch */}
-        <g transform="translate(1000, 40)" opacity="0.4">
-          <circle cx="0" cy="0" r="3" fill="var(--gold)"/>
-          <line x1="-30" y1="0" x2="-8" y2="0" stroke="var(--gold)" strokeWidth="1.5" filter="url(#events-torn)"/>
-        </g>
+      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "100px" }}>
+        <defs>
+          <filter id="events-torn-user" x="-10%" y="-20%" width="120%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="4" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(53,73,59,0.1)" filter="url(#events-torn-user)" transform="translate(0, 6)"></path>
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="#35493b" filter="url(#events-torn-user)"></path>
       </svg>
     </div>
   );
@@ -102,7 +97,7 @@ function DividerGalleryWishes() {
         <defs><TornPaperFilter id="gallery-torn" scale={16} /></defs>
         
         {/* Subtle shadow layer */}
-        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(35,57,43,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(36,59,45,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
         
         {/* Main cream paper edge */}
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="var(--cream)" filter="url(#gallery-torn)" />
