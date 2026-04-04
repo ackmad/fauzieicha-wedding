@@ -18,6 +18,7 @@ interface WishesProps {
 export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   const [toast, setToast] = useState<{ show: boolean, msg: string, type: 'success' | 'error' }>({ show: false, msg: '', type: 'success' });
   const [isLoading, setIsLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false); // To simulate refresh on pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -60,10 +61,17 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   };
 
   const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-    // Smooth scroll to list start could be added here
-    const listEl = document.querySelector('.wish-list');
-    if (listEl) listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setIsRefreshing(true);
+    
+    // Simulate a brief "refresh" or fetch delay for better feel
+    setTimeout(() => {
+      setCurrentPage(pageNumber);
+      setIsRefreshing(false);
+      
+      // Smooth scroll back to stats for better UX
+      const statsEl = document.querySelector('.wish-stats-container');
+      if (statsEl) statsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 600);
   };
 
   return (
@@ -120,8 +128,16 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
         </form>
 
         {/* Compact List Style Guestbook */}
-        <div className="wish-list-container">
-          <div className="wish-list-compact">
+        <div className="wish-list-container" style={{ position: 'relative' }}>
+          {/* Simulated Refresh Overlay */}
+          {isRefreshing && (
+            <div className="list-refresh-overlay">
+              <div className="refresh-spinner"></div>
+            </div>
+          )}
+
+          <div className={`wish-list-compact ${isRefreshing ? 'refreshing' : ''}`}>
+
             {currentWishes.map((wish, i) => (
               <div key={indexOfFirstItem + i} className="wish-item-compact reveal-up">
                 <div className="wish-avatar-compact">
