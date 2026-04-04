@@ -91,16 +91,16 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
     <section id="section-events">
       {/* Background Layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.08 }}></div>
-      <div className="events-bg-glow">
+      <div className="events-bg-glow idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
-      <div className="events-floral-br">
+      <div className="events-floral-br idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-2.png" alt="" />
       </div>
 
       <div className="section-inner">
         {/* Header */}
-        <header className="events-header reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
+        <header className="events-header reveal-up" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
           <p className="events-subtitle-vivid">{trans["events-label"]}</p>
           <h2 className="events-title-vivid">{trans["events-title"]}</h2>
           <div className="events-header-divider">
@@ -111,7 +111,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
         </header>
 
         {/* Countdown Timer */}
-        <div className="countdown-section reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
+        <div className="countdown-section reveal-zoom" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
           <p className="countdown-label-text">
             {currentLang === "id" ? "Menuju Hari Bahagia" : "Counting Down to the Big Day"}
           </p>
@@ -123,7 +123,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
           {events.map((event, i) => (
             <div
               key={event.id}
-              className="std-arch-card reveal-item"
+              className="std-arch-card reveal-up"
               style={{ "--reveal-delay": `${0.3 + i * 0.2}s` } as React.CSSProperties}
             >
               <div className="std-card-inner">

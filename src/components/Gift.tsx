@@ -33,12 +33,12 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
     <section id="section-amplop">
       {/* Background layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.08 }}></div>
-      <div className="amplop-glow">
+      <div className="amplop-glow idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
 
       {/* Top floral */}
-      <div className="amplop-floral-top reveal-item">
+      <div className="amplop-floral-top idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-1.png" alt="" />
       </div>
 
@@ -51,13 +51,13 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
         </h2>
 
         {/* Envelope illustration */}
-        <div className="amplop-envelope reveal-item" style={{ "--reveal-delay": "0.25s" } as React.CSSProperties}>
+        <div className="amplop-envelope reveal-zoom" style={{ "--reveal-delay": "0.25s" } as React.CSSProperties}>
           <div className="amplop-envelope-inner">
-            <span className="amplop-envelope-icon">💌</span>
+            <span className="amplop-envelope-icon idle-sway" style={{ display: 'inline-block' }}>💌</span>
           </div>
         </div>
 
-        <p className="amplop-desc reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
+        <p className="amplop-desc reveal-up" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
           {trans["amplop-desc"]}
         </p>
 
@@ -68,7 +68,7 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
             return (
               <div
                 key={acc.id}
-                className="amplop-card reveal-item"
+                className="amplop-card reveal-up shimmer-effect"
                 style={{ "--reveal-delay": `${0.4 + i * 0.15}s`, "--bank-color": accentColor } as React.CSSProperties}
               >
                 {/* Card top accent bar */}

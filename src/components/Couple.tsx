@@ -30,16 +30,16 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       <div className="couple-noise-overlay"></div>
       
       {/* 🟡 AMBIENT FLOW: RADIAL GLOW & GUNUNGAN */}
-      <div className="couple-radial-glow"></div>
+      <div className="couple-radial-glow idle-pulse"></div>
       <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
         <img src="/ornaments/gunungan-jawa.png" alt="" className="gunungan-png-vivid" />
       </div>
 
       {/* 🌿 TOP DECORATIONS (Symmetrical Balance) */}
-      <div className="couple-floral-top-left">
+      <div className="couple-floral-top-left idle-sway parallax-element-slow" style={{ transformOrigin: 'top left' }}>
         <img src="/florals/floral-frame.png" alt="" />
       </div>
-      <div className="couple-floral-top-right">
+      <div className="couple-floral-top-right idle-sway parallax-element-slow" style={{ transformOrigin: 'top right' }}>
         <img src="/florals/floral-frame.png" alt="" />
       </div>
 
@@ -59,10 +59,10 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
         
         <div className="couple-names-block">
           <div className="couple-person">
-            <div className="name-main-couple reveal-item" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
+            <div className="name-main-couple reveal-right" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
               {basics.groomName}
             </div>
-            <p className="parent-text-couple reveal-item" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
+            <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
               {families[currentLang].groom}
             </p>
           </div>
@@ -74,10 +74,10 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
           </div>
           
           <div className="couple-person">
-            <div className="name-main-couple reveal-item" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>
+            <div className="name-main-couple reveal-left" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>
               {basics.brideName}
             </div>
-            <p className="parent-text-couple reveal-item" style={{ "--reveal-delay": "0.8s" } as React.CSSProperties}>
+            <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.8s" } as React.CSSProperties}>
               {families[currentLang].bride}
             </p>
           </div>

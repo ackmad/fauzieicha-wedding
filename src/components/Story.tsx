@@ -34,13 +34,13 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
     <section id="section-story">
       {/* Background layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
-      <div className="story-glow">
+      <div className="story-glow idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
-      <div className="floral-hanging-wrap">
-        <img src="/florals/floral-hanging.png" alt="" className="floral-hanging-img" />
+      <div className="floral-hanging-wrap idle-sway" style={{ transformOrigin: 'top center' }}>
+        <img src="/florals/floral-hanging.png" alt="" className="floral-hanging-img parallax-element-slow" />
       </div>
-      <div className="parallax-leaf story-leaf-1">
+      <div className="parallax-leaf story-leaf-1 idle-float">
         <img src="/effects/parallax-leaves.png" alt="" />
       </div>
 
@@ -48,7 +48,7 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
         <p className="section-label reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
           {trans["story-label"]}
         </p>
-        <h2 className="section-title reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
+        <h2 className="section-title reveal-up" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
           {trans["story-title"]}
         </h2>
 
@@ -64,7 +64,7 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
             return (
               <div
                 key={i}
-                className={`tl-vivid-item ${isLeft ? "tl-left" : "tl-right"} reveal-item`}
+                className={`tl-vivid-item ${isLeft ? "tl-left reveal-right" : "tl-right reveal-left"}`}
                 style={{ "--reveal-delay": `${0.3 + i * 0.2}s` } as React.CSSProperties}
               >
                 {/* Content */}

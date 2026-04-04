@@ -11,12 +11,12 @@ export default function Gallery({ trans }: GalleryProps) {
     <section id="section-gallery">
       {/* Background layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
-      <div className="gallery-glow">
+      <div className="gallery-glow idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
 
       {/* Floating leaf */}
-      <div className="parallax-leaf gallery-leaf">
+      <div className="parallax-leaf gallery-leaf idle-float">
         <img src="/effects/parallax-leaves.png" alt="" />
       </div>
 
@@ -29,9 +29,9 @@ export default function Gallery({ trans }: GalleryProps) {
         </h2>
 
         {/* Coming soon card */}
-        <div className="gallery-coming-soon reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
+        <div className="gallery-coming-soon reveal-blur" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
           <div className="gallery-coming-inner">
-            <div className="gallery-coming-icon">📸</div>
+            <div className="gallery-coming-icon idle-sway" style={{ display: 'inline-block' }}>📸</div>
             <h3 className="gallery-coming-title">Coming Soon</h3>
             <p className="gallery-coming-text">
               Foto-foto kenangan perjalanan cinta kami akan segera hadir di sini.<br />

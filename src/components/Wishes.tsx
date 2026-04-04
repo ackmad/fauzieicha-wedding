@@ -21,13 +21,13 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   return (
     <section id="section-wishes">
       {/* Background layers */}
-      <div className="wishes-glow">
+      <div className="wishes-glow idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
       <div className="section-bg-dark-soft"></div>
 
       {/* Top floral */}
-      <div className="wishes-floral-top reveal-item">
+      <div className="wishes-floral-top idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-1.png" alt="" />
       </div>
 
@@ -45,7 +45,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
 
         {/* Form */}
         <form
-          className="wish-form reveal-item"
+          className="wish-form reveal-up"
           id="wish-form"
           onSubmit={handleSubmit}
           style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}
@@ -77,7 +77,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
         {/* Wish cards */}
         <div className="wish-list">
           {wishes.map((wish, i) => (
-            <div key={i} className="wish-card revealed">
+            <div key={i} className="wish-card reveal-right revealed" style={{ "--reveal-delay": `${0.1 + i * 0.1}s` } as React.CSSProperties}>
               <div className="wish-card-header">
                 <div className="wish-avatar">
                   {wish.name.charAt(0).toUpperCase()}

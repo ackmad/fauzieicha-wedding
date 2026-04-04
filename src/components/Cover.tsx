@@ -23,20 +23,20 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
         <img src="/backgrounds/batik-pattern.png" alt="" />
       </div>
       <div id="cover-overlay"></div>
-      <div id="cover-leaves">
+      <div id="cover-leaves" className="idle-float-slow">
         <img src="/effects/parallax-leaves.png" alt="" id="parallax-leaves-img" />
       </div>
-      <div id="cover-glow">
+      <div id="cover-glow" className="idle-pulse">
         <img src="/effects/light-glow.png" alt="" />
       </div>
-      <div id="cover-floral-left">
+      <div id="cover-floral-left" className="idle-sway" style={{ transformOrigin: 'top left' }}>
         <img src="/florals/floral-frame.png" alt="" />
       </div>
-      <div id="cover-floral-right">
+      <div id="cover-floral-right" className="idle-sway" style={{ transformOrigin: 'top right' }}>
         <img src="/florals/floral-frame.png" alt="" />
       </div>
       <div id="cover-content">
-        <div id="cover-top-ornament">
+        <div id="cover-top-ornament" className="idle-float shimmer-effect">
           <OrnamenJawa color="var(--gold)" className="ornament-svg" />
         </div>
         <div id="cover-text-block">

@@ -146,7 +146,7 @@ export default function Home() {
 
   const initScrollReveal = () => {
     const revealTargets = document.querySelectorAll(
-      '.reveal-item, .reveal-scale, .reveal-item-side-left, .reveal-item-side-right, .couple-gunungan-reveal, .couple-and-divider'
+      '.reveal-item, .reveal-scale, .reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur, .couple-gunungan-reveal, .couple-and-divider'
     );
 
     const observer = new IntersectionObserver((entries) => {
@@ -164,6 +164,11 @@ export default function Home() {
   const initParallax = () => {
     const handler = () => {
       const scrollY = window.scrollY;
+      
+      // Global parallax variable
+      document.body.style.setProperty('--scroll-y', `${scrollY}`);
+
+      // Specific leaf parallax (retained for direct speed control)
       const leaves = document.querySelectorAll('.story-leaf-1, .gallery-leaf');
       leaves.forEach((leaf, i) => {
         const speed = 0.08 + i * 0.03;

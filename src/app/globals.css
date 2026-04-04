@@ -608,29 +608,113 @@ section {
   margin-bottom: 50px;
 }
 
-/* ======== REVEAL ANIMATION SYSTEM ======== */
-.reveal-item {
+/* ======== CINEMATIC ANIMATION SYSTEM ======== */
+/* --- Entrance Reveal Effects --- */
+.reveal-up {
   opacity: 0;
-  transform: translateY(32px);
-  transition:
-    opacity var(--dur-slow) var(--ease-out),
-    transform var(--dur-slow) var(--ease-out);
+  transform: translateY(40px) scale(0.98);
+  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-item.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-scale {
+.reveal-up.revealed { opacity: 1; transform: translateY(0) scale(1); }
+
+.reveal-left {
   opacity: 0;
-  transform: scale(0.93);
-  transition:
-    opacity var(--dur-slow) var(--ease-out),
-    transform var(--dur-slow) var(--ease-out);
+  transform: translateX(-40px);
+  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-scale.revealed {
-  opacity: 1;
-  transform: scale(1);
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal-zoom.revealed { opacity: 1; transform: scale(1); }
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(20px);
+  transition: opacity var(--dur-cinematic) var(--ease-out), filter var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform, filter;
+}
+.reveal-blur.revealed { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+/* Compatibility alias for existing classes */
+.reveal-item { opacity: 0; transform: translateY(40px) scale(0.98); transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out); transition-delay: var(--reveal-delay, 0s); will-change: opacity, transform; }
+.reveal-item.revealed { opacity: 1; transform: translateY(0) scale(1); }
+.reveal-scale { opacity: 0; transform: scale(0.93); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); transition-delay: var(--reveal-delay, 0s); will-change: opacity, transform; }
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
+
+/* --- Continuous Idle Animations --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes soft-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.idle-float { animation: float 6s ease-in-out infinite; }
+.idle-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.idle-sway { animation: sway 7s ease-in-out infinite; transform-origin: top center; }
+.idle-pulse { animation: soft-pulse 4s ease-in-out infinite; }
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+  pointer-events: none;
+}
+
+/* --- Parallax Utilities --- */
+.parallax-bg {
+  transform: translateY(var(--parallax-bg, 0px));
+  will-change: transform;
+}
+.parallax-element-fast {
+  transform: translateY(calc(var(--scroll-y, 0) * -0.15px));
+  will-change: transform;
+}
+.parallax-element-slow {
+  transform: translateY(calc(var(--scroll-y, 0) * -0.05px));
+  will-change: transform;
 }
 
 /* ================================================
@@ -2867,4 +2951,12 @@ footer::before {
 }
 .form-input::placeholder {
   color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Premium Click Feedback for all Buttons */
+button, .std-maps-btn-pill {
+  transition: all 0.35s var(--ease-out), transform 0.15s cubic-bezier(0.2, 0, 0.4, 1) !important;
+}
+button:active, .std-maps-btn-pill:active {
+  transform: scale(0.97) translateY(0) !important;
 }
