@@ -85,13 +85,7 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
 
         <div className="opening-verse-container reveal-item" style={{ "--reveal-delay": "1.0s" } as React.CSSProperties}>
           <div className="verse-bg-shield"></div>
-          <div className="verse-jawa-accent top">
-             <img src="/ornaments/ornamen-jawa.png" alt="" />
-          </div>
           <p className="opening-verse-vivid">{trans["verse-text"]}</p>
-          <div className="verse-jawa-accent bottom">
-             <img src="/ornaments/ornamen-jawa.png" alt="" />
-          </div>
         </div>
       </div>
 
