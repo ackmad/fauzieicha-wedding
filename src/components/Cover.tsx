@@ -1,6 +1,7 @@
 "use client";
 
 import { WeddingData } from "../types";
+import { OrnamenJawa } from "./Icons";
 
 interface CoverProps {
   isCoverRemoved: boolean;
@@ -16,34 +17,34 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
   return (
     <div id="cover" className={invitationOpened ? 'opening' : ''}>
       <div id="cover-bg">
-        <img id="cover-hero-img" src="/hero-background.png" alt="Wedding Background" />
+        <img id="cover-hero-img" src="/backgrounds/hero-background.png" alt="Wedding Background" />
       </div>
       <div id="cover-batik">
-        <img src="/batik-pattern.png" alt="" />
+        <img src="/backgrounds/batik-pattern.png" alt="" />
       </div>
       <div id="cover-overlay"></div>
       <div id="cover-leaves">
-        <img src="/parallax-leaves.png" alt="" id="parallax-leaves-img" />
+        <img src="/effects/parallax-leaves.png" alt="" id="parallax-leaves-img" />
       </div>
       <div id="cover-glow">
-        <img src="/light-glow.png" alt="" />
+        <img src="/effects/light-glow.png" alt="" />
       </div>
       <div id="cover-floral-left">
-        <img src="/floral-frame.png" alt="" />
+        <img src="/florals/floral-frame.png" alt="" />
       </div>
       <div id="cover-floral-right">
-        <img src="/floral-frame.png" alt="" />
+        <img src="/florals/floral-frame.png" alt="" />
       </div>
       <div id="cover-content">
         <div id="cover-top-ornament">
-          <img src="/top-ornament.png" alt="Javanese Ornament" />
+          <OrnamenJawa color="var(--gold)" className="ornament-svg" />
         </div>
         <div id="cover-text-block">
           <p className="cover-subtitle">{trans["the-wedding-of"]}</p>
           <div className="cover-divider-line"></div>
-          <div className="cover-groom">{basics.groomName}</div>
+          <div className="cover-groom">{basics.groomNickname}</div>
           <div className="cover-and">&amp;</div>
-          <div className="cover-bride">{basics.brideName}</div>
+          <div className="cover-bride">{basics.brideNickname}</div>
           <p className="cover-date">{basics.weddingDate}</p>
         </div>
         <div id="cover-btn-wrap">
@@ -52,7 +53,7 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
         </div>
       </div>
       <div id="cover-foreground">
-        <img src="/hero-foreground.png" alt="" />
+        <img src="/effects/hero-foreground.png" alt="" />
       </div>
     </div>
   );

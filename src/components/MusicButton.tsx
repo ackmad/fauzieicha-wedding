@@ -10,6 +10,7 @@ export default function MusicButton({ musicPlaying, toggleMusic, invitationOpene
   return (
     <div 
       id="music-btn" 
+      className={musicPlaying ? "music-playing" : ""}
       style={{ display: invitationOpened ? 'flex' : 'none' }} 
       onClick={() => toggleMusic()} 
       title="Play/Pause Music"

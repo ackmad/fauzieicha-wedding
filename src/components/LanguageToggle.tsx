@@ -13,9 +13,9 @@ export default function LanguageToggle({ currentLang, toggleLang }: LanguageTogg
       onClick={toggleLang} 
       title="Switch Language"
     >
-      <span>ID</span>
-      <span className="lang-sep"> | </span>
-      <span>EN</span>
+      <span className="lang-label lang-id">ID</span>
+      <span className="lang-sep">|</span>
+      <span className="lang-label lang-en">EN</span>
     </div>
   );
 }

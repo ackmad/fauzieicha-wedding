@@ -1,7 +1,6 @@
-"use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { WeddingData } from "../types";
+import { GununganSVG, OrnamenJawa } from "./Icons";
 
 interface CoupleProps {
   basics: WeddingData["basics"];
@@ -25,52 +24,86 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
 
   return (
     <section id="section-couple" ref={sectionRef}>
-      {/* BASE LAYERS */}
+      {/* 🔴 BACKGROUND LAYERS & DEPTH */}
+      <div className="couple-bg-depth"></div>
       <div className="couple-bg-pattern"></div>
+      <div className="couple-noise-overlay"></div>
       
-      {/* WOW MOMENT: MASSIVE GUNUNGAN (Behind content) */}
-      <div className={`couple-gunungan-wow ${revealed ? "revealed" : ""}`} style={{ zIndex: 1 }}>
-        <img src="/gunungan-jawa.png" alt="" className="gunungan-reveal-img" />
+      {/* 🟡 AMBIENT FLOW: RADIAL GLOW & GUNUNGAN */}
+      <div className="couple-radial-glow"></div>
+      <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
+        <img src="/ornaments/gunungan-jawa.png" alt="" className="gunungan-png-vivid" />
       </div>
 
-      {/* AMBIENT GLOW */}
-      <div className="couple-glow-center" style={{ zIndex: 2 }}>
-        <img src="/light-glow.png" alt="" />
+      {/* 🌿 TOP DECORATIONS (Symmetrical Balance) */}
+      <div className="couple-floral-top-left">
+        <img src="/florals/floral-frame.png" alt="" />
+      </div>
+      <div className="couple-floral-top-right">
+        <img src="/florals/floral-frame.png" alt="" />
       </div>
 
-      {/* PARALLAX ELEMENTS */}
-      <div className="parallax-leaves-wrap" style={{ zIndex: 5 }}>
-        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ top: "5%", left: "0", opacity: 0.3, width: "150px" }} />
-        <img src="/parallax-leaves.png" alt="" className="parallax-leaf-item" style={{ top: "40%", right: "-20px", opacity: 0.2, width: "120px", transform: "scaleX(-1)" }} />
-      </div>
-
-      {/* MAIN CONTENT (On top) */}
-      <div className={`section-inner couple-content-wrap ${revealed ? "revealed" : ""}`} style={{ zIndex: 10 }}>
-        <p className="couple-inviting reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>{trans["inviting-text"]}</p>
-        <p className="bismillah-text reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      {/* 🏛 MAIN CONTENT: TYPOGRAPHY */}
+      <div className={`section-inner couple-content-wrap ${revealed ? "revealed" : ""}`}>
+        <div className="top-ornament-wrap reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
+          <img src="/ornaments/top-ornament.png" alt="" className="jawa-top-ornament" />
+        </div>
         
-        <div className="couple-main-names">
-          <div className="name-main reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>{basics.groomName}</div>
-          <div className="couple-and-divider reveal-item" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
-            <img src="/ornamen-jawa.png" alt="&" className="name-divider-img" style={{ maxWidth: "120px" }} />
+        <p className="couple-inviting reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
+          {trans["inviting-text"]}
+        </p>
+        
+        <p className="bismillah-text-vivid reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
+          بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+        </p>
+        
+        <div className="couple-names-block">
+          <div className="couple-person">
+            <div className="name-main-couple reveal-item" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
+              {basics.groomName}
+            </div>
+            <p className="parent-text-couple reveal-item" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
+              {families[currentLang].groom}
+            </p>
           </div>
-          <div className="name-main reveal-item" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>{basics.brideName}</div>
+          
+          <div className="couple-center-divider-vivid reveal-item" style={{ "--reveal-delay": "0.6s" } as React.CSSProperties}>
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png" />
+            <div className="center-ampersand">&amp;</div>
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" />
+          </div>
+          
+          <div className="couple-person">
+            <div className="name-main-couple reveal-item" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>
+              {basics.brideName}
+            </div>
+            <p className="parent-text-couple reveal-item" style={{ "--reveal-delay": "0.8s" } as React.CSSProperties}>
+              {families[currentLang].bride}
+            </p>
+          </div>
         </div>
 
-        <div className="couple-parents-wrap">
-          <p className="parent-text reveal-item" style={{ "--reveal-delay": "0.9s" } as React.CSSProperties}>{families[currentLang].groom}</p>
-          <p className="parent-text reveal-item" style={{ "--reveal-delay": "1.1s" } as React.CSSProperties}>{families[currentLang].bride}</p>
+        <div className="opening-verse-container reveal-item" style={{ "--reveal-delay": "1.0s" } as React.CSSProperties}>
+          <div className="verse-bg-shield"></div>
+          <div className="verse-jawa-accent top">
+             <img src="/ornaments/ornamen-jawa.png" alt="" />
+          </div>
+          <p className="opening-verse-vivid">{trans["verse-text"]}</p>
+          <div className="verse-jawa-accent bottom">
+             <img src="/ornaments/ornamen-jawa.png" alt="" />
+          </div>
         </div>
-
-        <p className="opening-verse reveal-item" style={{ "--reveal-delay": "1.3s" } as React.CSSProperties}>{trans["verse-text"]}</p>
       </div>
 
-      {/* FLORAL OVERLAYS (Foreground) */}
-      <div className={`couple-floral-accent left ${revealed ? "revealed" : ""}`} style={{ zIndex: 20 }}>
-        <img src="/floral-accent-1.png" alt="" />
+      {/* 🌿 BOTTOM DECORATIONS (MASSIVE & SYMMETRICAL) */}
+      <div className={`couple-floral-bottom left ${revealed ? "revealed" : ""}`}>
+        <img src="/florals/floral-accent-1.png" alt="" />
       </div>
-      <div className={`couple-floral-accent right ${revealed ? "revealed" : ""}`} style={{ zIndex: 20 }}>
-        <img src="/floral-accent-2.png" alt="" />
+      <div className={`couple-floral-bottom right ${revealed ? "revealed" : ""}`}>
+        <img src="/florals/floral-accent-1.png" alt="" />
+      </div>
+      <div className={`couple-floral-bottom center-back ${revealed ? "revealed" : ""}`}>
+        <img src="/florals/floral-accent-2.png" alt="" />
       </div>
     </section>
   );

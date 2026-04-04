@@ -1,7 +1,9 @@
 export interface WeddingData {
   basics: {
     groomName: string;
+    groomNickname: string;
     brideName: string;
+    brideNickname: string;
     weddingDate: string;
     footerDate: string;
   };

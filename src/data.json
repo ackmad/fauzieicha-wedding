@@ -1,18 +1,20 @@
 {
   "basics": {
-    "groomName": "Rizky Aditya Pratama",
-    "brideName": "Amara Putri Soleha",
-    "weddingDate": "Sabtu, 12 April 2025",
-    "footerDate": "12 · 04 · 2025"
+    "groomName": "Nurfauzie Ihsan, S. Tr. T.",
+    "groomNickname": "Fauzie",
+    "brideName": "Chairunissa Nur Azizah, S. Tr. Bns.",
+    "brideNickname": "Icha",
+    "weddingDate": "Minggu, 10 Mei 2026",
+    "footerDate": "10 · 05 · 2026"
   },
   "families": {
     "id": {
-      "groom": "Putra dari Bapak Ahmad Fauzi & Ibu Sri Wahyuni",
-      "bride": "Putri dari Bapak Hendra Santosa & Ibu Dewi Rahayu"
+      "groom": "Putra dari Bapak Mohammad Achmadi & Ibu Fatkhiyatul Azminah, S.Ag.M.PdI",
+      "bride": "Putri dari Bapak DR. H. Sumiyar, M. Pd. & Ibu Hj. Rodiyah, S. Pd, MM"
     },
     "en": {
-      "groom": "Son of Mr. Ahmad Fauzi & Mrs. Sri Wahyuni",
-      "bride": "Daughter of Mr. Hendra Santosa & Mrs. Dewi Rahayu"
+      "groom": "Son of Mr. Mohammad Achmadi & Mrs. Fatkhiyatul Azminah, S.Ag.M.PdI",
+      "bride": "Daughter of Mr. DR. H. Sumiyar, M. Pd. & Mrs. Hj. Rodiyah, S. Pd, MM"
     }
   },
   "events": [
@@ -21,43 +23,43 @@
       "type": { "id": "Akad Nikah", "en": "Islamic Marriage Contract" },
       "name": { "id": "Ijab Kabul", "en": "Sacred Vows" },
       "time": { "id": "Pukul 08.00 – 10.00 WIB", "en": "08:00 – 10:00 WIB" },
-      "location": "Masjid Al-Hikmah",
-      "address": "Jl. Melati Raya No. 12, Bandung",
-      "mapsLink": "https://maps.google.com"
+      "location": "Masid Jami Bintaro Jaya",
+      "address": "Jl. Bintaro Utama I No.1, Sekor I, Bintaro, Kec. Pesanggrahan, Kota Jakarta Selatan, DKI Jakarta 15412",
+      "mapsLink": "https://maps.app.goo.gl/4XChcNcKsQgtPQZY9"
     },
     {
       "id": "resepsi",
       "type": { "id": "Resepsi Pernikahan", "en": "Wedding Reception" },
       "name": { "id": "Walimatul Ursy", "en": "Celebration" },
-      "time": { "id": "Pukul 11.00 – 15.00 WIB", "en": "11:00 – 15:00 WIB" },
-      "location": "Gedung Serbaguna Melati",
-      "address": "Jl. Cendana No. 45, Bandung",
-      "mapsLink": "https://maps.google.com"
+      "time": { "id": "Pukul 11.00 – Selesai", "en": "11:00 – Finish" },
+      "location": "Masid Jami Bintaro Jaya",
+      "address": "Jl. Bintaro Utama I No.1, Sekor I, Bintaro, Kec. Pesanggrahan, Kota Jakarta Selatan, DKI Jakarta 15412",
+      "mapsLink": "https://maps.app.goo.gl/4XChcNcKsQgtPQZY9"
     }
   ],
   "timeline": [
     {
-      "year": "2021",
-      "title": { "id": "Awal Pertemuan", "en": "First Encounter" },
+      "year": "2019",
+      "title": { "id": "Awal Bertemu", "en": "First Encounter" },
       "text": {
-        "id": "Sebuah pertemuan tak terduga di sebuah seminar kampus menjadi awal dari sebuah kisah yang tak pernah terbayangkan. Dua hati, tanpa disadari, mulai melangkah menuju satu arah.",
-        "en": "A chance encounter at a university seminar became the beginning of a story neither expected. Two hearts, unknowingly, began their journey together."
+        "id": "Agustus 2019, kami pertama kali diperkenalkan di Jamteks 40 saat masih berstatus Mahasiswa Baru. Berawal dari sapaan singkat di malam yang temaram sembari menikmati Pop Mie bersama teman-teman, tak disangka itulah awal mula perjalanan panjang kami.",
+        "en": "August 2019, we were first introduced at Jamteks 40 during our freshman orientation. Starting from a brief greeting on a dim night while enjoying Pop Mie with friends, little did we know it was the beginning of our long journey together."
       }
     },
     {
-      "year": "2023",
+      "year": "2026",
       "title": { "id": "Lamaran", "en": "Engagement" },
       "text": {
-        "id": "Dengan restu keluarga dan doa yang tulus, sebuah niat mulia disampaikan secara resmi. Sebuah cincin menjadi simbol janji setia untuk melangkah bersama.",
-        "en": "With family's blessings and sincere prayers, a formal proposal was offered. A ring became the symbol of a heartfelt promise to walk side by side."
+        "id": "Setelah perjalanan panjang dan bertemu di waktu yang paling tepat, kami akhirnya memutuskan untuk mengikat janji suci pada tanggal 8 Februari 2026. Momen penuh haru dan bahagia ini disaksikan oleh keluarga besar dan para sahabat terdekat.",
+        "en": "After a long journey and meeting at the perfect time, we finally decided to commit ourselves on February 8, 2026. This emotional and joyful moment was witnessed by our extended families and closest friends."
       }
     },
     {
-      "year": "2025",
+      "year": "2026",
       "title": { "id": "Pernikahan", "en": "The Wedding" },
       "text": {
-        "id": "Hari ini, dengan penuh syukur dan kebahagiaan, dua jiwa bersatu dalam ikatan pernikahan yang suci. Sebuah lembaran baru dimulai, ditulis bersama dengan cinta dan kesetiaan.",
-        "en": "Today, with gratitude and joy, two souls are united in sacred matrimony. A new chapter begins, written together with love and devotion."
+        "id": "10 Mei 2026, menjadi saksi bisu penyatuan dua jiwa dalam ikatan suci pernikahan. Melaksanakan akad dan resepsi dengan penuh syukur, kami siap melangkah bersama membangun rumah tangga yang sakinah, mawaddah, dan warahmah.",
+        "en": "May 10, 2026, became the silent witness of two souls uniting in sacred matrimony. With hearts full of gratitude, we held our ceremony and reception, ready to step forward together to build a harmonious family full of love and mercy."
       }
     }
   ],
@@ -65,14 +67,14 @@
     {
       "id": "acc1",
       "bank": "Bank BCA",
-      "name": "Rizky Aditya Pratama",
-      "number": "1234 5678 9012"
+      "name": "Chairunissa Nur Azizah",
+      "number": "6042836890"
     },
     {
       "id": "acc2",
-      "bank": "Bank Mandiri",
-      "name": "Amara Putri Soleha",
-      "number": "0987 6543 2109"
+      "bank": "Bank BNI",
+      "name": "Nurfauzie Ihsan",
+      "number": "1183700743"
     }
   ],
   "translations": {
@@ -85,8 +87,6 @@
       "maps-btn": "Buka Peta",
       "story-label": "Kisah Kami",
       "story-title": "Cerita Cinta",
-      "gallery-label": "Galeri Bunga",
-      "gallery-title": "Mekar Bersama",
       "wishes-label": "Ucapan & Doa",
       "wishes-title": "Doa & Harapan",
       "name-label": "Nama Anda",
@@ -111,8 +111,6 @@
       "maps-btn": "Open Maps",
       "story-label": "Our Journey",
       "story-title": "Love Story",
-      "gallery-label": "Floral Gallery",
-      "gallery-title": "Blooming Together",
       "wishes-label": "Send Your Wishes",
       "wishes-title": "Wishes & Prayers",
       "name-label": "Your Name",

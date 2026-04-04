@@ -15,7 +15,7 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
     <section id="section-amplop">
       <div className="section-bg-texture batik-layer"></div>
       <div className="amplop-floral-top reveal-item">
-        <img src="/floral-accent-1.png" alt="" style={{ height: "80px", objectFit: "contain", opacity: 0.6 }} />
+        <img src="/florals/floral-accent-1.png" alt="" style={{ height: "80px", objectFit: "contain", opacity: 0.6 }} />
       </div>
       <div className="section-inner" style={{ textAlign: "center", position: "relative", zIndex: 2 }}>
         <p className="section-label reveal-item">{trans["amplop-label"]}</p>

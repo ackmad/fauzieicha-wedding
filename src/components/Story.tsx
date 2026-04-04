@@ -1,7 +1,6 @@
-"use client";
-
 import React from "react";
 import { WeddingData } from "../types";
+import { IconStory, OrnamenJawa } from "./Icons";
 
 interface StoryProps {
   timeline: WeddingData["timeline"];
@@ -15,15 +14,15 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
       {/* RICH LAYERING */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.12 }}></div>
       <div className="story-glow">
-        <img src="/light-glow.png" alt="" />
+        <img src="/effects/light-glow.png" alt="" />
       </div>
       
       <div className="floral-hanging-wrap">
-        <img src="/floral-hanging.png" alt="" className="floral-hanging-img" />
+        <img src="/florals/floral-hanging.png" alt="" className="floral-hanging-img" />
       </div>
 
       <div className="parallax-leaf story-leaf-1">
-        <img src="/parallax-leaves.png" alt="" />
+        <img src="/effects/parallax-leaves.png" alt="" />
       </div>
 
       <div className="section-inner" style={{ position: "relative", zIndex: 2 }}>
@@ -31,7 +30,7 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
         <h2 className="section-title reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>{trans["story-title"]}</h2>
         
         <div className="ornamen-jawa-divider reveal-item">
-          <img src="/ornamen-jawa.png" alt="" style={{ height: "45px", objectFit: "contain", opacity: 0.6 }} />
+          <OrnamenJawa color="var(--gold)" className="ornament-svg" style={{ height: "45px", opacity: 0.6 }} />
         </div>
 
         <div className="timeline">
@@ -39,7 +38,7 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
             <div key={i} className="timeline-item reveal-item" style={{ "--reveal-delay": `${0.4 + i * 0.25}s` } as React.CSSProperties}>
               <div className="tl-content-wrap">
                 <div className="tl-dot">
-                  <img src="/icon-love-story.png" alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                  <IconStory color="var(--gold)" className="icon-svg" />
                 </div>
                 <div className="tl-content">
                   <div className="tl-year">{item.year}</div>

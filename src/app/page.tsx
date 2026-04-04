@@ -6,11 +6,11 @@ import weddingData from "../data.json";
 // Import Components
 import LanguageToggle from "../components/LanguageToggle";
 import MusicButton from "../components/MusicButton";
+import FlowerRain from "../components/FlowerRain";
 import Cover from "../components/Cover";
 import Couple from "../components/Couple";
 import Events from "../components/Events";
 import Story from "../components/Story";
-import Gallery from "../components/Gallery";
 import Wishes from "../components/Wishes";
 import Gift from "../components/Gift";
 import Footer from "../components/Footer";
@@ -20,9 +20,9 @@ export default function Home() {
   const [invitationOpened, setInvitationOpened] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [wishes, setWishes] = useState([
-    { name: 'Keluarga Besar Santosa', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah." },
-    { name: 'Rina & Doni', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.' },
-    { name: 'Tim Kantor Rizky', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.' }
+    { name: 'Keluarga Besar', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah." },
+    { name: 'Sahabat Fauzie & Icha', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.' },
+    { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.' }
   ]);
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
@@ -184,6 +184,7 @@ export default function Home() {
 
   return (
     <>
+      <FlowerRain />
       <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
       
       <MusicButton 
@@ -206,7 +207,6 @@ export default function Home() {
         <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
         <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
         <Story timeline={timeline} currentLang={currentLang} trans={trans} />
-        <Gallery trans={trans} />
         <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
         <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
         <Footer basics={basics} trans={trans} />

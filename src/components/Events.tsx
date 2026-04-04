@@ -1,7 +1,6 @@
-"use client";
-
 import React from "react";
 import { WeddingData } from "../types";
+import { IconAcara, OrnamenJawa, SectionDivider } from "./Icons";
 
 interface EventsProps {
   events: WeddingData["events"];
@@ -16,19 +15,19 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
       {/* RICH LAYERING */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.15 }}></div>
       <div className="events-bg-glow">
-        <img src="/light-glow.png" alt="" />
+        <img src="/effects/light-glow.png" alt="" />
       </div>
 
       <div className="events-floating-ornament">
-        <img src="/top-ornament.png" alt="" />
+        <OrnamenJawa color="var(--gold)" className="ornament-svg" />
       </div>
 
       {/* FIXED FLORAL WRAPPERS */}
       <div className="floral-accent-left reveal-item">
-        <img src="/floral-accent-1.png" alt="" />
+        <img src="/florals/floral-accent-1.png" alt="" />
       </div>
       <div className="floral-accent-right reveal-item">
-        <img src="/floral-accent-2.png" alt="" />
+        <img src="/florals/floral-accent-2.png" alt="" />
       </div>
 
       <div className="section-inner">
@@ -40,18 +39,18 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
             <div key={event.id} className="event-card reveal-item" style={{ "--reveal-delay": `${0.4 + i * 0.3}s` } as React.CSSProperties}>
               {/* Internal Card Decor */}
               <div className="card-corner-floral top-left">
-                <img src="/floral-accent-1.png" alt="" style={{ width: "80px", opacity: 0.3 }} />
+                <img src="/florals/floral-accent-1.png" alt="" style={{ width: "80px", opacity: 0.3 }} />
               </div>
 
               <div className="event-icon">
-                <img src="/icon-acara.png" alt="Icon Acara" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                <IconAcara color="var(--gold)" className="icon-svg" />
               </div>
 
               <div className="event-type">{event.type[currentLang]}</div>
               <div className="event-name">{event.name[currentLang]}</div>
               
               <div className="event-card-divider">
-                <img src="/divider-section.png" alt="" />
+                <SectionDivider color="var(--gold)" className="divider-svg" />
               </div>
 
               <div className="event-detail">

@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import { OrnamenJawa } from "./Icons";
 
 interface WishesProps {
   wishes: { name: string; text: string }[];
@@ -12,11 +11,11 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   return (
     <section id="section-wishes">
       <div className="wishes-glow">
-        <img src="/light-glow.png" alt="" />
+        <img src="/effects/light-glow.png" alt="" />
       </div>
       <div className="section-bg-dark-soft"></div>
       <div className="wishes-ornamen reveal-item">
-        <img src="/ornamen-jawa.png" alt="" style={{ height: "36px", objectFit: "contain", opacity: 0.3 }} />
+        <OrnamenJawa color="var(--gold)" style={{ height: "36px", opacity: 0.3 }} />
       </div>
       <div className="section-inner" style={{ position: "relative", zIndex: 2 }}>
         <p className="section-label reveal-item">{trans["wishes-label"]}</p>
