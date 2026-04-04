@@ -1,70 +1,106 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 interface GalleryProps {
   trans: Record<string, string>;
 }
 
+// Wedding gallery photos — using florals/decorations as placeholder
+// In production, replace these with actual couple photos
+const galleryItems = [
+  { src: "/florals/floral-frame.png", caption: "Momen Bersama", aspect: "portrait" },
+  { src: "/decorations/dekor-main.png", caption: "Dekorasi Pernikahan", aspect: "landscape" },
+  { src: "/florals/floral-accent-1.png", caption: "Bunga-Bunga Cinta", aspect: "portrait" },
+  { src: "/florals/floral-hanging.png", caption: "Keindahan Alam", aspect: "landscape" },
+  { src: "/ornaments/gunungan-jawa.png", caption: "Budaya Jawa", aspect: "portrait" },
+  { src: "/florals/floral-accent-2.png", caption: "Kenangan Indah", aspect: "landscape" },
+];
+
 export default function Gallery({ trans }: GalleryProps) {
-  // Enhanced items to create "density" and "wow moment"
-  const galleryItems = [
-    { src: "/decorations/dekor-main.png", delay: "0.1s" },
-    { src: "/florals/floral-accent-1.png", delay: "0.2s" },
-    { src: "/florals/floral-hanging.png", delay: "0.3s" },
-    { src: "/florals/floral-accent-2.png", delay: "0.4s" },
-    { src: "/florals/floral-frame.png", delay: "0.5s" },
-    { src: "/ornaments/gunungan-jawa.png", delay: "0.6s" },
-    { src: "/ornaments/ornamen-jawa.png", delay: "0.7s" },
-    { src: "/ornaments/divider-section.png", delay: "0.8s" },
-  ];
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxCaption, setLightboxCaption] = useState<string>("");
+
+  const openLightbox = (src: string, caption: string) => {
+    setLightboxSrc(src);
+    setLightboxCaption(caption);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setLightboxSrc(null);
+    document.body.style.overflow = "";
+  };
 
   return (
     <section id="section-gallery">
-      {/* RICH LAYERING */}
-      <div className="section-bg-texture batik-layer" style={{ opacity: 0.15 }}></div>
+      {/* Background layers */}
+      <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
       <div className="gallery-glow">
         <img src="/effects/light-glow.png" alt="" />
       </div>
 
-      <div className="gallery-dekor reveal-item">
-        <img src="/decorations/dekor-main.png" alt="" />
-      </div>
-
-      <div className="parallax-leaf gallery-leaf reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
+      {/* Floating leaf */}
+      <div className="parallax-leaf gallery-leaf">
         <img src="/effects/parallax-leaves.png" alt="" />
       </div>
-      
+
       <div className="section-inner">
-        <p className="section-label reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>{trans["gallery-label"]}</p>
-        <h2 className="section-title reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>{trans["gallery-title"]}</h2>
-        
+        <p className="section-label reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
+          {trans["gallery-label"] || "Galeri"}
+        </p>
+        <h2 className="section-title reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
+          {trans["gallery-title"] || "Momen Indah"}
+        </h2>
+        <p className="gallery-subtitle reveal-item" style={{ "--reveal-delay": "0.3s" } as React.CSSProperties}>
+          Kenangan berharga yang kami abadikan bersama
+        </p>
+
+        {/* Photography note */}
+        <div className="gallery-coming-soon reveal-item" style={{ "--reveal-delay": "0.35s" } as React.CSSProperties}>
+          <div className="gallery-coming-inner">
+            <div className="gallery-coming-icon">📸</div>
+            <p className="gallery-coming-text">
+              Foto-foto kenangan kami akan segera hadir di sini.<br />
+              <em>Coming soon...</em>
+            </p>
+          </div>
+        </div>
+
         <div className="gallery-grid">
           {galleryItems.map((item, i) => (
-            <div 
-              key={i} 
-              className="gallery-item reveal-item" 
-              style={{ "--reveal-delay": item.delay } as React.CSSProperties}
+            <div
+              key={i}
+              className={`gallery-item reveal-item gallery-item--${item.aspect}`}
+              style={{ "--reveal-delay": `${0.4 + i * 0.1}s` } as React.CSSProperties}
+              onClick={() => openLightbox(item.src, item.caption)}
             >
-              {/* GOLD FRAME FOR EVERY PHOTO */}
-              <div className="gallery-img-wrap" style={{ border: "3px solid var(--gold)", borderRadius: "30px", overflow: "hidden" }}>
-                <img 
-                  src={item.src} 
-                  alt={`Galeri ${i + 1}`} 
-                  style={{ 
-                    objectFit: "contain", 
-                    width: "100%", 
-                    height: "100%", 
-                    padding: "25px", 
-                    background: "rgba(255,255,255,0.05)",
-                    transition: "transform 0.8s var(--ease-out)"
-                  }} 
+              <div className="gallery-img-frame">
+                <img
+                  src={item.src}
+                  alt={item.caption}
+                  className="gallery-img"
                 />
+                <div className="gallery-overlay">
+                  <div className="gallery-zoom-icon">🔍</div>
+                  <p className="gallery-caption">{item.caption}</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <div className="lightbox-backdrop" onClick={closeLightbox}>
+          <div className="lightbox-container" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox}>✕</button>
+            <img src={lightboxSrc} alt={lightboxCaption} className="lightbox-img" />
+            <p className="lightbox-caption">{lightboxCaption}</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

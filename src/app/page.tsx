@@ -10,6 +10,7 @@ import FlowerRain from "../components/FlowerRain";
 import Cover from "../components/Cover";
 import Couple from "../components/Couple";
 import Events from "../components/Events";
+import Gallery from "../components/Gallery";
 import Story from "../components/Story";
 import Wishes from "../components/Wishes";
 import Gift from "../components/Gift";
@@ -207,6 +208,7 @@ export default function Home() {
         <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
         <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
         <Story timeline={timeline} currentLang={currentLang} trans={trans} />
+        <Gallery trans={trans} />
         <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
         <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
         <Footer basics={basics} trans={trans} />
