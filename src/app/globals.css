@@ -1532,7 +1532,7 @@ section {
   padding: 120px 20px;
 }
 #section-wishes .section-label { color: var(--gold); }
-#section-wishes .section-title { color: var(--deep-green); }
+#section-wishes .section-title { color: var(--gold-pale); }
 
 .wishes-glow {
   position: absolute;
@@ -1655,11 +1655,16 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .amplop-floral-top {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  bottom: -20px;
+  right: -20px;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 280px;
+  max-width: 35vw;
+  z-index: 0; /* Behind all text */
   pointer-events: none;
+  opacity: 0.4;
 }
 
 .amplop-desc {
@@ -2570,12 +2575,14 @@ footer::before {
    ================================================ */
 .wishes-floral-top {
   position: absolute;
-  top: -20px;
+  bottom: -20px;
   right: -20px;
-  width: 200px;
-  opacity: 0.25;
+  top: auto;
+  width: 220px;
+  max-width: 35vw;
+  opacity: 0.2;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0; /* Behind all content */
 }
 .wishes-floral-top img { width: 100%; }
 
@@ -2842,4 +2849,22 @@ footer::before {
     grid-auto-rows: 160px;
   }
   .gallery-item--landscape { grid-column: span 2; }
+}
+
+/* ================================================
+   FINAL COLOR OVERRIDES FOR READABILITY MAP TO NEW DESIGN
+   ================================================ */
+#section-gallery .section-label { color: var(--gold) !important; }
+#section-gallery .section-title { color: var(--deep-green) !important; }
+
+#section-wishes .section-label { color: var(--gold) !important; }
+#section-wishes .section-title { color: var(--gold-pale) !important; }
+
+.form-input {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
 }
