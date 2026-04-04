@@ -107,7 +107,7 @@ function DividerGalleryWishes() {
 }
 
 /* ─── 5. Wishes → Gift ───────────────────────────────────────────
-   Sage (#E8EFEA) to Cream. Torn paper of Sage over Cream.
+   Dark Green (#35493b) to Cream. Torn paper of Dark Green over Cream.
 ─────────────────────────────────────────────────────────────── */
 function DividerWishesGift() {
   return (
@@ -116,12 +116,12 @@ function DividerWishesGift() {
         <defs><TornPaperFilter id="wishes-torn" scale={22} /></defs>
         
         {/* Base shadow for depth */}
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="rgba(36,59,45,0.06)" filter="url(#wishes-torn)" transform="translate(0, 8)" />
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="rgba(36,59,45,0.2)" filter="url(#wishes-torn)" transform="translate(0, 8)" />
         
-        {/* Main Sage Brush/Paper */}
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="#E8EFEA" filter="url(#wishes-torn)" />
+        {/* Main Dark Green Brush/Paper */}
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="#35493b" filter="url(#wishes-torn)" />
         
-        <path d="M-50,-50 L1490,-50 L1490,40 C1200,0 600,100 -50,20 Z" fill="rgba(255,255,255,0.4)" filter="url(#wishes-torn)" />
+        <path d="M-50,-50 L1490,-50 L1490,40 C1200,0 600,100 -50,20 Z" fill="rgba(255,255,255,0.05)" filter="url(#wishes-torn)" />
       </svg>
     </div>
   );
