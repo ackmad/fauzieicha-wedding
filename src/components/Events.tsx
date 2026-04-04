@@ -116,6 +116,21 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
             {currentLang === "id" ? "Menuju Hari Bahagia" : "Counting Down to the Big Day"}
           </p>
           <Countdown targetDate={weddingDateISO} lang={currentLang} />
+          
+          <a 
+            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+${basics.groomNickname}+%26+${basics.brideNickname}&dates=20260510T010000Z/20260510T070000Z&details=Hari+Bahagia+${basics.groomNickname}+%26+${basics.brideNickname}`}
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="calendar-btn"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            {currentLang === "id" ? "Simpan ke Kalender" : "Save to Calendar"}
+          </a>
         </div>
 
         {/* Event Cards */}

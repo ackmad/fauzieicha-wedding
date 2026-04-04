@@ -2285,6 +2285,34 @@ footer::before {
   opacity: 0.8;
 }
 
+.calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--gold-pale);
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.calendar-btn:hover {
+  background: linear-gradient(135deg, var(--deep-green), var(--jungle-dark));
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  color: #fff;
+}
+
 /* ================================================
    GALLERY SECTION (COMING SOON)
    ================================================ */
