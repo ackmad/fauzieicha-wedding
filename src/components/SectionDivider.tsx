@@ -21,13 +21,13 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string, scale?: number }) => 
   </filter>
 );
 
-/* ─── 1. Couple → Events ────────────────────────────────────────
-   Deep Green (#2D5A3D) to Dark Sage (#28462e).
+  /* ─── 1. Couple → Events ────────────────────────────────────────
+   Deep Green (#2D5A3D) to Dark Sage (#334739).
    Torn edge of Couple's base blending into Events top.
 ─────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "#28462e", marginTop: "-2px" }}>
+    <div className="sd reveal-up" style={{ background: "#334739", marginTop: "-2px" }}>
       <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
         <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
         
@@ -58,7 +58,7 @@ function DividerEventsStory() {
         <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="var(--gold-pale)" opacity="0.3" filter="url(#events-torn)" transform="translate(0, 5)" />
         
         {/* Main Dark Green Edge matching the Events background exactly */}
-        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="#28462e" filter="url(#events-torn)" />
+        <path d="M-50,-50 L1490,-50 L1490,70 C1000,10 400,130 -50,60 Z" fill="#334739" filter="url(#events-torn)" />
         
         {/* Ornamental touch */}
         <g transform="translate(1000, 40)" opacity="0.4">
