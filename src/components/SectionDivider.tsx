@@ -22,26 +22,23 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string, scale?: number }) => 
 );
 
 /* ─── 1. Couple → Events ────────────────────────────────────────
-   Both are Dark Green. Let's add an ornamental divider instead
-   of a big block shape. Like a subtle gold brush + hanging florals.
+   Deep Green (#2D5A3D) to Dark Sage (#36493c).
+   Torn edge of Couple's base blending into Events top.
 ─────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "transparent", marginTop: "-20px", zIndex: 20 }}>
-      {/* Hanging botanicals */}
-      <div className="sd-floral-left idle-sway" style={{ transformOrigin: "top left", width: "160px", top: "-40px" }}>
-        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(-120deg) scaleX(-1)", opacity: 0.8 }} />
-      </div>
-      <div className="sd-floral-right idle-sway" style={{ transformOrigin: "top right", animationDelay: "1.5s", width: "160px", top: "-20px" }}>
-        <img src="/florals/floral-accent-1.png" alt="" style={{ transform: "rotate(130deg)", opacity: 0.8 }} />
-      </div>
-
-      <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px" }}>
-        <defs><TornPaperFilter id="couple-torn" scale={15} /></defs>
-        <line x1="10%" y1="30" x2="90%" y2="30" stroke="var(--gold-pale)" strokeWidth="1.5" opacity="0.3" filter="url(#couple-torn)" />
-        <g transform="translate(720, 30)">
-          <circle cx="0" cy="0" r="4" fill="var(--gold)" opacity="0.8"/>
-          <polygon points="-12,0 0,-4 12,0 0,4" fill="var(--gold)"/>
+    <div className="sd reveal-up" style={{ background: "#36493c", marginTop: "-2px" }}>
+      <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
+        <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
+        
+        {/* The torn overlap that matches EXACTLY the bottom gradient of Couple section */}
+        <path d="M-50,-50 L1490,-50 L1490,35 C1000,5 400,55 -50,25 Z" fill="#2D5A3D" filter="url(#couple-torn)" />
+        
+        {/* Gold ornamental accent on the torn edge */}
+        <path d="M-50,25 C400,55 1000,5 1490,35" fill="none" stroke="var(--gold-pale)" strokeWidth="1" opacity="0.4" filter="url(#couple-torn)" />
+        
+        <g transform="translate(720, 25)">
+          <polygon points="-8,0 0,-4 8,0 0,4" fill="var(--gold)" opacity="0.9"/>
         </g>
       </svg>
     </div>
