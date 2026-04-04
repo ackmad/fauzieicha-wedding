@@ -24,7 +24,24 @@ export default function Home() {
   const [wishes, setWishes] = useState([
     { name: 'Keluarga Besar', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", isAttending: true },
     { name: 'Sahabat Fauzie & Icha', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.', isAttending: true },
-    { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.', isAttending: false }
+    { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.', isAttending: false },
+    { name: 'Budi & Susi', text: 'Selamat menempuh hidup baru, semoga menjadi keluarga yang bahagia selamanya.', isAttending: true },
+    { name: 'Alumni SMA 1', text: 'Happy wedding Fauzie & Icha! Lancar-lancar ya acaranya.', isAttending: true },
+    { name: 'Keluarga Pak RT', text: 'Selamat ya Mas Fauzie, semoga Sakinah Mawaddah Warahmah.', isAttending: true },
+    { name: 'Siska Amelia', text: 'Ichaaa! Selamat ya cantik, maaf banget gak bisa hadir karena lagi di luar kota. Doa terbaik buat kalian!', isAttending: false },
+    { name: 'Andra & Family', text: 'Congratulations on your special day! May your love grow stronger every year.', isAttending: true },
+    { name: 'Om & Tante dari Solo', text: 'Ndherek bingah nggih Mas Fauzie, mugi-mugi dadi keluarga sing rukun.', isAttending: true },
+    { name: 'Grup Mancing Mania', text: 'Selamat menempuh hidup baru bosku! Habis ini mancingnya libur dulu ya hehe.', isAttending: true },
+    { name: 'Dini & Rian', text: 'Happy wedding day! Wishing you a lifetime of love and happiness.', isAttending: true },
+    { name: 'Pak Manajer', text: 'Selamat menempuh hidup baru Fauzie, semoga sukses selalu dalam membina rumah tangga.', isAttending: true },
+    { name: 'Tante Mirna', text: 'Selamat ya Icha sayang, semoga bahagia terus sama suami.', isAttending: true },
+    { name: 'Raka (Depok)', text: 'Wih mantap Zie! Selamat ya, lancar sampai hari-H!', isAttending: true },
+    { name: 'Sepupu Icha', text: 'Duh adekku udah nikah aja, selamat ya Icha & Mas Fauzie!', isAttending: true },
+    { name: 'Bu Siti (Tetangga)', text: 'Selamat menempuh hidup baru ya mas, semoga berkah keluarga barunya.', isAttending: true },
+    { name: 'Devi & Suami', text: 'Happy wedding! So happy for both of you.', isAttending: true },
+    { name: 'Anton Wijaya', text: 'Selamat bro! Maaf berhalangan hadir sedang ada dinas. Samawa ya!', isAttending: false },
+    { name: 'Grup Futsal', text: 'Golll! Akhirnya sah juga Zie. Selamat menempuh hidup baru!', isAttending: true },
+    { name: 'Lia & Bayu', text: 'Selamat menempuh hidup baru, semoga selalu bersama sampai kakek nenek.', isAttending: true }
   ]);
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
