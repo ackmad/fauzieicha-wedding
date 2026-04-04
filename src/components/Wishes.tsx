@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { OrnamenJawa } from "./Icons";
 
 interface Wish {
@@ -18,9 +18,9 @@ interface WishesProps {
 export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   const [toast, setToast] = useState<{ show: boolean, msg: string, type: 'success' | 'error' }>({ show: false, msg: '', type: 'success' });
   const [isLoading, setIsLoading] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(false); // To simulate refresh on pagination
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 8; // Increased for better density
 
   // Stats calculation
   const totalWishes = wishes.length;
@@ -51,7 +51,13 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
       submitWish(e);
       setToast({ show: true, msg: "Pesan Anda telah terkirim. Terima kasih!", type: 'success' });
       (e.target as HTMLFormElement).reset();
-      setCurrentPage(1); // Back to first page to see new wish
+      
+      // Auto-refresh feel for new submission
+      setIsRefreshing(true);
+      setTimeout(() => {
+        setCurrentPage(1);
+        setIsRefreshing(false);
+      }, 500);
     } catch (err) {
       setToast({ show: true, msg: "Terjadi kesalahan. Silakan coba lagi.", type: 'error' });
     } finally {
@@ -61,17 +67,23 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   };
 
   const paginate = (pageNumber: number) => {
+    if (pageNumber === currentPage) return;
     setIsRefreshing(true);
     
-    // Simulate a brief "refresh" or fetch delay for better feel
+    // Simulate a brief "refresh" for better feel
     setTimeout(() => {
       setCurrentPage(pageNumber);
       setIsRefreshing(false);
       
-      // Smooth scroll back to stats for better UX
-      const statsEl = document.querySelector('.wish-stats-container');
-      if (statsEl) statsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 600);
+      // Scroll to the start of the list so they don't have to scroll back up
+      const listContainer = document.getElementById('wish-list-anchor');
+      if (listContainer) {
+        window.scrollTo({
+          top: listContainer.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    }, 550);
   };
 
   return (
@@ -127,9 +139,10 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
           </button>
         </form>
 
-        {/* Compact List Style Guestbook */}
-        <div className="wish-list-container" style={{ position: 'relative' }}>
-          {/* Simulated Refresh Overlay */}
+        <div id="wish-list-anchor"></div>
+
+        {/* Compact List Style Guestbook with Fixed Visibility */}
+        <div className="wish-list-container" style={{ position: 'relative', marginTop: '40px' }}>
           {isRefreshing && (
             <div className="list-refresh-overlay">
               <div className="refresh-spinner"></div>
@@ -137,9 +150,16 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
           )}
 
           <div className={`wish-list-compact ${isRefreshing ? 'refreshing' : ''}`}>
-
             {currentWishes.map((wish, i) => (
-              <div key={indexOfFirstItem + i} className="wish-item-compact reveal-up">
+              <div 
+                key={`${currentPage}-${i}`} 
+                className="wish-item-compact"
+                style={{ 
+                  animation: `fadeInUp 0.4s ease forwards ${i * 0.05}s`,
+                  opacity: 0,
+                  transform: 'translateY(15px)'
+                }}
+              >
                 <div className="wish-avatar-compact">
                   {wish.name ? wish.name.charAt(0).toUpperCase() : '?'}
                 </div>
@@ -158,30 +178,25 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
 
           {/* Pagination Controls */}
           {totalPages > 1 && (
-            <div className="pagination-wrap reveal-item">
-              <button 
-                onClick={() => paginate(currentPage - 1)} 
-                disabled={currentPage === 1}
-                className="pag-btn"
-              >
-                &larr;
-              </button>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
-                <button 
-                  key={num} 
-                  onClick={() => paginate(num)}
-                  className={`pag-btn ${currentPage === num ? 'active' : ''}`}
-                >
-                  {num}
-                </button>
-              ))}
-              <button 
-                onClick={() => paginate(currentPage + 1)} 
-                disabled={currentPage === totalPages}
-                className="pag-btn"
-              >
-                &rarr;
-              </button>
+            <div className="pagination-wrap">
+              <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} className="pag-btn">&larr;</button>
+              
+              {/* Show only relevant page numbers for better mobile experience */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(num => num === 1 || num === totalPages || Math.abs(num - currentPage) <= 1)
+                .map((num, i, arr) => (
+                  <React.Fragment key={num}>
+                    {i > 0 && arr[i-1] !== num - 1 && <span className="pag-dots">...</span>}
+                    <button 
+                      onClick={() => paginate(num)}
+                      className={`pag-btn ${currentPage === num ? 'active' : ''}`}
+                    >
+                      {num}
+                    </button>
+                  </React.Fragment>
+                ))}
+
+              <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages} className="pag-btn">&rarr;</button>
             </div>
           )}
         </div>

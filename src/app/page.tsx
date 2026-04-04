@@ -41,7 +41,25 @@ export default function Home() {
     { name: 'Devi & Suami', text: 'Happy wedding! So happy for both of you.', isAttending: true },
     { name: 'Anton Wijaya', text: 'Selamat bro! Maaf berhalangan hadir sedang ada dinas. Samawa ya!', isAttending: false },
     { name: 'Grup Futsal', text: 'Golll! Akhirnya sah juga Zie. Selamat menempuh hidup baru!', isAttending: true },
-    { name: 'Lia & Bayu', text: 'Selamat menempuh hidup baru, semoga selalu bersama sampai kakek nenek.', isAttending: true }
+    { name: 'Lia & Bayu', text: 'Selamat menempuh hidup baru, semoga selalu bersama sampai kakek nenek.', isAttending: true },
+    { name: 'Keluarga Solo', text: 'Nderek bingah nggih Mas Fauzie, mugi dadi keluarga sakinah.', isAttending: true },
+    { name: 'Prata & Rini', text: 'Selamat menempuh hidup baru! Lancar acaranya ya Zie & Icha.', isAttending: true },
+    { name: 'Alumni Kampus', text: 'Congratulation Fauzie! Semoga dilancarkan segala urusannya.', isAttending: true },
+    { name: 'Tetangga Depan', text: 'Selamat ya buat Icha dan suami, semoga bahagia selalu.', isAttending: true },
+    { name: 'Pak Bos', text: 'Selamat menikah Fauzie, semoga cepat dapat momongan yang sholeh/sholehah.', isAttending: true },
+    { name: 'Grup Mancing Pagi', text: 'Selamat narik joran di pelaminan bro! Mantap!', isAttending: true },
+    { name: 'Santi & Friends', text: 'Happy wedding! Wish you all the best!', isAttending: true },
+    { name: 'Paman Hasan', text: 'Barakallahu lakum, selamat ya nak.', isAttending: true },
+    { name: 'Risma Amelia', text: 'Aaaa selamat Icha! Maaf gak bisa datang ya lagi ada tugas.', isAttending: false },
+    { name: 'Benni Saputra', text: 'Selamat bro! Maaf berhalangan dapet shift siang.', isAttending: false },
+    { name: 'Grup Gowes', text: 'Mantap Zie! Selamat menempuh rute baru kehidupan!', isAttending: true },
+    { name: 'Mbak Dwi', text: 'Selamat ya dek Icha, semoga langgeng terus.', isAttending: true },
+    { name: 'Mas Agus', text: 'Selamat menempuh hidup baru Fauzie!', isAttending: true },
+    { name: 'Zian & Tia', text: 'Happy wedding! Terharu banget akhirnya kalian nikah.', isAttending: true },
+    { name: 'Alumni SMA Grup A', text: 'Selamat Fauzie! Sukses terus ya!', isAttending: true },
+    { name: 'Keluarga Bogor', text: 'Selamat menempuh hidup baru ya, semoga berkah.', isAttending: true },
+    { name: 'Dodo (Bandung)', text: 'Maaf Zie gak bisa dateng jauh banget, selamat ya bro!', isAttending: false },
+    { name: 'Rere & Partners', text: 'Selamat menempuh hidup baru, sukses selalu!', isAttending: true }
   ]);
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
