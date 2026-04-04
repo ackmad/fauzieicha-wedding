@@ -2197,14 +2197,89 @@ footer::before {
 }
 
 /* ================================================
-   GALLERY SECTION (ENHANCED)
+   GALLERY SECTION (COMING SOON)
    ================================================ */
 #section-gallery {
   position: relative;
-  min-height: 80vh;
+  min-height: 60vh;
   background: var(--cream);
   padding: 100px 20px;
   overflow: hidden;
+}
+
+/* Centered coming soon card */
+.gallery-coming-soon {
+  max-width: 520px;
+  margin: 40px auto 0;
+}
+
+.gallery-coming-inner {
+  background: linear-gradient(160deg, rgba(36,59,45,0.06), rgba(212,175,55,0.08));
+  border: 1.5px solid rgba(184,149,42,0.3);
+  border-radius: 28px;
+  padding: 55px 45px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(36,59,45,0.08);
+  transition: all 0.5s var(--ease-out);
+}
+.gallery-coming-inner:hover {
+  border-color: rgba(184,149,42,0.5);
+  box-shadow: 0 30px 80px rgba(36,59,45,0.12);
+  transform: translateY(-5px);
+}
+
+.gallery-coming-icon {
+  font-size: 52px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.gallery-coming-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-style: italic;
+  color: var(--deep-green);
+  margin-bottom: 18px;
+}
+
+.gallery-coming-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.gallery-coming-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.gallery-coming-divider span:first-child,
+.gallery-coming-divider span:last-child {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(184,149,42,0.5));
+}
+.gallery-coming-divider span:last-child {
+  background: linear-gradient(to left, transparent, rgba(184,149,42,0.5));
+}
+.gallery-coming-diamond {
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.gallery-coming-date {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .gallery-glow {
