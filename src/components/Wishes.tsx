@@ -22,6 +22,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   // Stats calculation
   const totalWishes = wishes.length;
   const totalAttending = wishes.filter(w => w.isAttending).length;
+  const totalAbsent = wishes.filter(w => w.isAttending === false).length;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +97,12 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
           <div className="stat-divider"></div>
           <div className="stat-item">
             <span className="stat-num">{totalAttending}</span>
-            <span className="stat-lbl">Telah Konfirmasi Hadir</span>
+            <span className="stat-lbl">Hadir</span>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <span className="stat-num">{totalAbsent}</span>
+            <span className="stat-lbl">Berhalangan</span>
           </div>
         </div>
 
