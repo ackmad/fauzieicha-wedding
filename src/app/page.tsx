@@ -15,6 +15,7 @@ import Story from "../components/Story";
 import Wishes from "../components/Wishes";
 import Gift from "../components/Gift";
 import Footer from "../components/Footer";
+import SectionDivider from "../components/SectionDivider";
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<"id" | "en">("id");
@@ -211,11 +212,17 @@ export default function Home() {
 
       <div id="main" className={invitationOpened ? "visible" : ""} style={{ display: invitationOpened ? 'block' : 'none' }} ref={mainRef}>
         <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
+        <SectionDivider type="couple-to-events" />
         <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
+        <SectionDivider type="events-to-story" />
         <Story timeline={timeline} currentLang={currentLang} trans={trans} />
+        <SectionDivider type="story-to-gallery" />
         <Gallery trans={trans} />
+        <SectionDivider type="gallery-to-wishes" />
         <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
+        <SectionDivider type="wishes-to-gift" />
         <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
+        <SectionDivider type="gift-to-footer" />
         <Footer basics={basics} trans={trans} />
       </div>
     </>
