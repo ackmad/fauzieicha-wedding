@@ -2746,11 +2746,12 @@ footer::before {
 .wish-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(212,175,55,0.15);
-  border-radius: 20px;
-  padding: 28px 30px;
+  border-radius: 12px; /* Smoother, tighter corner */
+  padding: 18px 20px; /* Reduced from 28px 30px for a more compact look */
   text-align: left;
   transition: all 0.4s var(--ease-out);
   backdrop-filter: blur(5px);
+  margin-bottom: 12px;
 }
 .wish-card:hover {
   border-color: rgba(212,175,55,0.35);
@@ -2766,14 +2767,14 @@ footer::before {
 }
 
 .wish-avatar {
-  width: 42px;
-  height: 42px;
+  width: 32px; /* Reduced from 42px */
+  height: 32px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), var(--gold-pale));
   color: var(--deep-green);
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 13px; /* Reduced from 16px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2783,27 +2784,27 @@ footer::before {
 
 .wish-author {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 13px; /* Reduced from 14px */
   font-weight: 600;
   color: var(--gold-pale);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .wish-quote-mark {
   font-family: var(--font-display);
-  font-size: 64px;
+  font-size: 44px; /* Reduced from 64px */
   color: var(--gold);
-  opacity: 0.2;
+  opacity: 0.15;
   line-height: 0.5;
-  margin-bottom: 15px;
+  margin-bottom: 5px; /* Reduced from 15px */
 }
 
 .wish-text {
   font-family: var(--font-body);
-  font-size: 15px;
-  color: rgba(255,255,255,0.75);
+  font-size: 14px; /* Reduced from 15px */
+  color: rgba(255,255,255,0.7);
   font-style: italic;
-  line-height: 1.8;
+  line-height: 1.6; /* Tighter leading */
 }
 
 /* Submit button success state */
