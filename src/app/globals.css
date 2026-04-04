@@ -1002,7 +1002,8 @@ section {
 }
 .jawa-top-ornament {
   width: 100%;
-  filter: drop-shadow(0 5px 15px rgba(201, 168, 76, 0.3));
+  mix-blend-mode: screen;
+  /* removing drop-shadow because dirty transparent PNGs will render a full box shadow */
 }
 
 .couple-center-divider-vivid {
@@ -1016,6 +1017,7 @@ section {
 .divider-jawa-png {
   width: 80px;
   opacity: 0.5;
+  mix-blend-mode: screen;
 }
 .divider-jawa-png.rotated {
   transform: scaleX(-1);
