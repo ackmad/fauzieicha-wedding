@@ -102,7 +102,7 @@ function DividerGalleryWishes() {
         <defs><TornPaperFilter id="gallery-torn" scale={16} /></defs>
         
         {/* Subtle shadow layer */}
-        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(36,59,45,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(35,57,43,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
         
         {/* Main cream paper edge */}
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="var(--cream)" filter="url(#gallery-torn)" />
