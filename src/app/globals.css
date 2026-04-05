@@ -1864,10 +1864,10 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 .submit-btn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
-  border: 1px solid rgba(184,149,42,0.3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-gold);
   border-radius: 4px;
-  color: var(--gold-pale);
+  color: var(--accent-gold);
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 3px;
@@ -1877,18 +1877,19 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   margin-top: 8px;
 }
 .submit-btn:hover { 
-  background: linear-gradient(135deg, var(--deep-green), var(--jungle-dark));
-  border-color: var(--gold);
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  border-color: var(--accent-gold);
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   transform: translateY(-1px);
 }
 
 .wish-list { display: flex; flex-direction: column; gap: 14px; }
 .wish-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(184, 149, 42, 0.18);
-  border-left: 2px solid rgba(184,149,42,0.6);
-  border-radius: 0 6px 6px 0;
+  background: var(--card-bg);
+  border: 1px solid var(--accent-gold);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 0 12px 12px 0;
   padding: 20px 24px;
   opacity: 0;
   transform: translateX(-18px);
@@ -1897,9 +1898,9 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 .wish-card.revealed { opacity: 1; transform: translateX(0); }
 .wish-author {
   font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-gold);
   margin-bottom: 6px;
   letter-spacing: 0.5px;
 }
@@ -1907,7 +1908,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   font-family: var(--font-body);
   font-size: 16px;
   font-style: italic;
-  color: rgba(245, 239, 224, 0.7);
+  color: var(--text-primary);
   line-height: 1.7;
 }
 
@@ -2974,13 +2975,13 @@ footer {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--deep-green), var(--mid-green));
-  border: 2px solid rgba(212,175,55,0.5);
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold-pale);
-  box-shadow: 0 0 20px rgba(184,149,42,0.2), 0 10px 30px rgba(0,0,0,0.3);
+  color: var(--accent-gold);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.3);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
