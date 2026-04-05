@@ -3248,3 +3248,85 @@ button:active, .std-maps-btn-pill:active {
   0% { stroke-dashoffset: 100; }
   100% { stroke-dashoffset: 0; }
 }
+
+
+/* ================================================
+   GOLD MONOGRAM DESIGN SYSTEM
+   Usage: <GoldMonogram variant="hero|secondary|divider|footer|watermark" />
+   ================================================ */
+
+.monogram-base {
+  display: inline-block;
+  line-height: 0;
+}
+
+.monogram-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- Entrance animation (shared) --- */
+@keyframes monogram-reveal {
+  0%   { opacity: 0; transform: scale(0.82); filter: blur(6px); }
+  100% { opacity: 1; transform: scale(1);    filter: blur(0); }
+}
+
+@keyframes monogram-breathe {
+  0%   { filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
+  50%  { filter: drop-shadow(0 0 20px rgba(212,175,55,0.6)); }
+  100% { filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
+}
+
+/* ─── VARIANT: HERO ──────────────────────────────
+   Full treatment: large, dominant, glow + breathe
+─────────────────────────────────────────────────── */
+.monogram-hero {
+  width: clamp(90px, 20vw, 130px);
+  animation:
+    monogram-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    monogram-breathe 3.5s 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(212,175,55,0.45));
+}
+
+/* ─── VARIANT: SECONDARY ─────────────────────────
+   Medium size, softer glow, no breathing
+─────────────────────────────────────────────────── */
+.monogram-secondary {
+  width: clamp(60px, 12vw, 80px);
+  animation: monogram-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,0.25));
+  opacity: 0.88;
+}
+
+/* ─── VARIANT: DIVIDER ───────────────────────────
+   Small ornamental accent, clean, no glow
+─────────────────────────────────────────────────── */
+.monogram-divider {
+  width: clamp(32px, 7vw, 48px);
+  animation: monogram-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0.7;
+}
+
+/* ─── VARIANT: FOOTER ────────────────────────────
+   Tiny signature, refined
+─────────────────────────────────────────────────── */
+.monogram-footer {
+  width: clamp(22px, 5vw, 32px);
+  animation: monogram-reveal 0.8s ease forwards;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 4px rgba(212,175,55,0.2));
+}
+
+/* ─── VARIANT: WATERMARK ─────────────────────────
+   Ultra-transparent, for textured section backgrounds
+─────────────────────────────────────────────────── */
+.monogram-watermark {
+  width: clamp(200px, 60vw, 360px);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+  filter: none;
+}
+

@@ -2,6 +2,7 @@
 
 import { WeddingData } from "../types";
 import { OrnamenJawa } from "./Icons";
+import GoldMonogram from "./GoldMonogram";
 
 interface CoverProps {
   isCoverRemoved: boolean;
@@ -40,6 +41,7 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           <OrnamenJawa color="var(--gold)" className="ornament-svg" />
         </div>
         <div id="cover-text-block">
+          <GoldMonogram variant="hero" style={{ margin: "0 auto 18px" }} />
           <p className="cover-subtitle">{trans["the-wedding-of"]}</p>
           <div className="cover-divider-line"></div>
           <div className="cover-groom">{basics.groomNickname}</div>

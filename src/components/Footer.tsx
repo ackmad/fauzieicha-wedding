@@ -1,6 +1,7 @@
 import React from "react";
 import { WeddingData } from "../types";
 import { OrnamenJawa, SectionDivider } from "./Icons";
+import GoldMonogram from "./GoldMonogram";
 
 interface FooterProps {
   basics: WeddingData["basics"];
@@ -22,6 +23,7 @@ export default function Footer({ basics, trans }: FooterProps) {
       <div className="footer-divider-img" style={{ marginTop: "20px" }}>
         <SectionDivider color="var(--gold)" style={{ width: "200px", opacity: 0.3 }} />
       </div>
+      <GoldMonogram variant="footer" style={{ margin: "16px auto 8px" }} />
       <p className="footer-made">{trans["footer-made"]}</p>
     </footer>
   );

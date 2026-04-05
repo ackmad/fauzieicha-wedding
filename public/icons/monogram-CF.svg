@@ -1,3 +1,143 @@
 <svg width="591" height="645" viewBox="0 0 591 645" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M343.071 74.7263C319.071 34.7263 245.171 -29.8737 141.571 31.7263C12.0714 108.726 33.5714 239.226 35.5714 258.726C37.5714 278.226 44.0714 377.226 163.071 437.226C217.471 460.426 279.738 440.56 304.071 427.726V239.226L275.571 208.226H590.071V265.226C588.071 249.393 572.671 217.726 527.071 217.726H334.571V420.226C360.405 406.06 422.171 380.926 462.571 393.726C502.971 406.526 528.738 439.393 536.571 454.226C511.738 422.726 448.571 377.226 334.571 441.226V596.226C334.571 617.226 334.571 636.226 367.571 644.226H271.571C282.405 641.56 304.071 628.226 304.071 596.226V448.226C280.405 459.06 216.071 475.426 148.071 454.226C63.0714 427.726 4.07145 301.726 0.571448 244.226C-2.92855 186.726 8.07145 118.726 78.0714 51.7263C147.753 -14.9689 237.749 -0.903989 285.914 6.62347L286.572 6.72627C305.772 9.92627 332.238 28.3929 343.071 37.2263V74.7263Z" fill="#F1EDCB"/>
+  <defs>
+
+    <!-- ═══════════════════════════════════════════════
+         GOLD METALLIC GRADIENT (top-left highlight)
+    ═══════════════════════════════════════════════ -->
+    <linearGradient id="goldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#F6E27A"/>
+      <stop offset="18%"  stop-color="#E8C84A"/>
+      <stop offset="35%"  stop-color="#D4AF37"/>
+      <stop offset="52%"  stop-color="#B8952A"/>
+      <stop offset="72%"  stop-color="#D4AF37"/>
+      <stop offset="88%"  stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#A67C00"/>
+    </linearGradient>
+
+    <!-- Soft secondary sheen gradient (horizontal) for shimmer base -->
+    <linearGradient id="goldSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#F6E27A" stop-opacity="0"/>
+      <stop offset="40%"  stop-color="#FFF8DC" stop-opacity="0.55"/>
+      <stop offset="55%"  stop-color="#F6E27A" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F6E27A" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Shimmer sweep gradient that will animate -->
+    <linearGradient id="goldShimmer" x1="-100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%"   stop-color="white" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="white" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="white" stop-opacity="0.35"/>
+      <stop offset="55%"  stop-color="white" stop-opacity="0"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+      <animateTransform
+        attributeName="gradientTransform"
+        type="translate"
+        from="-1.4 0"
+        to="1.4 0"
+        dur="4s"
+        repeatCount="indefinite"
+        calcMode="spline"
+        keySplines="0.4 0 0.6 1"
+      />
+    </linearGradient>
+
+    <!-- ═══════════════════════════════════════════════
+         EMBOSS / DEPTH FILTERS
+    ═══════════════════════════════════════════════ -->
+    <!-- Outer glow (breathing) -->
+    <filter id="outerGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feColorMatrix type="matrix"
+        values="1 0.9 0 0 0.2   0 0.8 0 0 0.15   0 0 0 0 0   0 0 0 0.55 0"
+        result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Medium glow for secondary use -->
+    <filter id="outerGlowSoft" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix type="matrix"
+        values="1 0.9 0 0 0.2   0 0.8 0 0 0.15   0 0 0 0 0   0 0 0 0.3 0"
+        result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Emboss inner shadow (top-left light, bottom-right shadow) -->
+    <filter id="emboss" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
+      <feOffset dx="-2" dy="-2" result="topShadow"/>
+      <feFlood flood-color="#F6E27A" flood-opacity="0.6" result="lightColor"/>
+      <feComposite in="lightColor" in2="topShadow" operator="in" result="topHighlight"/>
+
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur2"/>
+      <feOffset dx="2" dy="3" result="bottomShadow"/>
+      <feFlood flood-color="#5A3E00" flood-opacity="0.35" result="darkColor"/>
+      <feComposite in="darkColor" in2="bottomShadow" operator="in" result="bottomShadow2"/>
+
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="topHighlight"/>
+        <feMergeNode in="bottomShadow2"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clip path to confine shimmer to monogram shape -->
+    <clipPath id="monogramClip">
+      <path d="M343.071 74.7263C319.071 34.7263 245.171 -29.8737 141.571 31.7263C12.0714 108.726 33.5714 239.226 35.5714 258.726C37.5714 278.226 44.0714 377.226 163.071 437.226C217.471 460.426 279.738 440.56 304.071 427.726V239.226L275.571 208.226H590.071V265.226C588.071 249.393 572.671 217.726 527.071 217.726H334.571V420.226C360.405 406.06 422.171 380.926 462.571 393.726C502.971 406.526 528.738 439.393 536.571 454.226C511.738 422.726 448.571 377.226 334.571 441.226V596.226C334.571 617.226 334.571 636.226 367.571 644.226H271.571C282.405 641.56 304.071 628.226 304.071 596.226V448.226C280.405 459.06 216.071 475.426 148.071 454.226C63.0714 427.726 4.07145 301.726 0.571448 244.226C-2.92855 186.726 8.07145 118.726 78.0714 51.7263C147.753 -14.9689 237.749 -0.903989 285.914 6.62347L286.572 6.72627C305.772 9.92627 332.238 28.3929 343.071 37.2263V74.7263Z"/>
+    </clipPath>
+
+  </defs>
+
+  <!-- ═══════════════════════════════════════════════
+       LAYER 1: Outer glow aura (breathing animation)
+  ═══════════════════════════════════════════════ -->
+  <g filter="url(#outerGlow)">
+    <path
+      d="M343.071 74.7263C319.071 34.7263 245.171 -29.8737 141.571 31.7263C12.0714 108.726 33.5714 239.226 35.5714 258.726C37.5714 278.226 44.0714 377.226 163.071 437.226C217.471 460.426 279.738 440.56 304.071 427.726V239.226L275.571 208.226H590.071V265.226C588.071 249.393 572.671 217.726 527.071 217.726H334.571V420.226C360.405 406.06 422.171 380.926 462.571 393.726C502.971 406.526 528.738 439.393 536.571 454.226C511.738 422.726 448.571 377.226 334.571 441.226V596.226C334.571 617.226 334.571 636.226 367.571 644.226H271.571C282.405 641.56 304.071 628.226 304.071 596.226V448.226C280.405 459.06 216.071 475.426 148.071 454.226C63.0714 427.726 4.07145 301.726 0.571448 244.226C-2.92855 186.726 8.07145 118.726 78.0714 51.7263C147.753 -14.9689 237.749 -0.903989 285.914 6.62347L286.572 6.72627C305.772 9.92627 332.238 28.3929 343.071 37.2263V74.7263Z"
+      fill="url(#goldMetallic)"
+      opacity="0.15"
+    >
+      <!-- Breathing pulse animation on the glow layer -->
+      <animate attributeName="opacity" values="0.12;0.22;0.12" dur="3.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+    </path>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════
+       LAYER 2: Main metallic gold monogram
+  ═══════════════════════════════════════════════ -->
+  <g filter="url(#emboss)">
+    <path
+      d="M343.071 74.7263C319.071 34.7263 245.171 -29.8737 141.571 31.7263C12.0714 108.726 33.5714 239.226 35.5714 258.726C37.5714 278.226 44.0714 377.226 163.071 437.226C217.471 460.426 279.738 440.56 304.071 427.726V239.226L275.571 208.226H590.071V265.226C588.071 249.393 572.671 217.726 527.071 217.726H334.571V420.226C360.405 406.06 422.171 380.926 462.571 393.726C502.971 406.526 528.738 439.393 536.571 454.226C511.738 422.726 448.571 377.226 334.571 441.226V596.226C334.571 617.226 334.571 636.226 367.571 644.226H271.571C282.405 641.56 304.071 628.226 304.071 596.226V448.226C280.405 459.06 216.071 475.426 148.071 454.226C63.0714 427.726 4.07145 301.726 0.571448 244.226C-2.92855 186.726 8.07145 118.726 78.0714 51.7263C147.753 -14.9689 237.749 -0.903989 285.914 6.62347L286.572 6.72627C305.772 9.92627 332.238 28.3929 343.071 37.2263V74.7263Z"
+      fill="url(#goldMetallic)"
+    />
+  </g>
+
+  <!-- ═══════════════════════════════════════════════
+       LAYER 3: Shimmer sweep (horizontal animated gleam)
+  ═══════════════════════════════════════════════ -->
+  <g clip-path="url(#monogramClip)">
+    <rect
+      x="-100" y="0"
+      width="791" height="645"
+      fill="url(#goldShimmer)"
+    />
+  </g>
+
+  <!-- ═══════════════════════════════════════════════
+       LAYER 4: Top-edge highlight for engraved look
+  ═══════════════════════════════════════════════ -->
+  <path
+    d="M343.071 74.7263C319.071 34.7263 245.171 -29.8737 141.571 31.7263C12.0714 108.726 33.5714 239.226 35.5714 258.726C37.5714 278.226 44.0714 377.226 163.071 437.226C217.471 460.426 279.738 440.56 304.071 427.726V239.226L275.571 208.226H590.071V265.226C588.071 249.393 572.671 217.726 527.071 217.726H334.571V420.226C360.405 406.06 422.171 380.926 462.571 393.726C502.971 406.526 528.738 439.393 536.571 454.226C511.738 422.726 448.571 377.226 334.571 441.226V596.226C334.571 617.226 334.571 636.226 367.571 644.226H271.571C282.405 641.56 304.071 628.226 304.071 596.226V448.226C280.405 459.06 216.071 475.426 148.071 454.226C63.0714 427.726 4.07145 301.726 0.571448 244.226C-2.92855 186.726 8.07145 118.726 78.0714 51.7263C147.753 -14.9689 237.749 -0.903989 285.914 6.62347L286.572 6.72627C305.772 9.92627 332.238 28.3929 343.071 37.2263V74.7263Z"
+    fill="none"
+    stroke="url(#goldSheen)"
+    stroke-width="1.2"
+    opacity="0.7"
+  />
+
 </svg>
