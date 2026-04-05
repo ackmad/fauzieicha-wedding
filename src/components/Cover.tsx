@@ -31,10 +31,10 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
         <img src="/effects/light-glow.png" alt="" />
       </div>
       <div id="cover-floral-left" className="idle-sway" style={{ transformOrigin: 'top left' }}>
-        <img src="/florals/floral-frame.png" alt="" />
+        <img src="/decorations/dekor-main-kiri.png" alt="Dekorasi Kiri" />
       </div>
       <div id="cover-floral-right" className="idle-sway" style={{ transformOrigin: 'top right' }}>
-        <img src="/florals/floral-frame.png" alt="" />
+        <img src="/decorations/dekor-main-kanan.png" alt="Dekorasi Kanan" />
       </div>
       <div id="cover-content">
         <div id="cover-top-ornament">
