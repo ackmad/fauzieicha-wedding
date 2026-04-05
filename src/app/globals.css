@@ -2588,14 +2588,14 @@ footer {
 }
 
 .countdown-unit {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,175,55,0.25);
+  background: var(--card-bg);
+  border: 1px solid var(--accent-gold);
   border-radius: 16px;
   padding: 20px 28px;
   min-width: 90px;
   text-align: center;
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 15px rgba(212,175,55,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: all 0.5s var(--ease-out);
 }
 
@@ -2608,9 +2608,8 @@ footer {
   font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
-  color: #FFF;
   line-height: 1;
-  background: linear-gradient(180deg, #FFF 40%, var(--gold-pale) 100%);
+  background: linear-gradient(180deg, var(--text-primary) 40%, var(--accent-gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2632,13 +2631,15 @@ footer {
   justify-content: center;
   margin-top: 35px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--accent-gold);
   border-radius: 30px;
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 2.5px;
-  color: var(--gold-pale);
+  color: var(--accent-gold);
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
@@ -2647,11 +2648,11 @@ footer {
 }
 
 .calendar-btn:hover {
-  background: linear-gradient(135deg, var(--deep-green), var(--jungle-dark));
-  border-color: var(--gold);
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
   transform: translateY(-4px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  color: #fff;
+  color: var(--bg-primary);
 }
 
 /* ================================================
