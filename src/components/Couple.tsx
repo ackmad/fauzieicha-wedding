@@ -31,16 +31,20 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       
       {/* 🟡 AMBIENT FLOW: RADIAL GLOW & GUNUNGAN */}
       <div className="couple-radial-glow idle-pulse"></div>
-      <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
-        <img src="/ornaments/gunungan-jawa.png" alt="" className="gunungan-png-vivid" />
+      <div className="parallax-bg" style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
+        <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
+          <img src="/ornaments/gunungan-jawa.png" alt="" className="gunungan-png-vivid" />
+        </div>
       </div>
 
       {/* 🌿 TOP DECORATIONS (Symmetrical Balance) */}
-      <div className="couple-floral-top-left idle-sway parallax-element-slow" style={{ transformOrigin: 'top left' }}>
-        <img src="/florals/floral-frame.png" alt="" />
-      </div>
-      <div className="couple-floral-top-right idle-sway parallax-element-slow" style={{ transformOrigin: 'top right' }}>
-        <img src="/florals/floral-frame.png" alt="" />
+      <div className="parallax-element-slow" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10 }}>
+        <div className="couple-floral-top-left idle-sway" style={{ transformOrigin: 'top left' }}>
+          <img src="/decorations/dekor-main-kiri.png" alt="" />
+        </div>
+        <div className="couple-floral-top-right idle-sway-opposite" style={{ transformOrigin: 'top right' }}>
+          <img src="/decorations/dekor-main-kanan.png" alt="" />
+        </div>
       </div>
 
       {/* 🏛 MAIN CONTENT: TYPOGRAPHY */}
@@ -90,14 +94,18 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       </div>
 
       {/* 🌿 BOTTOM DECORATIONS (MASSIVE & SYMMETRICAL) */}
-      <div className={`couple-floral-bottom left ${revealed ? "revealed" : ""}`}>
-        <img src="/florals/floral-accent-1.png" alt="" />
+      <div className="parallax-element-fast" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
+        <div className={`couple-floral-bottom left ${revealed ? "revealed" : ""}`}>
+          <img src="/florals/floral-accent-1.png" alt="" />
+        </div>
+        <div className={`couple-floral-bottom right ${revealed ? "revealed" : ""}`}>
+          <img src="/florals/floral-accent-1.png" alt="" />
+        </div>
       </div>
-      <div className={`couple-floral-bottom right ${revealed ? "revealed" : ""}`}>
-        <img src="/florals/floral-accent-1.png" alt="" />
-      </div>
-      <div className={`couple-floral-bottom center-back ${revealed ? "revealed" : ""}`}>
-        <img src="/florals/floral-accent-2.png" alt="" />
+      <div className="parallax-element-slow" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 4 }}>
+        <div className={`couple-floral-bottom center-back ${revealed ? "revealed" : ""}`}>
+          <img src="/florals/floral-accent-2.png" alt="" />
+        </div>
       </div>
     </section>
   );

@@ -794,7 +794,7 @@ section {
 
 /* --- Parallax Utilities --- */
 .parallax-bg {
-  transform: translateY(var(--parallax-bg, 0px));
+  transform: translateY(calc(var(--scroll-y, 0) * 0.1px));
   will-change: transform;
 }
 .parallax-element-fast {
