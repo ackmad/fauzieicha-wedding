@@ -1223,8 +1223,9 @@ section {
   color: var(--gold-pale);
   opacity: 0.85;
   max-width: 450px;
-  line-height: 1.5;
+  line-height: 1.8;
   margin-top: 5px;
+  white-space: pre-line;
 }
 
 .opening-verse-container {
