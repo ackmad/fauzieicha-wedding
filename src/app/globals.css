@@ -227,8 +227,10 @@ img { display: block; max-width: 100%; }
 /* 🟢 LAYER 1: HERO BACKGROUND */
 #cover-bg {
   position: absolute;
-  inset: 0;
+  inset: -5%;
   z-index: 1;
+  transform: translate(calc(var(--mouse-x, 0) * -10px), calc(var(--mouse-y, 0) * -10px));
+  transition: transform 0.4s var(--ease-out);
 }
 #cover-bg img {
   width: 100%;
@@ -302,9 +304,11 @@ img { display: block; max-width: 100%; }
 /* 🟢 LAYER 4: FLOATING LEAVES (PARALLAX) */
 #cover-leaves {
   position: absolute;
-  inset: 0;
+  inset: -5%;
   z-index: 5;
   pointer-events: none;
+  transform: translate(calc(var(--mouse-x, 0) * -20px), calc(var(--mouse-y, 0) * -20px));
+  transition: transform 0.4s var(--ease-out);
 }
 #cover-leaves img {
   position: absolute;
@@ -325,7 +329,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% + var(--mouse-x, 0) * -30px), calc(-50% + var(--mouse-y, 0) * -30px));
+  transition: transform 0.4s var(--ease-out);
   z-index: 6;
   width: 100%;
   max-width: 800px;
@@ -367,6 +372,8 @@ img { display: block; max-width: 100%; }
   height: auto; /* changed from 100vh so it scales correctly */
   display: block;
   filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+  transform: translate(calc(var(--mouse-x, 0) * 15px), calc(var(--mouse-y, 0) * 15px));
+  transition: transform 0.4s var(--ease-out);
 }
 @keyframes floralInLeft {
   from { transform: translateX(-100%) translateY(-20px); opacity: 0; }
@@ -401,6 +408,23 @@ img { display: block; max-width: 100%; }
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+}
+
+/* 🟢 LAYER 8: FOREGROUND (PARALLAX CLOSEUP) */
+#cover-foreground {
+  position: absolute;
+  bottom: -5%;
+  left: -5%;
+  width: 110%;
+  z-index: 20;
+  pointer-events: none;
+  transform: translate(calc(var(--mouse-x, 0) * 40px), calc(var(--mouse-y, 0) * 30px));
+  transition: transform 0.4s var(--ease-out);
+}
+#cover-foreground img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 #cover-content {
