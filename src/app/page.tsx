@@ -17,6 +17,7 @@ import Gift from "../components/Gift";
 import Footer from "../components/Footer";
 import SectionDivider from "../components/SectionDivider";
 import ThemeToggle from "../components/ThemeToggle";
+import Preloader from "../components/Preloader";
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<"id" | "en">("id");
@@ -209,6 +210,7 @@ export default function Home() {
 
   return (
     <>
+      <Preloader />
       <FlowerRain />
       <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
       
