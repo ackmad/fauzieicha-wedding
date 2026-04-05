@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     description: "Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir pada acara pernikahan kami.",
     images: ["/backgrounds/hero-background.png"],
   },
+  icons: {
+    icon: "/icons/favicon.png",
+  },
 };
 
 export default function RootLayout({
