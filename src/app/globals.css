@@ -1164,7 +1164,7 @@ section {
 #section-events {
   position: relative;
   min-height: 100vh;
-  background-color: #19281b;
+  background-color: #23392b;
   padding: 100px 20px;
   overflow: hidden;
 }
@@ -1662,7 +1662,7 @@ section {
    SECTION: WISHES
    ================================================ */
 #section-wishes { 
-  background: #19281b; /* Dark Green variation matching Events */
+  background: #23392b; /* Dark Green variation matching Events */
   position: relative;
   padding: 120px 20px;
 }
