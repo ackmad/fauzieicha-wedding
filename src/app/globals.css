@@ -2819,6 +2819,17 @@ footer::before {
 .wish-author-compact { font-family: var(--font-sans); font-size: 14px; font-weight: 600; color: var(--gold-pale); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 .wish-text-compact { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.5; font-style: italic; }
 
+/* Relative timestamp */
+.wish-timestamp {
+  display: inline-block;
+  margin-top: 5px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: rgba(212,175,55,0.5);
+  letter-spacing: 0.3px;
+}
+
+
 .attendance-tag {
   font-size: 8px;
   text-transform: uppercase;

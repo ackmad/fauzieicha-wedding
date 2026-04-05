@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { OrnamenJawa } from "./Icons";
 
 interface Wish {
   name: string; 
   text: string;
   isAttending?: boolean;
+  createdAt?: Date;
 }
 
 interface WishesProps {
@@ -15,19 +16,37 @@ interface WishesProps {
   trans: Record<string, string>;
 }
 
+// ─── Relative time helper ──────────────────────────────────────
+function timeAgo(date?: Date): string {
+  if (!date) return '';
+  const diffMs = Date.now() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 1) return 'Baru saja';
+  if (diffMins < 60) return `${diffMins} menit lalu`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `${diffHours} jam lalu`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays} hari lalu`;
+}
+// ──────────────────────────────────────────────────────────────
+
 export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   const [toast, setToast] = useState<{ show: boolean, msg: string, type: 'success' | 'error' }>({ show: false, msg: '', type: 'success' });
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Increased for better density
 
-  // Stats calculation
+  // Key ref: points to the TOP of the wish list — we scroll here on page change
+  const listTopRef = useRef<HTMLDivElement>(null);
+
+  const itemsPerPage = 8;
+
+  // Stats
   const totalWishes = wishes.length;
   const totalAttending = wishes.filter(w => w.isAttending).length;
   const totalAbsent = wishes.filter(w => w.isAttending === false).length;
 
-  // Pagination calculation
+  // Pagination
   const totalPages = Math.ceil(totalWishes / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -37,8 +56,8 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
     e.preventDefault();
     setIsLoading(true);
 
-    const nameInput = (document.getElementById('wish-name') as HTMLInputElement);
-    const textInput = (document.getElementById('wish-text') as HTMLTextAreaElement);
+    const nameInput  = document.getElementById('wish-name')       as HTMLInputElement;
+    const textInput  = document.getElementById('wish-text')       as HTMLTextAreaElement;
 
     if (!nameInput.value.trim() || !textInput.value.trim()) {
       setToast({ show: true, msg: "Harap isi nama dan pesan doa Anda", type: 'error' });
@@ -51,14 +70,15 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
       submitWish(e);
       setToast({ show: true, msg: "Pesan Anda telah terkirim. Terima kasih!", type: 'success' });
       (e.target as HTMLFormElement).reset();
-      
-      // Auto-refresh feel for new submission
+
+      // Refresh to page 1 and scroll to list top (no full-page scroll)
       setIsRefreshing(true);
       setTimeout(() => {
         setCurrentPage(1);
         setIsRefreshing(false);
+        scrollToListTop();
       }, 500);
-    } catch (err) {
+    } catch {
       setToast({ show: true, msg: "Terjadi kesalahan. Silakan coba lagi.", type: 'error' });
     } finally {
       setIsLoading(false);
@@ -66,35 +86,32 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
     }
   };
 
+  // ── Scroll only to the list top, not the window top ──────────
+  const scrollToListTop = () => {
+    if (listTopRef.current) {
+      listTopRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const paginate = (pageNumber: number) => {
-    if (pageNumber === currentPage) return;
+    if (pageNumber === currentPage || pageNumber < 1 || pageNumber > totalPages) return;
     setIsRefreshing(true);
-    
-    // Simulate a brief "refresh" for better feel
     setTimeout(() => {
       setCurrentPage(pageNumber);
       setIsRefreshing(false);
-      
-      // Scroll to the start of the list so they don't have to scroll back up
-      const listContainer = document.getElementById('wish-list-anchor');
-      if (listContainer) {
-        window.scrollTo({
-          top: listContainer.offsetTop - 100,
-          behavior: 'smooth'
-        });
-      }
-    }, 550);
+      scrollToListTop();        // ← stays within the section, never jumps to top
+    }, 450);
   };
 
   return (
     <section id="section-wishes">
       <div className="wishes-glow idle-pulse"><img src="/effects/light-glow.png" alt="" /></div>
       <div className="section-bg-dark-soft"></div>
-
       <div className="wishes-floral-top idle-sway" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-1.png" alt="" style={{ opacity: 0.15 }} />
       </div>
 
+      {/* Toast */}
       {toast.show && (
         <div className={`wish-toast ${toast.type} reveal-up`}>
           <div className="toast-icon">{toast.type === 'success' ? '✓' : '⚠'}</div>
@@ -110,6 +127,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
         <p className="section-label reveal-item">{trans["wishes-label"]}</p>
         <h2 className="section-title reveal-item">{trans["wishes-title"]}</h2>
 
+        {/* Stats bar */}
         <div className="wish-stats-container reveal-item">
           <div className="stat-item"><span className="stat-num">{totalWishes}</span><span className="stat-lbl">Ucapan</span></div>
           <div className="stat-divider"></div>
@@ -118,6 +136,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
           <div className="stat-item"><span className="stat-num">{totalAbsent}</span><span className="stat-lbl">Berhalangan</span></div>
         </div>
 
+        {/* Form */}
         <form className="wish-form reveal-up" id="wish-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <label className="form-label">{trans["name-label"]}</label>
@@ -139,25 +158,27 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
           </button>
         </form>
 
-        <div id="wish-list-anchor"></div>
+        {/* ── List anchor — scroll target stays inside the section ── */}
+        <div ref={listTopRef} style={{ height: 0, marginTop: 40 }} />
 
-        {/* Compact List Style Guestbook with Fixed Visibility */}
-        <div className="wish-list-container" style={{ position: 'relative', marginTop: '40px' }}>
+        <div className="wish-list-container" style={{ position: 'relative' }}>
+          {/* Loading overlay */}
           {isRefreshing && (
             <div className="list-refresh-overlay">
               <div className="refresh-spinner"></div>
             </div>
           )}
 
+          {/* Wish list */}
           <div className={`wish-list-compact ${isRefreshing ? 'refreshing' : ''}`}>
             {currentWishes.map((wish, i) => (
-              <div 
-                key={`${currentPage}-${i}`} 
+              <div
+                key={`${currentPage}-${i}`}
                 className="wish-item-compact"
-                style={{ 
-                  animation: `fadeInUp 0.4s ease forwards ${i * 0.05}s`,
+                style={{
+                  animation: `fadeInUp 0.35s ease forwards ${i * 0.045}s`,
                   opacity: 0,
-                  transform: 'translateY(15px)'
+                  transform: 'translateY(14px)'
                 }}
               >
                 <div className="wish-avatar-compact">
@@ -171,23 +192,26 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
                     </span>
                   </div>
                   <p className="wish-text-compact">{wish.text}</p>
+                  {/* Timestamp */}
+                  {wish.createdAt && (
+                    <span className="wish-timestamp">{timeAgo(wish.createdAt)}</span>
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Pagination Controls */}
+          {/* Pagination — shown only when more than 1 page */}
           {totalPages > 1 && (
             <div className="pagination-wrap">
               <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} className="pag-btn">&larr;</button>
-              
-              {/* Show only relevant page numbers for better mobile experience */}
+
               {Array.from({ length: totalPages }, (_, i) => i + 1)
                 .filter(num => num === 1 || num === totalPages || Math.abs(num - currentPage) <= 1)
                 .map((num, i, arr) => (
                   <React.Fragment key={num}>
-                    {i > 0 && arr[i-1] !== num - 1 && <span className="pag-dots">...</span>}
-                    <button 
+                    {i > 0 && arr[i - 1] !== num - 1 && <span className="pag-dots">...</span>}
+                    <button
                       onClick={() => paginate(num)}
                       className={`pag-btn ${currentPage === num ? 'active' : ''}`}
                     >
