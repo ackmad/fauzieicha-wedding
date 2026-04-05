@@ -2,8 +2,31 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Undangan Pernikahan — Rizky & Amara",
-  description: "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda untuk hadir dan berbagi kebahagiaan di hari pernikahan kami.",
+  metadataBase: new URL('https://fauzieicha-wedding.vercel.app'),
+  title: "The Wedding of Fauzie & Icha",
+  description: "Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir dan memberikan doa restu pada acara pernikahan kami.",
+  openGraph: {
+    title: "The Wedding of Fauzie & Icha",
+    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada pernikahan kami.",
+    url: "https://fauzieicha-wedding.vercel.app/",
+    siteName: "Undangan Pernikahan Fauzie & Icha",
+    images: [
+      {
+        url: "/backgrounds/hero-background.png",
+        width: 1200,
+        height: 630,
+        alt: "The Wedding of Fauzie & Icha",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Wedding of Fauzie & Icha",
+    description: "Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir pada acara pernikahan kami.",
+    images: ["/backgrounds/hero-background.png"],
+  },
 };
 
 export default function RootLayout({
