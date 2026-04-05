@@ -22,12 +22,12 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string, scale?: number }) => 
 );
 
   /* ─── 1. Couple → Events ────────────────────────────────────────
-   Deep Green (#2D5A3D) to Dark Sage (#1a291d).
+   Deep Green (#2D5A3D) to Dark Sage (#23392b).
    Torn edge of Couple's base blending into Events top.
 ─────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "#1a291d", marginTop: "-2px" }}>
+    <div className="sd reveal-up" style={{ background: "#23392b", marginTop: "-2px" }}>
       <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
         <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
         
@@ -59,7 +59,7 @@ function DividerEventsStory() {
           </filter>
         </defs>
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="rgba(53,73,59,0.1)" filter="url(#events-torn-user)" transform="translate(0, 6)"></path>
-        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="#1a291d" filter="url(#events-torn-user)"></path>
+        <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z" fill="#23392b" filter="url(#events-torn-user)"></path>
       </svg>
     </div>
   );
@@ -92,7 +92,7 @@ function DividerStoryGallery() {
 ─────────────────────────────────────────────────────────────── */
 function DividerGalleryWishes() {
   return (
-    <div className="sd reveal-up" style={{ background: "#1a291d", marginTop: "-2px" }}>
+    <div className="sd reveal-up" style={{ background: "#23392b", marginTop: "-2px" }}>
       <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "100px" }}>
         <defs><TornPaperFilter id="gallery-torn" scale={16} /></defs>
         
@@ -107,7 +107,7 @@ function DividerGalleryWishes() {
 }
 
 /* ─── 5. Wishes → Gift ───────────────────────────────────────────
-   Dark Green (#1a291d) to Cream. Torn paper of Dark Green over Cream.
+   Dark Green (#23392b) to Cream. Torn paper of Dark Green over Cream.
 ─────────────────────────────────────────────────────────────── */
 function DividerWishesGift() {
   return (
@@ -119,7 +119,7 @@ function DividerWishesGift() {
         <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="rgba(36,59,45,0.2)" filter="url(#wishes-torn)" transform="translate(0, 8)" />
         
         {/* Main Dark Green Brush/Paper */}
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="#1a291d" filter="url(#wishes-torn)" />
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z" fill="#23392b" filter="url(#wishes-torn)" />
         
         <path d="M-50,-50 L1490,-50 L1490,40 C1200,0 600,100 -50,20 Z" fill="rgba(255,255,255,0.05)" filter="url(#wishes-torn)" />
       </svg>
