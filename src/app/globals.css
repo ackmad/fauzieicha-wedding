@@ -26,6 +26,39 @@
   --text-mid: #4A3825;
   --text-light: #7A6550;
 
+  /* ── Section Background Colors ─────────────────────────────────
+     Edit these values to change section backgrounds globally.
+  ─────────────────────────────────────────────────────────────── */
+  --section-events-bg:  #23392b;   /* Dark green for Acara section       */
+  --section-wishes-bg:  #23392b;   /* Dark green for Ucapan section      */
+  --section-footer-bg:  #23392b;   /* Dark green for Footer section      */
+
+  /* ── Divider Tear Colors ────────────────────────────────────────
+     Each variable controls the ink/paper color of that divider.
+     The divider shows the color of the section ABOVE it.
+
+     1 │ Couple   → Events   │ torn edge from couple section (#2D5A3D)
+     2 │ Events   → Story    │ torn dark green departing over cream
+     3 │ Story    → Gallery  │ ornamental gold separator (no fill var needed)
+     4 │ Gallery  → Wishes   │ cream paper falls onto dark green bg
+     5 │ Wishes   → Gift     │ dark green departs over cream
+     6 │ Gift     → Footer   │ cream falls onto dark green footer
+  ─────────────────────────────────────────────────────────────── */
+  --divider-1-bg:       #23392b;   /* Background container for divider 1 */
+  --divider-1-tear:     #2D5A3D;   /* Tear fill  (couple section base)   */
+
+  --divider-2-bg:       #F5EFE0;   /* Background container for divider 2 (= cream) */
+  --divider-2-tear:     #23392b;   /* Tear fill  (events dark green)     */
+
+  --divider-4-bg:       #23392b;   /* Background container for divider 4 */
+  /* divider 4 tear fill = var(--cream) — no separate var needed       */
+
+  --divider-5-bg:       #F5EFE0;   /* Background container for divider 5 (= cream) */
+  --divider-5-tear:     #23392b;   /* Tear fill  (wishes dark green)     */
+
+  --divider-6-bg:       #23392b;   /* Background container for divider 6 */
+  /* divider 6 tear fill = var(--cream) — no separate var needed       */
+
   /* Typography */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Cormorant Garamond', serif;
@@ -1164,7 +1197,7 @@ section {
 #section-events {
   position: relative;
   min-height: 100vh;
-  background-color: #23392b;
+  background-color: var(--section-events-bg);
   padding: 100px 20px;
   overflow: hidden;
 }
@@ -1662,7 +1695,7 @@ section {
    SECTION: WISHES
    ================================================ */
 #section-wishes { 
-  background: #23392b; /* Dark Green variation matching Events */
+  background: var(--section-wishes-bg); /* controlled via --section-wishes-bg variable */
   position: relative;
   padding: 120px 20px;
 }
