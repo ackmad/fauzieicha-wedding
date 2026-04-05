@@ -347,9 +347,9 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 0;
   z-index: 10;
-  width: 25vw;
-  max-width: 280px;
-  min-width: 160px;
+  width: 45vw;
+  max-width: 450px;
+  min-width: 240px;
   pointer-events: none;
 }
 #cover-floral-left {
@@ -2167,7 +2167,7 @@ footer {
    ================================================ */
 @media (max-width: 768px) {
   #cover-floral-left,
-  #cover-floral-right { width: 20vw; min-width: 100px; }
+  #cover-floral-right { width: 40vw; min-width: 180px; }
   #cover-top-ornament { width: 130px; }
 }
 
@@ -2193,7 +2193,7 @@ footer {
   .floral-accent-left,
   .floral-accent-right { display: none; }
   #cover-floral-left,
-  #cover-floral-right { width: 15vw; }
+  #cover-floral-right { width: 45vw; min-width: 160px; max-width: 200px; }
 }
 
 @keyframes shake {
