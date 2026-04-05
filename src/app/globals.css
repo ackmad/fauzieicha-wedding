@@ -434,8 +434,8 @@ img { display: block; max-width: 100%; }
   max-width: 550px;
   width: 90%;
   height: 100vh;
-  padding-top: 25vh; /* Push everything lower */
-  padding-bottom: 60px;
+  padding-top: 8vh; /* Reduced from 25vh to push elements higher */
+  padding-bottom: 12vh; /* Push everything upwards relative to center */
   display: flex;
   flex-direction: column;
   align-items: center;
