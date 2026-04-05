@@ -174,7 +174,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
             {currentWishes.map((wish, i) => (
               <div
                 key={`${currentPage}-${i}`}
-                className="wish-item-compact reveal-up"
+                className="wish-item-compact reveal-up revealed"
                 style={{ "--reveal-delay": `${(i % 5) * 0.1}s` } as React.CSSProperties}
               >
                 <div className="wish-avatar-compact">
