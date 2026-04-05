@@ -140,6 +140,12 @@ img { display: block; max-width: 100%; }
   100% { transform: rotate(1deg) translateY(0) scaleX(-1); }
 }
 
+@keyframes sway-opposite {
+  0% { transform: rotate(1deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(-5px); }
+  100% { transform: rotate(1deg) translateY(0); }
+}
+
 @keyframes float-slow {
   0% { transform: translate(0, 0); }
   50% { transform: translate(10px, -15px); }
@@ -353,7 +359,7 @@ img { display: block; max-width: 100%; }
 #cover-floral-right {
   right: 0;
   /* Removed scaleX(-1) because we use a dedicated right-side image */
-  animation: floralInRight 2s var(--ease-out) forwards, sway-reverse 8s ease-in-out infinite 2s;
+  animation: floralInRight 2s var(--ease-out) forwards, sway-opposite 8s ease-in-out infinite 2s;
 }
 #cover-floral-left img,
 #cover-floral-right img {
