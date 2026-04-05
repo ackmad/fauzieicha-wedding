@@ -4,20 +4,20 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL('https://fauzieicha-wedding.vercel.app'),
   title: "The Wedding of Fauzie & Icha",
-  description: "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
+  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
   keywords: ["Wedding", "Undangan Digital", "Fauzie & Icha", "Pernikahan"],
   authors: [{ name: "Fauzie & Icha" }],
   openGraph: {
     title: "The Wedding of Fauzie & Icha",
-    description: "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
+    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
     url: "https://fauzieicha-wedding.vercel.app/",
     siteName: "Fauzie & Icha Wedding",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg?v=2",
         width: 1200,
         height: 630,
-        alt: "The Wedding of Fauzie & Icha",
+        alt: "Invitation to The Wedding of Fauzie & Icha",
       },
     ],
     locale: "id_ID",
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Wedding of Fauzie & Icha",
-    description: "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
-    images: ["/og-image.png"],
+    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
+    images: ["/og-image.jpg?v=2"],
   },
   icons: {
     icon: "/icons/favicon.png",
