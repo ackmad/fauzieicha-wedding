@@ -86,8 +86,7 @@ export default function Home() {
     document.documentElement.setAttribute("data-theme", newTheme === "royal-java" ? "royal-java" : "default");
   };
 
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const activeOscNodesRef = useRef<{ osc: OscillatorNode; gain: GainNode }[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
 
   // --- Audio Logic ---
@@ -95,52 +94,18 @@ export default function Home() {
     const shouldPlay = typeof forceOn === 'boolean' ? forceOn : !musicPlaying;
     
     if (shouldPlay) {
-      if (!audioCtxRef.current) {
-        const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        if (AudioContextClass) {
-          audioCtxRef.current = new AudioContextClass();
-        }
+      if (!audioRef.current) {
+        audioRef.current = new Audio("/sound/love-story.mp3");
+        audioRef.current.loop = true;
+        audioRef.current.volume = 0.5;
       }
-      if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') audioCtxRef.current.resume();
-
-      const notes = [
-        { freq: 261.63, delay: 0,   dur: 8, gain: 0.035 },
-        { freq: 329.63, delay: 1.5, dur: 8, gain: 0.028 },
-        { freq: 392.00, delay: 3,   dur: 8, gain: 0.022 },
-        { freq: 523.25, delay: 4.5, dur: 8, gain: 0.018 },
-        { freq: 220.00, delay: 0,   dur: 16, gain: 0.02  },
-      ];
-
-      activeOscNodesRef.current = [];
-      notes.forEach(n => {
-        if (!audioCtxRef.current) return;
-        const osc = audioCtxRef.current.createOscillator();
-        const gain = audioCtxRef.current.createGain();
-        const filter = audioCtxRef.current.createBiquadFilter();
-
-        filter.type = 'lowpass';
-        filter.frequency.value = 1200;
-        filter.Q.value = 0.5;
-
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtxRef.current.destination);
-
-        osc.type = 'sine';
-        osc.frequency.value = n.freq;
-        gain.gain.setValueAtTime(0, audioCtxRef.current.currentTime + n.delay);
-        gain.gain.linearRampToValueAtTime(n.gain, audioCtxRef.current.currentTime + n.delay + 2);
-        osc.start(audioCtxRef.current.currentTime + n.delay);
-        activeOscNodesRef.current.push({ osc, gain });
-      });
+      
+      audioRef.current.play().catch(e => console.error("Playback error:", e));
       setMusicPlaying(true);
     } else {
-      activeOscNodesRef.current.forEach(({ osc, gain }) => {
-        if (!audioCtxRef.current) return;
-        gain.gain.linearRampToValueAtTime(0, audioCtxRef.current.currentTime + 1);
-        osc.stop(audioCtxRef.current.currentTime + 1.2);
-      });
-      activeOscNodesRef.current = [];
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
       setMusicPlaying(false);
     }
   };
