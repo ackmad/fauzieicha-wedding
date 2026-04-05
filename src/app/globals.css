@@ -222,8 +222,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   z-index: 4;
-  /* Very subtle vignette instead of strong darkening */
-  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.2) 100%);
+  /* Dark shadow at the bottom fading to transparent at the top */
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
 }
 
 /* --- Layer 4: Main Content --- */
