@@ -198,17 +198,19 @@ export default function Home() {
 
   const initScrollReveal = () => {
     const revealTargets = document.querySelectorAll(
-      '.reveal-item, .reveal-scale, .reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur, .couple-gunungan-reveal, .couple-and-divider'
+      '.reveal-item, .reveal-scale, .reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur, .couple-gunungan-reveal, .couple-and-divider, .std-arch-card, .story-item, .gallery-item, .wishes-card'
     );
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
+        } else {
+          // Remove to allow repeat animation when scrolling back
+          entry.target.classList.remove('revealed');
         }
       });
-    }, { threshold: 0.05, rootMargin: '10% 0px' });
+    }, { threshold: 0.15, rootMargin: '-5% 0px' });
 
     revealTargets.forEach(el => observer.observe(el));
   };

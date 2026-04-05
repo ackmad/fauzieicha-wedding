@@ -760,86 +760,91 @@ section {
   margin-bottom: 25px; /* Reduced from 50px */
 }
 
-/* ======== CINEMATIC ANIMATION SYSTEM ======== */
-/* --- Entrance Reveal Effects --- */
+/* --- Entrance Reveal Effects (Repeatable & Reactive) --- */
 .reveal-up {
   opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
-  transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform;
-}
-.reveal-up.revealed { opacity: 1; transform: translateY(0) scale(1); }
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
-  transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform;
-}
-.reveal-left.revealed { opacity: 1; transform: translateX(0); }
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
-  transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform;
-}
-.reveal-right.revealed { opacity: 1; transform: translateX(0); }
-
-.reveal-zoom {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
-  transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform;
-}
-.reveal-zoom.revealed { opacity: 1; transform: scale(1); }
-
-.reveal-blur {
-  opacity: 0;
-  filter: blur(10px);
-  transform: translateY(20px);
-  transition: opacity var(--dur-cinematic) var(--ease-out), filter var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out);
+  transform: translateY(45px) scale(0.96);
+  filter: blur(8px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
   will-change: opacity, transform, filter;
 }
-.reveal-blur.revealed { opacity: 1; filter: blur(0); transform: translateY(0); }
+.reveal-up.revealed { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
-/* Compatibility alias for existing classes */
-.reveal-item { opacity: 0; transform: translateY(40px) scale(0.98); transition: opacity var(--dur-cinematic) var(--ease-out), transform var(--dur-cinematic) var(--ease-out); transition-delay: var(--reveal-delay, 0s); will-change: opacity, transform; }
-.reveal-item.revealed { opacity: 1; transform: translateY(0) scale(1); }
-.reveal-scale { opacity: 0; transform: scale(0.93); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); transition-delay: var(--reveal-delay, 0s); will-change: opacity, transform; }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px) rotate(-2deg);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-left.revealed { opacity: 1; transform: translateX(0) rotate(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px) rotate(2deg);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-right.revealed { opacity: 1; transform: translateX(0) rotate(0); }
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.85) translateY(20px);
+  filter: saturate(0);
+  transition: opacity 1.2s var(--ease-spring), transform 1.2s var(--ease-spring), filter 1.2s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-zoom.revealed { opacity: 1; transform: scale(1) translateY(0); filter: saturate(1); }
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(15px);
+  transform: scale(1.05);
+  transition: opacity 1.4s var(--ease-out), filter 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal-blur.revealed { opacity: 1; filter: blur(0); transform: scale(1); }
+
+/* Stagger & Surprise Variants */
+.reveal-item { 
+  opacity: 0; 
+  transform: translateY(30px); 
+  transition: all 1s var(--ease-out); 
+  transition-delay: var(--reveal-delay, 0s); 
+}
+.reveal-item.revealed { opacity: 1; transform: translateY(0); }
+
+.reveal-scale { 
+  opacity: 0; 
+  transform: scale(0.92); 
+  transition: all 0.8s var(--ease-spring); 
+  transition-delay: var(--reveal-delay, 0s); 
+}
 .reveal-scale.revealed { opacity: 1; transform: scale(1); }
 
-/* --- Continuous Idle Animations --- */
+/* --- Continuous Idle & Micro-Animations --- */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  0%, 100% { transform: translateY(0) rotate(0); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
 }
 @keyframes float-slow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 @keyframes sway {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+  0%, 100% { transform: rotate(-3deg) translateX(0); }
+  50% { transform: rotate(3deg) translateX(5px); }
 }
-@keyframes soft-pulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+@keyframes breathing-glow {
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.3) drop-shadow(0 0 10px var(--accent-gold)); }
 }
 
-.idle-float { animation: float 6s ease-in-out infinite; }
-.idle-float-slow { animation: float-slow 8s ease-in-out infinite; }
-.idle-sway { animation: sway 7s ease-in-out infinite; transform-origin: top center; }
-.idle-pulse { animation: soft-pulse 4s ease-in-out infinite; }
+.idle-float { animation: float 8s ease-in-out infinite; }
+.idle-float-slow { animation: float-slow 10s ease-in-out infinite; }
+.idle-sway { animation: sway 9s ease-in-out infinite; transform-origin: bottom center; }
+.idle-pulse { animation: breathing-glow 5s ease-in-out infinite; }
 
 .shimmer-effect {
   position: relative;

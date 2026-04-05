@@ -69,7 +69,7 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
               <div
                 key={acc.id}
                 className="amplop-card reveal-up shimmer-effect"
-                style={{ "--reveal-delay": `${0.4 + i * 0.15}s`, "--bank-color": accentColor } as React.CSSProperties}
+                style={{ "--reveal-delay": `${i * 0.2}s`, "--bank-color": accentColor } as React.CSSProperties}
               >
                 {/* Card top accent bar */}
                 <div className="amplop-card-bar" style={{ background: accentColor }}></div>

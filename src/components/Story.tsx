@@ -65,7 +65,7 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
               <div
                 key={i}
                 className={`tl-vivid-item ${isLeft ? "tl-left reveal-right" : "tl-right reveal-left"}`}
-                style={{ "--reveal-delay": `${0.3 + i * 0.2}s` } as React.CSSProperties}
+                style={{ "--reveal-delay": `${(i % 3) * 0.15}s` } as React.CSSProperties}
               >
                 {/* Content */}
                 <div className="tl-vivid-content">

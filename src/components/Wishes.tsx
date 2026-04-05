@@ -174,12 +174,8 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
             {currentWishes.map((wish, i) => (
               <div
                 key={`${currentPage}-${i}`}
-                className="wish-item-compact"
-                style={{
-                  animation: `fadeInUp 0.35s ease forwards ${i * 0.045}s`,
-                  opacity: 0,
-                  transform: 'translateY(14px)'
-                }}
+                className="wish-item-compact reveal-up"
+                style={{ "--reveal-delay": `${(i % 5) * 0.1}s` } as React.CSSProperties}
               >
                 <div className="wish-avatar-compact">
                   {wish.name ? wish.name.charAt(0).toUpperCase() : '?'}
