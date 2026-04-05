@@ -3,61 +3,44 @@
    Design System & Full Stylesheet
    ===================================================== */
 
-/* ======== DESIGN TOKENS ======== */
 :root {
-  /* Palette */
-  --deep-green: #243B2D;
+  /* ── Elegant Jungle (Default) ── */
+  --bg-primary: #1F3D36;
+  --bg-secondary: #243B2D;
+  --text-primary: #FDF6EC;
+  --text-secondary: rgba(253, 246, 236, 0.7);
+  --accent-gold: #D4AF37;
+  --accent-secondary: #5A7A5E; /* soft green */
+  --card-bg: rgba(27, 46, 34, 0.4);
+  --overlay-bg: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  --divider-tear: #2D5A3D;
+  --floral-filter: none;
+
+  /* Palette for components */
+  --deep-green: var(--bg-secondary);
   --mid-green: #3A5C44;
-  --light-green: #5A7A5E;
-  --dark-green-vivid: #1B2E22; /* Slightly darker than deep-green, used in cards */
+  --light-green: var(--accent-secondary);
   --jungle-dark: #172318;
-  --maroon: #6B2737;
-  --dark-maroon: #3E1520;
-  --burnt-orange: #C8622A;
-  --soft-pink: #D4849A;
-  --gold: #B8952A;
+  --gold: var(--accent-gold);
   --gold-light: #D4AC3A;
   --gold-pale: #E8C96A;
   --cream: #F5EFE0;
-  --cream-dark: #EDE4CE;
-  --cream-deeper: #E0D3B4;
-  --warm-white: #FBF8F2;
   --text-dark: #2A2018;
-  --text-mid: #4A3825;
-  --text-light: #7A6550;
 
-  /* ── Section Background Colors ─────────────────────────────────
-     Edit these values to change section backgrounds globally.
-  ─────────────────────────────────────────────────────────────── */
-  --section-events-bg:  #23392b;   /* Dark green for Acara section       */
-  --section-wishes-bg:  #23392b;   /* Dark green for Ucapan section      */
-  --section-footer-bg:  #23392b;   /* Dark green for Footer section      */
+  /* Section Backgrounds */
+  --section-events-bg:  var(--bg-primary);
+  --section-wishes-bg:  var(--bg-primary);
+  --section-footer-bg:  var(--bg-primary);
 
-  /* ── Divider Tear Colors ────────────────────────────────────────
-     Each variable controls the ink/paper color of that divider.
-     The divider shows the color of the section ABOVE it.
-
-     1 │ Couple   → Events   │ torn edge from couple section (#2D5A3D)
-     2 │ Events   → Story    │ torn dark green departing over cream
-     3 │ Story    → Gallery  │ ornamental gold separator (no fill var needed)
-     4 │ Gallery  → Wishes   │ cream paper falls onto dark green bg
-     5 │ Wishes   → Gift     │ dark green departs over cream
-     6 │ Gift     → Footer   │ cream falls onto dark green footer
-  ─────────────────────────────────────────────────────────────── */
-  --divider-1-bg:       #23392b;   /* Background container for divider 1 */
-  --divider-1-tear:     #2D5A3D;   /* Tear fill  (couple section base)   */
-
-  --divider-2-bg:       #F5EFE0;   /* Background container for divider 2 (= cream) */
-  --divider-2-tear:     #23392b;   /* Tear fill  (events dark green)     */
-
-  --divider-4-bg:       #23392b;   /* Background container for divider 4 */
-  /* divider 4 tear fill = var(--cream) — no separate var needed       */
-
-  --divider-5-bg:       #F5EFE0;   /* Background container for divider 5 (= cream) */
-  --divider-5-tear:     #23392b;   /* Tear fill  (wishes dark green)     */
-
-  --divider-6-bg:       #23392b;   /* Background container for divider 6 */
-  /* divider 6 tear fill = var(--cream) — no separate var needed       */
+  /* Dividers */
+  --divider-1-bg:       var(--bg-primary);
+  --divider-1-tear:     var(--divider-tear);
+  --divider-2-bg:       var(--cream);
+  --divider-2-tear:     var(--bg-primary);
+  --divider-4-bg:       var(--bg-primary);
+  --divider-5-bg:       var(--cream);
+  --divider-5-tear:     var(--bg-primary);
+  --divider-6-bg:       var(--bg-primary);
 
   /* Typography */
   --font-display: 'Playfair Display', serif;
@@ -72,7 +55,83 @@
   --dur-med: 0.7s;
   --dur-slow: 1s;
   --dur-cinematic: 1.2s;
+  --theme-transition: 0.8s ease-in-out;
 }
+
+[data-theme='royal-java'] {
+  --bg-primary: #3B2A24; /* dark brown */
+  --bg-secondary: #4A352E;
+  --bg-tertiary: #F6EBDD; /* warm cream */
+  --text-primary: #FDF6EC;
+  --text-dark: #3B2A24;
+  --accent-gold: #D4AF37;
+  --accent-maroon: #7A2E2E;
+  --accent-terracotta: #C46A4A;
+  --accent-secondary: var(--accent-terracotta);
+  --card-bg: rgba(59, 42, 36, 0.6);
+  --overlay-bg: linear-gradient(to top, rgba(59, 42, 36, 0.8) 0%, rgba(59, 42, 36, 0.4) 50%, transparent 100%);
+  --divider-tear: #5D4339;
+  --floral-filter: sepia(0.3) saturate(0.8) hue-rotate(-15deg);
+  
+  --deep-green: var(--bg-primary);
+  --jungle-dark: #2B1D19;
+  --cream: var(--bg-tertiary);
+  --section-events-bg: var(--bg-primary);
+  --section-wishes-bg: var(--bg-primary);
+  --section-footer-bg: var(--bg-primary);
+}
+
+/* Global Transition for Theme Switching (excluding heavy assets) */
+body, section, div, p, span, h1, h2, h3, h4, button, svg {
+  transition: background-color var(--theme-transition), color var(--theme-transition), border-color var(--theme-transition), fill var(--theme-transition), stroke var(--theme-transition), opacity var(--theme-transition);
+}
+
+/* Theme Toggle styles */
+#theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 95px; /* Offset from music button */
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(36, 59, 45, 0.45);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1.5px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transition: all 0.4s var(--ease-out);
+}
+
+[data-theme='royal-java'] #theme-toggle {
+  background: rgba(59, 42, 36, 0.6);
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--accent-gold);
+}
+
+#theme-toggle:active {
+  transform: scale(0.9);
+}
+
+#theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--accent-gold);
+  transition: transform 0.6s var(--ease-spring);
+}
+
+/* Apply floral filter */
+.std-floral-top img, .events-floral-br img, .story-leaf-1 img, .gallery-leaf img {
+  filter: var(--floral-filter) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+}
+
 
 /* ======== RESET & BASE ======== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -263,8 +322,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   z-index: 4;
-  /* Dark shadow at the bottom fading to transparent at the top */
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  /* Dynamic gradient overlay based on theme */
+  background: var(--overlay-bg);
 }
 
 /* --- Layer 4: Main Content --- */
@@ -458,8 +517,12 @@ img { display: block; max-width: 100%; }
   font-size: 11px;
   letter-spacing: 6px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-secondary);
   margin-bottom: 15px;
+}
+
+.cover-person {
+  margin: 10px 0;
 }
 
 .cover-groom, .cover-bride {
@@ -468,7 +531,7 @@ img { display: block; max-width: 100%; }
   line-height: 1.1;
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #FFF, var(--gold-pale), #FFF);
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-gold), var(--text-primary));
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -491,7 +554,7 @@ img { display: block; max-width: 100%; }
   font-size: 12px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
+  color: var(--text-secondary);
   margin-top: 15px;
 }
 
@@ -813,10 +876,10 @@ section {
   position: fixed;
   top: 30px;
   right: 30px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(36, 59, 45, 0.45);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--accent-gold);
   padding: 6px 16px;
   border-radius: 40px;
   z-index: 9999;
@@ -827,18 +890,22 @@ section {
   font-family: var(--font-sans);
   font-size: 10px;
   letter-spacing: 2px;
-  color: var(--warm-white);
+  color: var(--text-primary);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.4s var(--ease-out);
 }
+
+[data-theme='royal-java'] #lang-toggle {
+  background: rgba(59, 42, 36, 0.6);
+}
+
 #lang-toggle:hover {
-  background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 #lang-toggle .lang-label { opacity: 0.5; transition: opacity 0.3s; }
 #lang-toggle.active-id .lang-id,
-#lang-toggle.active-en .lang-en { opacity: 1; font-weight: 700; color: var(--gold); }
+#lang-toggle.active-en .lang-en { opacity: 1; font-weight: 700; color: var(--accent-gold); }
 #lang-toggle .lang-sep { opacity: 0.3; }
 
 /* ================================================
@@ -899,7 +966,7 @@ section {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(180deg, #1B3A2D 0%, #2D5A3D 100%);
+  background: var(--bg-secondary);
 }
 
 .couple-bg-pattern {
@@ -1243,7 +1310,7 @@ section {
   font-family: var(--font-sans);
   font-size: 13px;
   letter-spacing: 5px;
-  color: var(--gold-pale);
+  color: var(--accent-gold);
   text-transform: uppercase;
   margin-bottom: 15px;
 }
@@ -1251,7 +1318,7 @@ section {
 .events-title-vivid {
   font-family: var(--font-display);
   font-size: clamp(36px, 7vw, 64px);
-  color: #FFF;
+  color: var(--text-primary);
   margin-bottom: 25px;
   text-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
@@ -1497,7 +1564,7 @@ section {
    SECTION: LOVE STORY
    ================================================ */
 #section-story {
-  background: #F2EBE1; /* Soft Sand variation */
+  background: var(--cream);
   position: relative;
   overflow: hidden;
   padding: 60px 20px; /* Reduced from 120px for tighter spacing */
@@ -1509,7 +1576,7 @@ section {
   animation: glowPulse 7s ease-in-out infinite;
 }
 
-#section-story .section-label { color: var(--gold); text-shadow: none; }
+#section-story .section-label { color: var(--accent-gold); text-shadow: none; }
 #section-story .section-title { color: var(--deep-green); text-shadow: none; }
 
 .floral-hanging-wrap {
@@ -1729,8 +1796,8 @@ section {
   position: relative;
   padding: 120px 20px;
 }
-#section-wishes .section-label { color: var(--gold); }
-#section-wishes .section-title { color: var(--gold-pale); }
+#section-wishes .section-label { color: var(--accent-gold); }
+#section-wishes .section-title { color: var(--text-primary); }
 
 .wishes-glow {
   position: absolute;
@@ -1757,8 +1824,8 @@ section {
 }
 
 .wish-form {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(184, 149, 42, 0.3);
+  background: var(--card-bg);
+  border: 1px solid var(--accent-gold);
   border-radius: 8px;
   padding: 40px;
   margin-bottom: 40px;
@@ -1778,10 +1845,10 @@ section {
 .form-input {
   width: 100%;
   padding: 13px 18px;
-  border: 1px solid rgba(184, 149, 42, 0.25);
+  border: 1px solid var(--accent-gold);
   border-radius: 4px;
-  background: rgba(255,255,255,0.05);
-  color: var(--cream);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -1789,8 +1856,8 @@ section {
 }
 .form-input::placeholder { color: rgba(245,239,224,0.3); }
 .form-input:focus { 
-  border-color: rgba(212,172,58,0.7);
-  box-shadow: 0 0 0 3px rgba(212,172,58,0.12);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212,172,58,0.2);
 }
 textarea.form-input { resize: vertical; min-height: 110px; }
 
@@ -1959,7 +2026,7 @@ footer {
   text-align: center;
   position: relative;
   overflow: hidden;
-  color: var(--warm-white);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2232,7 +2299,7 @@ footer {
 #section-events {
   position: relative;
   min-height: 100vh;
-  background-color: var(--deep-green);
+  background-color: var(--section-events-bg);
   padding: 100px 20px;
   overflow: hidden;
   display: flex;
@@ -2251,7 +2318,7 @@ footer {
   font-family: var(--font-sans);
   font-size: 13px;
   letter-spacing: 5px;
-  color: var(--gold-pale);
+  color: var(--accent-gold);
   text-transform: uppercase;
   margin-bottom: 15px;
 }
@@ -2259,7 +2326,7 @@ footer {
 .events-title-vivid {
   font-family: var(--font-display);
   font-size: clamp(36px, 7vw, 64px);
-  color: #FFF;
+  color: var(--text-primary);
   margin-bottom: 25px;
   text-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
@@ -2290,8 +2357,8 @@ footer {
 }
 
 .std-card-inner {
-  background: var(--dark-green-vivid);
-  border: 1.2px solid rgba(212, 175, 55, 0.3);
+  background: var(--bg-secondary);
+  border: 1.2px solid var(--accent-gold);
   border-radius: 200px 200px 40px 40px; 
   padding: 85px 40px 60px;
   text-align: center;
@@ -2319,12 +2386,11 @@ footer {
 }
 .std-floral-top img {
   width: 100%;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
   animation: sway 12s ease-in-out infinite;
 }
 
 .std-icon-top {
-  color: var(--gold-pale);
+  color: var(--accent-gold);
   margin-bottom: 20px;
   opacity: 0.8;
 }
@@ -2336,6 +2402,10 @@ footer {
   font-style: italic;
   margin-bottom: 40px;
   text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 10;
+  white-space: pre-line;
+  line-height: 1.1;
 }
 
 .std-date-grid {
@@ -2602,17 +2672,19 @@ footer {
 }
 
 .gallery-coming-inner {
-  background: linear-gradient(160deg, rgba(36,59,45,0.06), rgba(212,175,55,0.08));
-  border: 1.5px solid rgba(184,149,42,0.3);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid var(--accent-gold);
   border-radius: 28px;
   padding: 55px 45px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(36,59,45,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   transition: all 0.5s var(--ease-out);
 }
 .gallery-coming-inner:hover {
-  border-color: rgba(184,149,42,0.5);
-  box-shadow: 0 30px 80px rgba(36,59,45,0.12);
+  border-color: var(--accent-gold);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
   transform: translateY(-5px);
 }
 
@@ -3187,6 +3259,7 @@ footer {
   position: relative;
   padding: 120px 20px;
   overflow: hidden;
+  background: var(--cream);
 }
 
 .amplop-glow {
@@ -3212,8 +3285,8 @@ footer {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(36,59,45,0.3), rgba(212,175,55,0.15));
-  border: 2px solid rgba(212,175,55,0.3);
+  background: var(--card-bg);
+  border: 2px solid var(--accent-gold);
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   animation: breathing 4s ease-in-out infinite;
 }
@@ -3223,7 +3296,7 @@ footer {
   font-family: var(--font-body);
   font-size: 16px;
   font-style: italic;
-  color: var(--text-mid);
+  color: var(--text-dark);
   text-align: center;
   max-width: 500px;
   margin: 0 auto 50px;

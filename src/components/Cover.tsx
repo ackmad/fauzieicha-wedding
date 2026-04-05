@@ -89,9 +89,6 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           <button id="open-btn" onClick={openInvitation}>{trans["open-btn-text"]}</button>
         </div>
       </div>
-      <div id="cover-foreground">
-        <img src="/effects/hero-foreground.png" alt="" />
-      </div>
     </div>
   );
 }

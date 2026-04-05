@@ -3,7 +3,7 @@
     "groomName": "Nurfauzie Ihsan, S. Tr. T.",
     "groomNickname": "Fauzie",
     "brideName": "Chairunissa Nur Azizah, S. Tr. Bns.",
-    "brideNickname": "Icha",
+    "brideNickname": "Chairunissa",
     "weddingDate": "Minggu, 10 Mei 2026",
     "footerDate": "10 · 05 · 2026"
   },
@@ -20,7 +20,7 @@
   "events": [
     {
       "id": "akad",
-      "type": { "id": "Akad Nikah", "en": "Islamic Marriage Contract" },
+      "type": { "id": "Akad\nNikah", "en": "Islamic\nMarriage Contract" },
       "name": { "id": "Ijab Kabul", "en": "Sacred Vows" },
       "time": { "id": "Pukul 08.00 – 10.00 WIB", "en": "08:00 – 10:00 WIB" },
       "location": "Masid Jami Bintaro Jaya",
@@ -29,7 +29,7 @@
     },
     {
       "id": "resepsi",
-      "type": { "id": "Resepsi Pernikahan", "en": "Wedding Reception" },
+      "type": { "id": "Resepsi\nPernikahan", "en": "Wedding\nReception" },
       "name": { "id": "Walimatul Ursy", "en": "Celebration" },
       "time": { "id": "Pukul 11.00 – Selesai", "en": "11:00 – Finish" },
       "location": "Masid Jami Bintaro Jaya",

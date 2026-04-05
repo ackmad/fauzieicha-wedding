@@ -49,9 +49,9 @@ function DividerCoupleEvents() {
       <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
         <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
         <path d="M-50,-50 L1490,-50 L1490,35 C1000,5 400,55 -50,25 Z" fill="var(--divider-1-tear)" filter="url(#couple-torn)" />
-        <path d="M-50,25 C400,55 1000,5 1490,35" fill="none" stroke="var(--gold-pale)" strokeWidth="1" opacity="0.4" filter="url(#couple-torn)" />
+        <path d="M-50,25 C400,55 1000,5 1490,35" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.4" filter="url(#couple-torn)" />
         <g transform="translate(720, 25)">
-          <polygon points="-8,0 0,-4 8,0 0,4" fill="var(--gold)" opacity="0.9"/>
+          <polygon points="-8,0 0,-4 8,0 0,4" fill="var(--accent-gold)" opacity="0.9"/>
         </g>
       </svg>
     </div>
@@ -93,12 +93,12 @@ function DividerStoryGallery() {
       <div style={{ position: "relative", width: "100%" }}>
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: "100%", height: "60px" }}>
           <defs><TornPaperFilter id="story-brush" scale={8} /></defs>
-          <path d="M 200 30 Q 720 10 1240 30" fill="none" stroke="var(--gold)" strokeWidth="1" opacity="0.3" filter="url(#story-brush)" />
-          <path d="M 300 40 Q 720 20 1140 40" fill="none" stroke="var(--gold)" strokeWidth="0.5" opacity="0.2" filter="url(#story-brush)" />
+          <path d="M 200 30 Q 720 10 1240 30" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.3" filter="url(#story-brush)" />
+          <path d="M 300 40 Q 720 20 1140 40" fill="none" stroke="var(--accent-gold)" strokeWidth="0.5" opacity="0.2" filter="url(#story-brush)" />
           <g transform="translate(720, 25)">
-            <path d="M0,0 C-10,-10 -20,0 0,15 C20,0 10,-10 0,0 Z" fill="var(--gold)" opacity="0.7"/>
-            <circle cx="-35" cy="5" r="1.5" fill="var(--gold)" opacity="0.5"/>
-            <circle cx="35" cy="5" r="1.5" fill="var(--gold)" opacity="0.5"/>
+            <path d="M0,0 C-10,-10 -20,0 0,15 C20,0 10,-10 0,0 Z" fill="var(--accent-gold)" opacity="0.7"/>
+            <circle cx="-35" cy="5" r="1.5" fill="var(--accent-gold)" opacity="0.5"/>
+            <circle cx="35" cy="5" r="1.5" fill="var(--accent-gold)" opacity="0.5"/>
           </g>
         </svg>
       </div>
@@ -154,12 +154,12 @@ function DividerGiftFooter() {
       <svg className="sd-svg" viewBox="0 0 1440 140" preserveAspectRatio="none" style={{ minHeight: "140px" }}>
         <defs><TornPaperFilter id="gift-torn" scale={14} /></defs>
         <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z"
-          fill="var(--gold-pale)" opacity="0.4" filter="url(#gift-torn)" transform="translate(0, 6)"/>
+          fill="var(--accent-gold)" opacity="0.2" filter="url(#gift-torn)" transform="translate(0, 6)"/>
         <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z"
           fill="var(--cream)" filter="url(#gift-torn)"/>
         <g transform="translate(720, 20)">
-          <circle cx="0" cy="0" r="3" fill="var(--gold)"/>
-          <path d="M-40,30 Q0,5 40,30" fill="none" stroke="var(--gold)" strokeWidth="1" strokeDasharray="3 4" opacity="0.6"/>
+          <circle cx="0" cy="0" r="3" fill="var(--accent-gold)"/>
+          <path d="M-40,30 Q0,5 40,30" fill="none" stroke="var(--accent-gold)" strokeWidth="1" strokeDasharray="3 4" opacity="0.6"/>
         </g>
       </svg>
     </div>

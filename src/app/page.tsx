@@ -16,6 +16,7 @@ import Wishes from "../components/Wishes";
 import Gift from "../components/Gift";
 import Footer from "../components/Footer";
 import SectionDivider from "../components/SectionDivider";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<"id" | "en">("id");
@@ -67,6 +68,23 @@ export default function Home() {
   });
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
+  const [theme, setTheme] = useState<"elegant-jungle" | "royal-java">("elegant-jungle");
+
+  // Load theme from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("wedding-theme");
+    if (savedTheme === "royal-java" || savedTheme === "elegant-jungle") {
+      setTheme(savedTheme as any);
+      document.documentElement.setAttribute("data-theme", savedTheme === "royal-java" ? "royal-java" : "default");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "elegant-jungle" ? "royal-java" : "elegant-jungle";
+    setTheme(newTheme);
+    localStorage.setItem("wedding-theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme === "royal-java" ? "royal-java" : "default");
+  };
 
   const audioCtxRef = useRef<AudioContext | null>(null);
   const activeOscNodesRef = useRef<{ osc: OscillatorNode; gain: GainNode }[]>([]);
@@ -230,6 +248,12 @@ export default function Home() {
       <MusicButton 
         musicPlaying={musicPlaying} 
         toggleMusic={toggleMusic} 
+        invitationOpened={invitationOpened} 
+      />
+
+      <ThemeToggle 
+        theme={theme} 
+        toggleTheme={toggleTheme} 
         invitationOpened={invitationOpened} 
       />
 
