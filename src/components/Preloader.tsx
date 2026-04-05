@@ -6,8 +6,20 @@ export default function Preloader() {
   const [percent, setPercent] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+  const [particles, setParticles] = useState<any[]>([]);
 
   useEffect(() => {
+    setIsMounted(true);
+    // Generate particles ONLY on client to avoid hydration mismatch
+    const p = [...Array(12)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 5}s`,
+      duration: `${10 + Math.random() * 15}s`
+    }));
+    setParticles(p);
+
     // Simulate natural loading progress
     const duration = 2400; // 2.4s total for a premium feel
     const interval = 20;   // Update every 20ms
@@ -45,12 +57,12 @@ export default function Preloader() {
       
       {/* Subtle Dust Particles */}
       <div className="gold-dust-container">
-        {[...Array(12)].map((_, i) => (
+        {isMounted && particles.map((p, i) => (
           <div key={i} className="gold-dust-particle" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${10 + Math.random() * 15}s`
+            left: p.left,
+            top: p.top,
+            animationDelay: p.delay,
+            animationDuration: p.duration
           } as React.CSSProperties}></div>
         ))}
       </div>
