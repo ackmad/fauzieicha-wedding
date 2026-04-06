@@ -76,9 +76,11 @@
   --deep-green: var(--bg-primary);
   --jungle-dark: #2B1D19;
   --cream: var(--bg-tertiary);
-  --section-events-bg: var(--bg-primary);
+  --section-events-bg: #493b34;
   --section-wishes-bg: var(--bg-primary);
   --section-footer-bg: var(--bg-primary);
+  --divider-1-bg: #493b34;
+  --divider-2-tear: #493b34;
 }
 
 /* Global Transition for Theme Switching (excluding heavy assets) */
@@ -2183,6 +2185,52 @@ footer {
   transform: rotate(-3deg);
 }
 
+.footer-share-wrap {
+  margin-top: 60px; /* Space between Terima Kasih and button */
+  display: flex;
+  justify-content: center;
+}
+
+.footer-share-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold-pale);
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.footer-share-btn:hover {
+  background: var(--gold);
+  color: var(--deep-green);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold-pale);
+}
+
+.footer-share-btn svg {
+  transition: transform 0.4s var(--ease-out);
+}
+
+.footer-share-btn:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.footer-share-btn span {
+  font-weight: 500;
+}
+
 /* ── Developer Credit Watermark ── */
 .footer-watermark {
   position: relative;
@@ -2198,7 +2246,8 @@ footer {
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 10px;
-  color: rgba(245, 239, 224, 0.25);
+  color: rgba(245, 239, 224, 0.55);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 8px 16px;
@@ -2219,7 +2268,7 @@ footer {
   opacity: 0.5;
 }
 .developer-credit-link:hover {
-  color: rgba(245, 239, 224, 0.7);
+  color: rgba(245, 239, 224, 0.9);
   transform: scale(1.05);
   text-shadow: 0 0 8px rgba(245, 239, 224, 0.4);
 }
@@ -3263,11 +3312,24 @@ footer {
 /* ================================================
    GIFT / AMPLOP SECTION (ENHANCED)
    ================================================ */
+/* ================================================
+   GIFT / AMPLOP SECTION (PREMIUM BANK CARD)
+   ================================================ */
 #section-amplop {
   position: relative;
   padding: 120px 20px;
   overflow: hidden;
   background: var(--cream);
+}
+
+.premium-batik-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/backgrounds/batik-pattern.png');
+  background-size: 400px;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
 }
 
 .amplop-glow {
@@ -3282,135 +3344,293 @@ footer {
 }
 .amplop-glow img { width: 100%; }
 
-.amplop-envelope {
-  margin: 0 auto 30px;
-  text-align: center;
-}
-.amplop-envelope-inner {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--card-bg);
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  animation: breathing 4s ease-in-out infinite;
-}
-.amplop-envelope-icon { font-size: 36px; }
-
-.amplop-desc {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-style: italic;
-  color: var(--text-dark);
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto 50px;
-  line-height: 1.8;
-}
-
-.amplop-cards {
+.premium-cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 40px;
+  max-width: 900px;
+  margin: 40px auto 0;
+  perspective: 1200px;
 }
 
-.amplop-card {
+.premium-card-wrapper {
+  perspective: 1200px;
   width: 100%;
-  max-width: 340px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(240,235,220,0.9));
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(184,149,42,0.15);
+  max-width: 380px;
   position: relative;
-  transition: all 0.5s var(--ease-out);
-}
-.amplop-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 35px 70px rgba(0,0,0,0.2), 0 0 0 1px rgba(184,149,42,0.3);
 }
 
-.amplop-card-bar {
-  height: 6px;
+.premium-bank-card {
   width: 100%;
+  aspect-ratio: 1.6 / 1;
+  background: linear-gradient(135deg, #1A3226, #0D1C14); /* deep jungle green variant */
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1);
+  color: #FDF6EC;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 }
 
-.amplop-card-header {
+[data-theme='royal-java'] .premium-bank-card {
+  background: linear-gradient(135deg, #3B2A24, #1F1511); /* warm brown base */
+}
+
+/* Base states before hover/tilt */
+.premium-bank-card:hover {
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+/* Gloss Reflection */
+.card-gloss {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 75%, transparent 80%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Subtle Shimmer animated */
+.card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-20deg);
+  z-index: 5;
+  animation: cardShimmer 6s infinite;
+  pointer-events: none;
+}
+@keyframes cardShimmer {
+  0% { left: -150%; }
+  30% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* Decorative Pattern inside card */
+.card-pattern {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 250px;
+  height: 250px;
+  background-image: url('/florals/floral-accent-1.png');
+  background-size: cover;
+  opacity: 0.1;
+  filter: grayscale(1) brightness(200%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Grain Noise */
+.card-noise {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Card Content Blocks */
+.card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-bank-name {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.card-chip-row {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 24px 28px 0;
+  margin-top: 10px;
+  position: relative;
 }
 
-.amplop-bank-icon {
-  opacity: 0.85;
+.card-number-wrapper {
+  margin-top: auto;
+  margin-bottom: 15px;
 }
 
-.amplop-bank {
+.card-number {
   font-family: var(--font-sans);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-dark);
-  letter-spacing: 0.5px;
-}
-
-.amplop-card-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
-  margin: 18px 28px;
-}
-
-.amplop-name {
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-dark);
-  padding: 0 28px 8px;
+  font-size: clamp(20px, 5vw, 24px);
   font-weight: 600;
-}
-
-.amplop-number {
-  font-family: var(--font-sans);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-dark);
   letter-spacing: 3px;
-  padding: 0 28px 24px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
-.copy-btn {
-  width: calc(100% - 56px);
-  margin: 0 28px 24px;
-  background: var(--deep-green);
-  color: var(--gold-pale);
-  border: none;
-  border-radius: 14px;
-  padding: 14px;
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-owner {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-label {
   font-family: var(--font-sans);
-  font-size: 12px;
-  letter-spacing: 2px;
-  font-weight: 600;
+  font-size: 8px;
+  letter-spacing: 1px;
+  opacity: 0.6;
   text-transform: uppercase;
-  cursor: pointer;
+  margin-bottom: 3px;
+}
+
+.card-name {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.card-brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+.brand-circle.left {
+  background: #E81123;
+  transform: translateX(10px);
+  opacity: 0.8;
+}
+.brand-circle.right {
+  background: #F79E1B;
+  opacity: 0.8;
+}
+
+/* Feedback interactions */
+.card-ripple {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: cardRipple 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 11;
+}
+
+@keyframes cardRipple {
+  to { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+}
+
+.card-feedback {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 16, 0.85); /* dark overlay */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  transition: all 0.4s var(--ease-out);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-.copy-btn:hover {
-  background: var(--gold);
-  color: var(--deep-green);
-  transform: translateY(-2px);
+
+.card-feedback.show {
+  opacity: 1;
 }
-.copy-btn.copied {
-  background: #2e7d32;
+
+.feedback-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(10px) scale(0.95);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.card-feedback.show .feedback-inner {
+  transform: translateY(0) scale(1);
+}
+
+.feedback-check {
+  font-size: 32px;
+  color: var(--gold-pale);
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 10px rgba(212,175,55,0.4));
+  animation: checkPop 0.4s var(--ease-spring) 0.1s both;
+}
+
+@keyframes checkPop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.feedback-text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 1px;
   color: #fff;
+  text-align: center;
+}
+
+.card-pulse-indicator {
+  width: 10px;
+  height: 10px;
+  background: var(--gold-pale);
+  border-radius: 50%;
+  position: absolute;
+  left: 60px;
+  box-shadow: 0 0 10px var(--gold-pale);
+  animation: pulseIndicator 1s infinite alternate;
+}
+
+@keyframes pulseIndicator {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.card-hint {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-dark);
+  opacity: 0.6;
+  margin-top: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* ================================================
