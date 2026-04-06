@@ -36,3 +36,11 @@ export interface WeddingData {
     en: Record<string, string>;
   };
 }
+
+export interface Wish {
+  id?: string;
+  name: string;
+  text: string;
+  isAttending: boolean;
+  createdAt?: any; // Firestore Timestamp
+}

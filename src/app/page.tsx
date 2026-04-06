@@ -19,54 +19,39 @@ import SectionDivider from "../components/SectionDivider";
 import ThemeToggle from "../components/ThemeToggle";
 import Preloader from "../components/Preloader";
 
+// Firebase imports
+import { db } from "../lib/firebase";
+import { 
+  collection, 
+  query, 
+  orderBy, 
+  onSnapshot, 
+  addDoc, 
+  serverTimestamp 
+} from "firebase/firestore";
+import { Wish } from "../types";
+
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<"id" | "en">("id");
   const [invitationOpened, setInvitationOpened] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
-  const [wishes, setWishes] = useState(() => {
-    const now = Date.now();
-    const mins = (m: number) => new Date(now - m * 60 * 1000);
-    return [
-      { name: 'Keluarga Besar', text: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.", isAttending: true, createdAt: mins(2) },
-      { name: 'Sahabat Fauzie & Icha', text: 'Selamat menempuh hidup baru! Semoga selalu dalam lindungan Allah dan diberkahi kebahagiaan yang tak terkira.', isAttending: true, createdAt: mins(5) },
-      { name: 'Teman Kantor Fauzie', text: 'Mabrook ya akhi! Doa terbaik untuk pernikahan yang penuh berkah. Semoga langgeng hingga Jannah.', isAttending: false, createdAt: mins(9) },
-      { name: 'Budi & Susi', text: 'Selamat menempuh hidup baru, semoga menjadi keluarga yang bahagia selamanya.', isAttending: true, createdAt: mins(14) },
-      { name: 'Alumni SMA 1', text: 'Happy wedding Fauzie & Icha! Lancar-lancar ya acaranya.', isAttending: true, createdAt: mins(18) },
-      { name: 'Keluarga Pak RT', text: 'Selamat ya Mas Fauzie, semoga Sakinah Mawaddah Warahmah.', isAttending: true, createdAt: mins(22) },
-      { name: 'Siska Amelia', text: 'Ichaaa! Selamat ya cantik, maaf banget gak bisa hadir karena lagi di luar kota. Doa terbaik buat kalian!', isAttending: false, createdAt: mins(27) },
-      { name: 'Andra & Family', text: 'Congratulations on your special day! May your love grow stronger every year.', isAttending: true, createdAt: mins(31) },
-      { name: 'Om & Tante dari Solo', text: 'Ndherek bingah nggih Mas Fauzie, mugi-mugi dadi keluarga sing rukun.', isAttending: true, createdAt: mins(36) },
-      { name: 'Grup Mancing Mania', text: 'Selamat menempuh hidup baru bosku! Habis ini mancingnya libur dulu ya hehe.', isAttending: true, createdAt: mins(41) },
-      { name: 'Dini & Rian', text: 'Happy wedding day! Wishing you a lifetime of love and happiness.', isAttending: true, createdAt: mins(45) },
-      { name: 'Pak Manajer', text: 'Selamat menempuh hidup baru Fauzie, semoga sukses selalu dalam membina rumah tangga.', isAttending: true, createdAt: mins(50) },
-      { name: 'Tante Mirna', text: 'Selamat ya Icha sayang, semoga bahagia terus sama suami.', isAttending: true, createdAt: mins(55) },
-      { name: 'Raka (Depok)', text: 'Wih mantap Zie! Selamat ya, lancar sampai hari-H!', isAttending: true, createdAt: mins(60) },
-      { name: 'Sepupu Icha', text: 'Duh adekku udah nikah aja, selamat ya Icha & Mas Fauzie!', isAttending: true, createdAt: mins(65) },
-      { name: 'Bu Siti (Tetangga)', text: 'Selamat menempuh hidup baru ya mas, semoga berkah keluarga barunya.', isAttending: true, createdAt: mins(70) },
-      { name: 'Devi & Suami', text: 'Happy wedding! So happy for both of you.', isAttending: true, createdAt: mins(76) },
-      { name: 'Anton Wijaya', text: 'Selamat bro! Maaf berhalangan hadir sedang ada dinas. Samawa ya!', isAttending: false, createdAt: mins(82) },
-      { name: 'Grup Futsal', text: 'Golll! Akhirnya sah juga Zie. Selamat menempuh hidup baru!', isAttending: true, createdAt: mins(88) },
-      { name: 'Lia & Bayu', text: 'Selamat menempuh hidup baru, semoga selalu bersama sampai kakek nenek.', isAttending: true, createdAt: mins(94) },
-      { name: 'Keluarga Solo', text: 'Nderek bingah nggih Mas Fauzie, mugi dadi keluarga sakinah.', isAttending: true, createdAt: mins(100) },
-      { name: 'Prata & Rini', text: 'Selamat menempuh hidup baru! Lancar acaranya ya Zie & Icha.', isAttending: true, createdAt: mins(106) },
-      { name: 'Alumni Kampus', text: 'Congratulation Fauzie! Semoga dilancarkan segala urusannya.', isAttending: true, createdAt: mins(112) },
-      { name: 'Tetangga Depan', text: 'Selamat ya buat Icha dan suami, semoga bahagia selalu.', isAttending: true, createdAt: mins(118) },
-      { name: 'Pak Bos', text: 'Selamat menikah Fauzie, semoga cepat dapat momongan yang sholeh/sholehah.', isAttending: true, createdAt: mins(124) },
-      { name: 'Grup Mancing Pagi', text: 'Selamat narik joran di pelaminan bro! Mantap!', isAttending: true, createdAt: mins(130) },
-      { name: 'Santi & Friends', text: 'Happy wedding! Wish you all the best!', isAttending: true, createdAt: mins(136) },
-      { name: 'Paman Hasan', text: 'Barakallahu lakum, selamat ya nak.', isAttending: true, createdAt: mins(142) },
-      { name: 'Risma Amelia', text: 'Aaaa selamat Icha! Maaf gak bisa datang ya lagi ada tugas.', isAttending: false, createdAt: mins(148) },
-      { name: 'Benni Saputra', text: 'Selamat bro! Maaf berhalangan dapet shift siang.', isAttending: false, createdAt: mins(154) },
-      { name: 'Grup Gowes', text: 'Mantap Zie! Selamat menempuh rute baru kehidupan!', isAttending: true, createdAt: mins(160) },
-      { name: 'Mbak Dwi', text: 'Selamat ya dek Icha, semoga langgeng terus.', isAttending: true, createdAt: mins(166) },
-      { name: 'Mas Agus', text: 'Selamat menempuh hidup baru Fauzie!', isAttending: true, createdAt: mins(172) },
-      { name: 'Zian & Tia', text: 'Happy wedding! Terharu banget akhirnya kalian nikah.', isAttending: true, createdAt: mins(178) },
-      { name: 'Alumni SMA Grup A', text: 'Selamat Fauzie! Sukses terus ya!', isAttending: true, createdAt: mins(184) },
-      { name: 'Keluarga Bogor', text: 'Selamat menempuh hidup baru ya, semoga berkah.', isAttending: true, createdAt: mins(190) },
-      { name: 'Dodo (Bandung)', text: 'Maaf Zie gak bisa dateng jauh banget, selamat ya bro!', isAttending: false, createdAt: mins(196) },
-      { name: 'Rere & Partners', text: 'Selamat menempuh hidup baru, sukses selalu!', isAttending: true, createdAt: mins(202) },
-    ];
-  });
+  const [wishes, setWishes] = useState<Wish[]>([]);
+
+  // Fetch wishes from Firebase
+  useEffect(() => {
+    const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const wishList = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        // Convert Firestore Timestamp to Date for the UI
+        createdAt: doc.data().createdAt?.toDate() || new Date()
+      })) as Wish[];
+      setWishes(wishList);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
   const [theme, setTheme] = useState<"elegant-jungle" | "royal-java">("elegant-jungle");
@@ -130,7 +115,7 @@ export default function Home() {
     setCurrentLang(prev => prev === 'id' ? 'en' : 'id');
   };
 
-  const submitWish = (e: React.FormEvent) => {
+  const submitWish = async (e: React.FormEvent) => {
     e.preventDefault();
     const nameEl = document.getElementById('wish-name') as HTMLInputElement;
     const textEl = document.getElementById('wish-text') as HTMLTextAreaElement;
@@ -142,8 +127,17 @@ export default function Home() {
     
     if (!name || !text) return;
     
-    setWishes(prev => [{ name, text, isAttending, createdAt: new Date() }, ...prev]);
-    // Form reset is handled in the child component Wishes.tsx handleSubmit
+    try {
+      await addDoc(collection(db, "wishes"), {
+        name,
+        text,
+        isAttending,
+        createdAt: serverTimestamp()
+      });
+    } catch (error) {
+      console.error("Error adding wish: ", error);
+      throw error; // Rethrow so component can show error toast
+    }
   };
 
   const copyAcc = (num: string, e: React.MouseEvent<HTMLButtonElement>) => {

@@ -2,17 +2,11 @@
 
 import React, { useState, useRef } from "react";
 import { OrnamenJawa } from "./Icons";
-
-interface Wish {
-  name: string; 
-  text: string;
-  isAttending?: boolean;
-  createdAt?: Date;
-}
+import { Wish } from "../types";
 
 interface WishesProps {
   wishes: Wish[];
-  submitWish: (e: React.FormEvent) => void;
+  submitWish: (e: React.FormEvent) => Promise<void>;
   trans: Record<string, string>;
 }
 
@@ -67,7 +61,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
     }
 
     try {
-      submitWish(e);
+      await submitWish(e);
       setToast({ show: true, msg: "Pesan Anda telah terkirim. Terima kasih!", type: 'success' });
       (e.target as HTMLFormElement).reset();
 
@@ -128,12 +122,18 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
         <h2 className="section-title reveal-item">{trans["wishes-title"]}</h2>
 
         {/* Stats bar */}
-        <div className="wish-stats-container reveal-item">
-          <div className="stat-item"><span className="stat-num">{totalWishes}</span><span className="stat-lbl">Ucapan</span></div>
-          <div className="stat-divider"></div>
-          <div className="stat-item"><span className="stat-num">{totalAttending}</span><span className="stat-lbl">Hadir</span></div>
-          <div className="stat-divider"></div>
-          <div className="stat-item"><span className="stat-num">{totalAbsent}</span><span className="stat-lbl">Berhalangan</span></div>
+        <div className="wishes-stats-wrapper reveal-item">
+          <div className="live-indicator-badge">
+            <span className="live-dot"></span>
+            <span>Live Updates</span>
+          </div>
+          <div className="wish-stats-container">
+            <div className="stat-item"><span className="stat-num">{totalWishes}</span><span className="stat-lbl">Ucapan</span></div>
+            <div className="stat-divider"></div>
+            <div className="stat-item"><span className="stat-num">{totalAttending}</span><span className="stat-lbl">Hadir</span></div>
+            <div className="stat-divider"></div>
+            <div className="stat-item"><span className="stat-num">{totalAbsent}</span><span className="stat-lbl">Berhalangan</span></div>
+          </div>
         </div>
 
         {/* Form */}
