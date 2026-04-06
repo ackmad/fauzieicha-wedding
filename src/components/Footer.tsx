@@ -68,7 +68,7 @@ export default function Footer({ basics, trans }: FooterProps) {
           </div>
 
           <p className="footer-couple-names">
-            {basics.groomName} <span className="amp">&</span> {basics.brideName}
+            {basics.groomNickname} <span className="amp">&</span> {basics.brideNickname}
           </p>
           <p className="footer-full-date">{basics.footerDate}</p>
         </div>
