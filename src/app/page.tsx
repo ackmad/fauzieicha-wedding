@@ -182,11 +182,13 @@ export default function Home() {
       // Global parallax variable
       document.body.style.setProperty('--scroll-y', `${scrollY}`);
 
-      // Specific leaf parallax (retained for direct speed control)
-      const leaves = document.querySelectorAll('.story-leaf-1, .gallery-leaf');
-      leaves.forEach((leaf, i) => {
-        const speed = 0.08 + i * 0.03;
-        (leaf as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
+      // Specific leaf & floral parallax
+      const parallaxItems = document.querySelectorAll('.story-leaf-1, .gallery-leaf, .parallax-floral');
+      parallaxItems.forEach((item) => {
+        const speedAttr = (item as HTMLElement).getAttribute('data-speed');
+        const speed = speedAttr ? parseFloat(speedAttr) : 0.08;
+        // For footer florals, we might want to offset based on their position
+        (item as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
       });
     };
     window.addEventListener('scroll', handler, { passive: true });
