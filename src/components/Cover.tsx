@@ -79,9 +79,9 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           <GoldMonogram variant="hero" style={{ margin: "0 auto 18px" }} />
           <p className="cover-subtitle">{trans["the-wedding-of"]}</p>
           <div className="cover-divider-line"></div>
-          <div className="cover-groom">{basics.groomNickname}</div>
-          <div className="cover-and">&amp;</div>
           <div className="cover-bride">{basics.brideNickname}</div>
+          <div className="cover-and">&amp;</div>
+          <div className="cover-groom">{basics.groomNickname}</div>
           <p className="cover-date">{basics.weddingDate}</p>
         </div>
         <div id="cover-btn-wrap">

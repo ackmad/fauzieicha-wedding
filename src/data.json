@@ -1,9 +1,9 @@
 {
   "basics": {
-    "groomName": "Nurfauzie Ihsan, S. Tr. T.",
+    "groomName": "Nurfauzie Ihsan, S. Tr. T",
     "groomNickname": "Fauzie",
     "brideName": "Chairunissa Nur Azizah, S. Tr. Bns.",
-    "brideNickname": "Icha",
+    "brideNickname": "Chairunissa",
     "weddingDate": "Minggu, 10 Mei 2026",
     "footerDate": "10 · 05 · 2026"
   },
@@ -83,7 +83,7 @@
       "open-btn-text": "Buka Undangan",
       "verse-text": "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya. — Ar-Rum: 21",
       "events-label": "Tanggal Penting",
-      "events-title": "Simpan Tanggalnya",
+      "events-title": "Simpan Tanggal",
       "maps-btn": "Buka Peta",
       "gallery-label": "Kenangan Indah",
       "gallery-title": "Galeri Foto",
@@ -131,4 +131,5 @@
       "inviting-text": "We Cordially Invite You"
     }
   }
+
 }

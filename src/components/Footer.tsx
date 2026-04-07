@@ -11,8 +11,8 @@ interface FooterProps {
 export default function Footer({ basics, trans }: FooterProps) {
   const shareUndangan = () => {
     const shareData = {
-      title: `Undangan Pernikahan ${basics.groomName.split(' ')[0]} & ${basics.brideName.split(' ')[0]}`,
-      text: `Mari merayakan kebahagiaan kami ${basics.groomName.split(' ')[0]} & ${basics.brideName.split(' ')[0]}`,
+      title: `Undangan Pernikahan ${basics.brideName.split(' ')[0]} & ${basics.groomName.split(' ')[0]}`,
+      text: `Mari merayakan kebahagiaan kami ${basics.brideName.split(' ')[0]} & ${basics.groomName.split(' ')[0]}`,
       url: window.location.href
     };
     if (navigator.share) {
@@ -67,9 +67,11 @@ export default function Footer({ basics, trans }: FooterProps) {
             <SectionDivider color="var(--accent-gold)" style={{ width: "140px", opacity: 0.4 }} />
           </div>
 
-          <p className="footer-couple-names">
-            {basics.groomNickname} <span className="amp">&</span> {basics.brideNickname}
-          </p>
+          <div className="footer-couple-names-v">
+            <div className="footer-name-bride">{basics.brideNickname}</div>
+            <div className="footer-name-amp">&</div>
+            <div className="footer-name-groom">{basics.groomNickname}</div>
+          </div>
           <p className="footer-full-date">{basics.footerDate}</p>
         </div>
 

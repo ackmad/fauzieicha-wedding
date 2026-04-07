@@ -62,12 +62,18 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
         </p>
         
         <div className="couple-names-block">
+          {/* BRIDE BLOCK FIRST */}
           <div className="couple-person">
             <div className="name-main-couple reveal-right" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
-              {basics.groomName}
+              {basics.brideName.includes(',') ? (
+                <>
+                  <span className="main-name">{basics.brideName.split(',')[0]}</span>
+                  <span className="name-title">{basics.brideName.split(',')[1]}</span>
+                </>
+              ) : basics.brideName}
             </div>
             <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
-              {families[currentLang].groom}
+              {families[currentLang].bride}
             </p>
           </div>
           
@@ -77,12 +83,18 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
             <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" />
           </div>
           
+          {/* GROOM BLOCK SECOND */}
           <div className="couple-person">
             <div className="name-main-couple reveal-left" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>
-              {basics.brideName}
+              {basics.groomName.includes(',') ? (
+                <>
+                  <span className="main-name">{basics.groomName.split(',')[0]}</span>
+                  <span className="name-title">{basics.groomName.split(',')[1]}</span>
+                </>
+              ) : basics.groomName}
             </div>
             <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.8s" } as React.CSSProperties}>
-              {families[currentLang].bride}
+              {families[currentLang].groom}
             </p>
           </div>
         </div>

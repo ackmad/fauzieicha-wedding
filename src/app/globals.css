@@ -165,38 +165,70 @@ img { display: block; max-width: 100%; }
   bottom: 30px;
   right: 30px;
   z-index: 9999;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  background: rgba(36, 59, 45, 0.45);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1.5px solid var(--gold);
+  background: rgba(31, 61, 54, 0.45); /* Deep Jungle Green Semi-transparent */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid var(--accent-gold);
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 10px rgba(212, 175, 55, 0.2);
+  transition: all 0.5s var(--ease-out);
 }
 #music-btn:hover {
-  transform: scale(1.1) rotate(5deg);
-  background: rgba(36, 59, 45, 0.65);
-  box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+  transform: scale(1.1);
+  background: rgba(31, 61, 54, 0.7);
+  box-shadow: 0 0 25px var(--accent-gold);
 }
-#music-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--gold-pale);
-  filter: drop-shadow(0 0 10px rgba(184,149,42,0.4));
-  transition: transform 0.4s ease;
+.music-btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--accent-gold);
 }
-@keyframes musicRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.music-icon-svg {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
 }
-.music-playing svg {
-  animation: musicRotate 4s linear infinite;
+.music-playing .music-icon-svg {
+  animation: musicFloating 3s ease-in-out infinite;
+}
+@keyframes musicFloating {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(5deg); }
+}
+
+/* Music Waves Animation */
+.music-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.music-waves span {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1.5px solid var(--accent-gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: waveRipple 3s linear infinite;
+}
+.music-waves span:nth-child(2) { animation-delay: 1s; }
+.music-waves span:nth-child(3) { animation-delay: 2s; }
+
+@keyframes waveRipple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 /* ======== IDLE ANIMATIONS (ALIVE EFFECT) ======== */
@@ -540,7 +572,7 @@ img { display: block; max-width: 100%; }
 
 .cover-groom, .cover-bride {
   font-family: var(--font-display);
-  font-size: clamp(52px, 10vw, 88px);
+  font-size: clamp(36px, 9vw, 88px); /* Reduced min size for long names */
   line-height: 1.1;
   font-style: italic;
   font-weight: 500;
@@ -552,6 +584,8 @@ img { display: block; max-width: 100%; }
   animation: textShimmer 8s linear infinite;
   text-shadow: 0 10px 40px rgba(0,0,0,0.5);
   margin: 10px 0;
+  width: 100%; /* Ensure it respects container width */
+  padding: 0 5px;
 }
 
 .cover-and {
@@ -1136,7 +1170,7 @@ section {
 .name-main-couple {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(38px, 8vw, 76px); /* Scaled down slightly for 100vh fit */
+  font-size: clamp(28px, 7.5vw, 76px);
   font-weight: 500;
   background: linear-gradient(180deg, #FFFFFF 40%, var(--gold-pale) 100%);
   -webkit-background-clip: text;
@@ -1145,6 +1179,71 @@ section {
   line-height: 1.1;
   text-shadow: 0 10px 40px rgba(0,0,0,0.4);
   letter-spacing: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+  overflow: visible; /* Ensure shadows don't clip */
+}
+
+@media (max-width: 380px) {
+  .name-main-couple { 
+    font-size: clamp(21px, 8.5vw, 32px) !important; /* Aggressive reduction for small screens */
+    letter-spacing: -1.8px !important;
+  }
+  .name-title {
+    font-size: 0.45em !important; /* Title slightly larger on mobile to be readable */
+    letter-spacing: 2px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .name-main-couple { 
+    font-size: clamp(19px, 8vw, 24px) !important; /* Even more for S-Mobile 320px */
+  }
+}
+
+.name-main-couple .main-name {
+  display: block;
+}
+
+.name-main-couple .name-title {
+  display: block;
+  font-size: 0.35em; /* Significantly smaller title */
+  font-family: var(--font-sans);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 500;
+  margin-top: 5px;
+  opacity: 0.9;
+  -webkit-text-fill-color: var(--gold-light);
+}
+
+/* 🟢 VECTOR & CUT-OUT REFINEMENTS */
+.gunungan-png-vivid {
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)) drop-shadow(0 20px 50px rgba(0,0,0,0.6));
+  animation: gununganGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes gununganGlow {
+  from { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.5)); transform: scale(1); }
+  to { filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.4)) drop-shadow(0 25px 60px rgba(0,0,0,0.7)); transform: scale(1.02); }
+}
+
+.couple-floral-top-left img, .couple-floral-top-right img,
+.couple-floral-bottom img, .couple-floral-bottom.center-back img {
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5)) saturate(1.1);
+  transition: all 0.5s ease;
+}
+
+.jawa-top-ornament {
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+}
+
+.divider-jawa-png {
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
 }
 
 .couple-center-divider {
@@ -2174,19 +2273,34 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   margin-bottom: 40px;
 }
 
-.footer-couple-names {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 6vw, 42px);
-  color: #FDF6EC;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+.footer-couple-names-v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
 }
-.footer-couple-names .amp {
+
+.footer-name-bride, .footer-name-groom {
   font-family: var(--font-display);
+  font-size: clamp(32px, 8vw, 54px);
+  color: #FDF6EC;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, #FDF6EC, var(--accent-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-name-amp {
+  font-family: var(--font-display);
+  font-size: 20px;
   color: var(--accent-gold);
   font-style: italic;
-  font-size: 0.9em;
+  opacity: 0.8;
 }
 
 .footer-full-date {

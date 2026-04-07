@@ -118,7 +118,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
           <Countdown targetDate={weddingDateISO} lang={currentLang} />
           
           <a 
-            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+${basics.groomNickname}+%26+${basics.brideNickname}&dates=20260510T010000Z/20260510T070000Z&details=Hari+Bahagia+${basics.groomNickname}+%26+${basics.brideNickname}`}
+            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+${basics.brideNickname}+%26+${basics.groomNickname}&dates=20260510T010000Z/20260510T070000Z&details=Hari+Bahagia+${basics.brideNickname}+%26+${basics.groomNickname}`}
             target="_blank" 
             rel="noopener noreferrer" 
             className="calendar-btn"

@@ -11,7 +11,7 @@ interface MonogramProps {
 }
 
 /**
- * GoldMonogram — The premium identity mark for Fauzie & Icha
+ * GoldMonogram — The premium identity mark for Chairunissa & Fauzie
  *
  * Variants:
  *  - hero       : Full gold metallic, glow + shimmer (Cover section)

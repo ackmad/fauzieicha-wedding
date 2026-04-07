@@ -3,21 +3,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fauzieicha-wedding.vercel.app'),
-  title: "The Wedding of Fauzie & Icha",
+  title: "The Wedding of Chairunissa & Fauzie",
   description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
-  keywords: ["Wedding", "Undangan Digital", "Fauzie & Icha", "Pernikahan"],
-  authors: [{ name: "Fauzie & Icha" }],
+  keywords: ["Wedding", "Undangan Digital", "Chairunissa & Fauzie", "Pernikahan"],
+  authors: [{ name: "Chairunissa & Fauzie" }],
   openGraph: {
-    title: "The Wedding of Fauzie & Icha",
+    title: "The Wedding of Chairunissa & Fauzie",
     description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
     url: "https://fauzieicha-wedding.vercel.app/",
-    siteName: "Fauzie & Icha Wedding",
+    siteName: "Chairunissa & Fauzie Wedding",
     images: [
       {
         url: "/og-image.jpg?v=2",
         width: 1200,
         height: 630,
-        alt: "Invitation to The Wedding of Fauzie & Icha",
+        alt: "Invitation to The Wedding of Chairunissa & Fauzie",
       },
     ],
     locale: "id_ID",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Wedding of Fauzie & Icha",
+    title: "The Wedding of Chairunissa & Fauzie",
     description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
     images: ["/og-image.jpg?v=2"],
   },
