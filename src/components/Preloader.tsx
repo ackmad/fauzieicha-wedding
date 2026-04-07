@@ -2,7 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 
-export default function Preloader() {
+interface PreloaderProps {
+  onComplete?: () => void;
+}
+
+export default function Preloader({ onComplete }: PreloaderProps) {
   const [percent, setPercent] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [shouldRender, setShouldRender] = useState(true);
@@ -36,6 +40,7 @@ export default function Preloader() {
         // Brief pause at 100% before transition
         setTimeout(() => {
           setIsVisible(false);
+          if (onComplete) onComplete();
           // Remove from DOM after transition finishes
           setTimeout(() => setShouldRender(false), 1200);
         }, 600);
@@ -45,7 +50,7 @@ export default function Preloader() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [onComplete]);
 
   if (!shouldRender) return null;
 
@@ -101,10 +106,10 @@ export default function Preloader() {
       
       {/* Decorative Ornaments */}
       <div className="preloader-ornament top-left">
-        <img src="/florals/floral-accent-1.png" alt="" />
+        <img src="/florals/floral-accent-1.webp" alt="" />
       </div>
       <div className="preloader-ornament bottom-right">
-        <img src="/florals/floral-accent-1.png" alt="" />
+        <img src="/florals/floral-accent-1.webp" alt="" />
       </div>
     </div>
   );

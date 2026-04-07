@@ -130,6 +130,133 @@
       "message-placeholder": "Write your best wishes and prayers...",
       "inviting-text": "We Cordially Invite You"
     }
-  }
-
+  },
+  "wishes": [
+    {
+      "id": "w1",
+      "name": "Bapak Presiden RI",
+      "text": "Selamat menempuh hidup baru untuk Chairunissa dan Fauzie. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T12:00:00Z"
+    },
+    {
+      "id": "w2",
+      "name": "Sahabat Karib",
+      "text": "Lancar-lancar sampai hari H ya gaess! Akhirnya pelaminan juga nih. Gaspol!",
+      "isAttending": true,
+      "createdAt": "2026-04-07T11:30:00Z"
+    },
+    {
+      "id": "w3",
+      "name": "Keluarga Besar di Jogja",
+      "text": "Mewakili keluarga Jogja, kami turut bahagia. Mohon maaf berhalangan hadir namun doa kami menyertai kalian.",
+      "isAttending": false,
+      "createdAt": "2026-04-07T09:15:00Z"
+    },
+    {
+      "id": "w4",
+      "name": "Rekan Kerja",
+      "text": "Selamat ya Fauzie! Semoga dilancarkan segala urusannya. Ditunggu traktirannya di kantor!",
+      "isAttending": true,
+      "createdAt": "2026-04-07T08:00:00Z"
+    },
+    {
+      "id": "w5",
+      "name": "Ahmad Subarjo",
+      "text": "Barakallahu lakum wa baraka alaikum wa jama'a bainakuma fii khair.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T07:45:00Z"
+    },
+    {
+      "id": "w6",
+      "name": "Siti Aminah",
+      "text": "Masya Allah Tabarakallah, cantiknya pengantin wanita! Bahagia selalu ya kalian berdua.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T07:00:00Z"
+    },
+    {
+      "id": "w7",
+      "name": "Dedi & Keluarga",
+      "text": "Selamat ya Icha dan Fauzie. Semoga langgeng sampai kakek nenek.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T06:30:00Z"
+    },
+    {
+      "id": "w8",
+      "name": "Hani Safitri",
+      "text": "Maaf ya beb gak bisa dateng, lagi tugas luar kota. Huhu. Titip doa terbaik buat kalian!",
+      "isAttending": false,
+      "createdAt": "2026-04-07T06:15:00Z"
+    },
+    {
+      "id": "w9",
+      "name": "Budi Santoso",
+      "text": "Happy Wedding! Enjoy the new chapter of your life.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T05:00:00Z"
+    },
+    {
+      "id": "w10",
+      "name": "Lusi Anggraini",
+      "text": "Selamat yaaa! Akhirnya nyusul juga. Samawa ya!",
+      "isAttending": true,
+      "createdAt": "2026-04-07T04:45:00Z"
+    },
+    {
+      "id": "w11",
+      "name": "Paman Sam",
+      "text": "Congrats guys! See you at the reception.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T04:00:00Z"
+    },
+    {
+      "id": "w12",
+      "name": "Tante Girang",
+      "text": "Alhamdulillah, selamat ya keponakan tante paling ganteng/cantik!",
+      "isAttending": true,
+      "createdAt": "2026-04-07T03:30:00Z"
+    },
+    {
+      "id": "w13",
+      "name": "Komunitas Motor",
+      "text": "Selamat menempuh hidup baru Bro Fauzie! Tetap gaspol di rumah tangga ya!",
+      "isAttending": true,
+      "createdAt": "2026-04-07T02:00:00Z"
+    },
+    {
+      "id": "w14",
+      "name": "Eko Patrio",
+      "text": "Turut berbahagia untuk kedua keluarga. Semoga berkah berlimpah.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T01:30:00Z"
+    },
+    {
+      "id": "w15",
+      "name": "Maya Riani",
+      "text": "Barakallah, langgeng terus ya kalian.",
+      "isAttending": true,
+      "createdAt": "2026-04-07T01:00:00Z"
+    },
+    {
+      "id": "w16",
+      "name": "Riko Simanjuntak",
+      "text": "Selamat menempuh hidup baru kawan. Lancar-lancar ya!",
+      "isAttending": true,
+      "createdAt": "2026-04-06T23:00:00Z"
+    },
+    {
+      "id": "w17",
+      "name": "Dewi Persik",
+      "text": "Happy Wedding! May your love grow stronger every day.",
+      "isAttending": true,
+      "createdAt": "2026-04-06T22:00:00Z"
+    },
+    {
+      "id": "w18",
+      "name": "Anto Grub",
+      "text": "Mantap! Semoga berkah melimpah buat Fauzie dan Chairunissa.",
+      "isAttending": true,
+      "createdAt": "2026-04-06T21:00:00Z"
+    }
+  ]
 }

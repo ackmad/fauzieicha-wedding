@@ -61,6 +61,9 @@
   --dur-slow: 1s;
   --dur-cinematic: 1.2s;
   --theme-transition: 0.8s ease-in-out;
+
+  /* Layout Helper */
+  --safe-bottom: env(safe-area-inset-bottom, 20px);
 }
 
 [data-theme='royal-java'] {
@@ -354,7 +357,7 @@ img { display: block; max-width: 100%; }
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background-image: url('/backgrounds/batik-pattern.png');
+  background-image: url('/backgrounds/batik-pattern.webp');
   background-size: 350px;
   background-repeat: repeat;
   opacity: 0.1;
@@ -754,6 +757,13 @@ section {
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  padding: 0 5vw;
+}
+
+@media (max-width: 480px) {
+  .section-inner {
+    padding: 0 18px;
+  }
 }
 
 /* Background layers */
@@ -761,7 +771,7 @@ section {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/backgrounds/bg-texture.png');
+  background-image: url('/backgrounds/bg-texture.webp');
   background-size: cover;
   background-position: center;
   opacity: 0.08;
@@ -782,7 +792,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/backgrounds/batik-pattern.png');
+  background-image: url('/backgrounds/batik-pattern.webp');
   background-size: 300px;
   opacity: 0.05;
 }
@@ -1025,7 +1035,7 @@ section {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: url('/backgrounds/batik-pattern.png');
+  background-image: url('/backgrounds/batik-pattern.webp');
   background-size: 400px;
   opacity: 0.12;
   mix-blend-mode: soft-light;
@@ -1170,7 +1180,7 @@ section {
 .name-main-couple {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(28px, 7.5vw, 76px);
+  font-size: clamp(28px, 6vw, 96px); /* More flexible scaling */
   font-weight: 500;
   background: linear-gradient(180deg, #FFFFFF 40%, var(--gold-pale) 100%);
   -webkit-background-clip: text;
@@ -1178,47 +1188,49 @@ section {
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
   text-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  white-space: nowrap;
   width: 100%;
-  overflow: visible; /* Ensure shadows don't clip */
+  overflow: visible;
+  text-align: center;
 }
 
-@media (max-width: 380px) {
-  .name-main-couple { 
-    font-size: clamp(21px, 8.5vw, 32px) !important; /* Aggressive reduction for small screens */
-    letter-spacing: -1.8px !important;
-  }
-  .name-title {
-    font-size: 0.45em !important; /* Title slightly larger on mobile to be readable */
-    letter-spacing: 2px !important;
-  }
+.name-with-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
 }
 
-@media (max-width: 320px) {
-  .name-main-couple { 
-    font-size: clamp(19px, 8vw, 24px) !important; /* Even more for S-Mobile 320px */
-  }
+.name-comma {
+  font-size: 0.8em;
+  color: var(--gold-pale);
+  -webkit-text-fill-color: var(--gold-pale);
+  font-style: normal;
+  display: inline-block;
+  margin-left: -4px;
 }
 
 .name-main-couple .main-name {
-  display: block;
+  display: inline-block;
 }
 
 .name-main-couple .name-title {
-  display: block;
-  font-size: 0.35em; /* Significantly smaller title */
-  font-family: var(--font-sans);
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+  display: inline-block;
+  font-size: 0.35em; 
+  font-family: inherit;
+  font-style: inherit;
+  text-transform: none;
+  letter-spacing: 0.5px;
   font-weight: 500;
-  margin-top: 5px;
-  opacity: 0.9;
+  opacity: 0.95;
   -webkit-text-fill-color: var(--gold-light);
+  line-height: normal;
+  margin-top: 0;
 }
 
 /* 🟢 VECTOR & CUT-OUT REFINEMENTS */
@@ -1391,12 +1403,22 @@ section {
 @media (max-width: 768px) {
   #section-couple {
     min-height: 100vh;
-    height: auto; /* Allow overflow on very small devices */
+    height: auto; 
     padding-top: 60px;
     padding-bottom: 80px;
   }
-  .couple-content-wrap { padding: 0 15px; }
-  .name-main-couple { font-size: clamp(32px, 12vw, 48px); }
+  .couple-content-wrap { padding: 0 5px; }
+  .name-main-couple { 
+    font-size: clamp(16px, 6.5vw, 28px); 
+    white-space: nowrap; /* Force one line on mobile if possible */
+  }
+  .name-with-title-row {
+    gap: 4px;
+  }
+  .name-main-couple .name-title {
+    font-size: 0.35em;
+    letter-spacing: 0.5px;
+  }
   .gunungan-mini-center { width: 60px; height: 60px; }
   .bismillah-text-vivid { font-size: 22px; margin-bottom: 25px; }
   .opening-verse-vivid { font-size: 13px; line-height: 1.7; }
@@ -1816,12 +1838,23 @@ section {
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  padding: 50px 45px;
-  border-radius: 30px;
-  border: 2px solid var(--gold-light); /* Golden story cards */
-  box-shadow: 0 20px 50px rgba(45, 74, 53, 0.08);
+  padding: 24px 28px;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 10px 35px rgba(45, 74, 53, 0.05);
   transition: all 0.5s var(--ease-out);
+  width: 100%;
+  position: relative;
+  text-align: justify; /* Justify text as requested */
+  line-height: 1.85; /* Improved line height for readability */
+  letter-spacing: 0.2px;
 }
+
+.tl-content p {
+  margin: 0;
+  hyphens: auto;
+}
+
 .timeline-item:hover .tl-content {
   transform: translateY(-5px);
   box-shadow: 0 20px 45px rgba(45, 74, 53, 0.08);
@@ -3240,10 +3273,13 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .tl-vivid-text {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-mid);
-  line-height: 1.8;
-  max-width: 360px;
+  line-height: 1.9;
+  max-width: 400px;
+  text-align: justify;
+  letter-spacing: 0.01em;
+  margin-top: 10px;
 }
 .tl-left .tl-vivid-text { margin-left: auto; }
 
@@ -3496,7 +3532,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/backgrounds/batik-pattern.png');
+  background-image: url('/backgrounds/batik-pattern.webp');
   background-size: 400px;
   opacity: 0.05;
   mix-blend-mode: multiply;
@@ -3590,7 +3626,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   bottom: -20px;
   width: 250px;
   height: 250px;
-  background-image: url('/florals/floral-accent-1.png');
+  background-image: url('/florals/floral-accent-1.webp');
   background-size: cover;
   opacity: 0.1;
   filter: grayscale(1) brightness(200%);
@@ -4271,9 +4307,139 @@ button:active, .std-maps-btn-pill:active {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* ================================================
+   LANGUAGE SELECTOR SCREEN
+   ================================================ */
+.lang-selector-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lang-selector-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.lang-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--gold-pale);
+  margin-bottom: 40px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.lang-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 16px 30px;
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.lang-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.lang-name {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lang-code {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.lang-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.2);
+  margin: 10px 0;
+}
+
+.lang-footer {
+  margin-top: 60px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.lang-monogram-wrap {
+  margin-bottom: 30px;
+}
+
+.lang-monogram {
+  width: 70px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+}
+
+.lang-code-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-25deg);
+  animation: shineLoop 4s infinite 1s;
+}
+
+@keyframes shineLoop {
+  0% { left: -100%; }
+  30% { left: 200%; }
+  100% { left: 200%; }
+}
+
+@media (max-width: 480px) {
+  .lang-title { font-size: 18px; }
+  .lang-btn { padding: 14px 25px; }
+}
+
 .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 70px;
 }
+

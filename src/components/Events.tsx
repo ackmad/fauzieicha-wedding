@@ -95,7 +95,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
         <img src="/effects/light-glow.png" alt="" />
       </div>
       <div className="events-floral-br idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
-        <img src="/florals/floral-accent-2.png" alt="" />
+        <img src="/florals/floral-accent-2.webp" alt="" />
       </div>
 
       <div className="section-inner">
@@ -144,7 +144,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
               <div className="std-card-inner">
                 {/* Floral corner */}
                 <div className="std-floral-top">
-                  <img src="/florals/floral-accent-1.png" alt="" />
+                  <img src="/florals/floral-accent-1.webp" alt="" />
                 </div>
 
                 {/* Icon */}

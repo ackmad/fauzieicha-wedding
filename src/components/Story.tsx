@@ -35,13 +35,13 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
       {/* Background layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
       <div className="story-floral-right-wrap idle-float-slow">
-        <img src="/florals/floral-hanging.png" alt="" className="story-floral-img parallax-element-slow" />
+        <img src="/florals/floral-hanging.webp" alt="" className="story-floral-img parallax-element-slow" loading="lazy" />
       </div>
       <div className="story-floral-left-balance">
-        <img src="/effects/parallax-leaves.png" alt="" className="story-leaf-shadow" />
+        <img src="/effects/parallax-leaves.png" alt="" className="story-leaf-shadow" loading="lazy" />
       </div>
       <div className="story-glow idle-pulse">
-        <img src="/effects/light-glow.png" alt="" />
+        <img src="/effects/light-glow.png" alt="" loading="lazy" />
       </div>
 
       <div className="section-inner" style={{ position: "relative", zIndex: 2 }}>

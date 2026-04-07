@@ -53,10 +53,10 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
   return (
     <div id="cover" className={invitationOpened ? 'opening' : ''} ref={containerRef}>
       <div id="cover-bg">
-        <img id="cover-hero-img" src="/backgrounds/hero-background.png" alt="Wedding Background" />
+        <img id="cover-hero-img" src="/backgrounds/hero-background.webp" alt="Wedding Background" />
       </div>
       <div id="cover-batik">
-        <img src="/backgrounds/batik-pattern.png" alt="" />
+        <img src="/backgrounds/batik-pattern.webp" alt="" />
       </div>
       <div id="cover-overlay"></div>
       <div id="cover-leaves" className="idle-float-slow">
@@ -66,10 +66,10 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
         <img src="/effects/light-glow.png" alt="" />
       </div>
       <div id="cover-floral-left" className="idle-sway" style={{ transformOrigin: 'top left' }}>
-        <img src="/decorations/dekor-main-kiri.png" alt="Dekorasi Kiri" />
+        <img src="/decorations/dekor-main-kiri.webp" alt="Dekorasi Kiri" />
       </div>
       <div id="cover-floral-right" className="idle-sway" style={{ transformOrigin: 'top right' }}>
-        <img src="/decorations/dekor-main-kanan.png" alt="Dekorasi Kanan" />
+        <img src="/decorations/dekor-main-kanan.webp" alt="Dekorasi Kanan" />
       </div>
       <div id="cover-content">
         <div id="cover-top-ornament">

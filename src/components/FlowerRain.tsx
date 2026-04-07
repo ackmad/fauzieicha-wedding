@@ -54,10 +54,10 @@ export default function FlowerRain() {
         width: "100%",
         height: "100vh",
         pointerEvents: "none", 
-        zIndex: behind ? 1 : 2, // Set to low z-index below text and main florals
+        zIndex: behind ? 1 : 2,
         overflow: "visible",
         perspective: "1200px",
-        transform: `translateY(${-scrollY % 3000}px)`, 
+        willChange: 'transform'
       }}
     >
       {flowers.filter(f => f.isBehind === behind).map((flower) => (

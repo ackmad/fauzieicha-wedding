@@ -108,10 +108,10 @@ export default function Footer({ basics, trans }: FooterProps) {
       {/* ── Symmetrical Floral Borders ── */}
       <div className="footer-floral-border-wrap">
         <div className="floral-left parallax-floral" data-speed="0.05">
-          <img src="/florals/floral-accent-1.png" alt="Floral decoration" />
+          <img src="/florals/floral-accent-1.webp" alt="Floral decoration" />
         </div>
         <div className="floral-right parallax-floral" data-speed="0.05">
-          <img src="/florals/floral-accent-1.png" alt="Floral decoration" style={{ transform: "scaleX(-1)" }} />
+          <img src="/florals/floral-accent-1.webp" alt="Floral decoration" style={{ transform: "scaleX(-1)" }} />
         </div>
       </div>
     </footer>

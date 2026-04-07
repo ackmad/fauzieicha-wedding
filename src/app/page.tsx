@@ -18,6 +18,8 @@ import Footer from "../components/Footer";
 import SectionDivider from "../components/SectionDivider";
 import ThemeToggle from "../components/ThemeToggle";
 import Preloader from "../components/Preloader";
+import LanguageSelectorScreen from "../components/LanguageSelectorScreen";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Firebase imports
 import { db } from "../lib/firebase";
@@ -36,41 +38,34 @@ export default function Home() {
   const [invitationOpened, setInvitationOpened] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [wishes, setWishes] = useState<Wish[]>([]);
+  const [showLanguageScreen, setShowLanguageScreen] = useState(true);
+  const [isPreloaderDone, setIsPreloaderDone] = useState(false);
 
-  // Fetch wishes from Firebase
+  // Load dummy wishes on mount to avoid hydration mismatch
+  useEffect(() => {
+    setWishes(
+      (weddingData as any).wishes.map((w: any) => ({
+        ...w,
+        createdAt: new Date(w.createdAt)
+      }))
+    );
+  }, []);
+
+  // useEffect for Firebase is now disabled for dummy mode
+  /*
   useEffect(() => {
     const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const wishList = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        // Convert Firestore Timestamp to Date for the UI
-        createdAt: doc.data().createdAt?.toDate() || new Date()
-      })) as Wish[];
-      setWishes(wishList);
-    });
-
+    const unsubscribe = onSnapshot(q, (snapshot) => { ... });
     return () => unsubscribe();
   }, []);
+  */
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
-  const [theme, setTheme] = useState<"elegant-jungle" | "royal-java">("elegant-jungle");
 
-  // Load theme from localStorage
+  // Set default theme to Elegant Jungle
   useEffect(() => {
-    const savedTheme = localStorage.getItem("wedding-theme");
-    if (savedTheme === "royal-java" || savedTheme === "elegant-jungle") {
-      setTheme(savedTheme as any);
-      document.documentElement.setAttribute("data-theme", savedTheme === "royal-java" ? "royal-java" : "default");
-    }
+    document.documentElement.setAttribute("data-theme", "default");
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "elegant-jungle" ? "royal-java" : "elegant-jungle";
-    setTheme(newTheme);
-    localStorage.setItem("wedding-theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme === "royal-java" ? "royal-java" : "default");
-  };
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -81,7 +76,7 @@ export default function Home() {
     
     if (shouldPlay) {
       if (!audioRef.current) {
-        audioRef.current = new Audio("/sound/wist-list-swifts.mp3");
+        audioRef.current = new Audio("/sound/wist-list-swifts-settled-down.mp3");
         audioRef.current.loop = true;
         audioRef.current.volume = 0.5;
       }
@@ -127,17 +122,17 @@ export default function Home() {
     
     if (!name || !text) return;
     
-    try {
-      await addDoc(collection(db, "wishes"), {
-        name,
-        text,
-        isAttending,
-        createdAt: serverTimestamp()
-      });
-    } catch (error) {
-      console.error("Error adding wish: ", error);
-      throw error; // Rethrow so component can show error toast
-    }
+    // Using Dummy Logic instead of Firebase addDoc
+    const newWish: Wish = {
+      id: `w-${Date.now()}`,
+      name,
+      text,
+      isAttending,
+      createdAt: new Date()
+    };
+    
+    setWishes(prev => [newWish, ...prev]);
+    return Promise.resolve(); // Match expected return type
   };
 
   const copyAcc = (num: string, e: React.MouseEvent<HTMLButtonElement>) => {
@@ -206,47 +201,71 @@ export default function Home() {
 
   return (
     <>
-      <Preloader />
-      <FlowerRain />
-      <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
-      
-      <MusicButton 
-        musicPlaying={musicPlaying} 
-        toggleMusic={toggleMusic} 
-        invitationOpened={invitationOpened} 
-      />
+      <AnimatePresence>
+        {!isPreloaderDone && (
+          <Preloader onComplete={() => setIsPreloaderDone(true)} />
+        )}
+      </AnimatePresence>
 
-      <ThemeToggle 
-        theme={theme} 
-        toggleTheme={toggleTheme} 
-        invitationOpened={invitationOpened} 
-      />
+      <AnimatePresence mode="wait">
+        {showLanguageScreen ? (
+          <LanguageSelectorScreen key="lang-screen" onSelect={(lang) => {
+            setCurrentLang(lang);
+            setShowLanguageScreen(false);
+          }} />
+        ) : (
+          <motion.div 
+            key="main-app"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="main-app-container" 
+            style={{ willChange: 'opacity' }}
+          >
+            <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
+            
+            <MusicButton 
+              musicPlaying={musicPlaying} 
+              toggleMusic={toggleMusic} 
+              invitationOpened={invitationOpened} 
+            />
 
-      <Cover 
-        isCoverRemoved={isCoverRemoved}
-        invitationOpened={invitationOpened}
-        openInvitation={openInvitation}
-        basics={basics}
-        trans={trans}
-      />
+            <Cover 
+              isCoverRemoved={isCoverRemoved}
+              invitationOpened={invitationOpened}
+              openInvitation={openInvitation}
+              basics={basics}
+              trans={trans}
+            />
 
-      <div id="transition-overlay" className={invitationOpened ? "flash" : ""}></div>
+            <div id="transition-overlay" className={invitationOpened ? "flash" : ""}></div>
 
-      <div id="main" className={invitationOpened ? "visible" : ""} style={{ display: invitationOpened ? 'block' : 'none' }} ref={mainRef}>
-        <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
-        <SectionDivider type="couple-to-events" />
-        <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
-        <SectionDivider type="events-to-story" />
-        <Story timeline={timeline} currentLang={currentLang} trans={trans} />
-        <SectionDivider type="story-to-gallery" />
-        <Gallery trans={trans} />
-        <SectionDivider type="gallery-to-wishes" />
-        <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
-        <SectionDivider type="wishes-to-gift" />
-        <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
-        <SectionDivider type="gift-to-footer" />
-        <Footer basics={basics} trans={trans} />
-      </div>
+            <div 
+              id="main" 
+              className={invitationOpened ? "visible" : ""} 
+              style={{ 
+                display: invitationOpened ? 'block' : 'none',
+                willChange: 'transform, opacity'
+              }} 
+              ref={mainRef}
+            >
+              <Couple basics={basics} families={families} currentLang={currentLang} trans={trans} />
+              <SectionDivider type="couple-to-events" />
+              <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
+              <SectionDivider type="events-to-story" />
+              <Story timeline={timeline} currentLang={currentLang} trans={trans} />
+              <SectionDivider type="story-to-gallery" />
+              <Gallery trans={trans} />
+              <SectionDivider type="gallery-to-wishes" />
+              <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
+              <SectionDivider type="wishes-to-gift" />
+              <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
+              <SectionDivider type="gift-to-footer" />
+              <Footer basics={basics} trans={trans} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

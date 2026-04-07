@@ -33,17 +33,17 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       <div className="couple-radial-glow idle-pulse"></div>
       <div className="parallax-bg" style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
         <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
-          <img src="/ornaments/gunungan-jawa.png" alt="" className="gunungan-png-vivid" />
+          <img src="/ornaments/gunungan-jawa.webp" alt="" className="gunungan-png-vivid" />
         </div>
       </div>
 
       {/* 🌿 TOP DECORATIONS (Symmetrical Balance) */}
       <div className="parallax-element-slow" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10 }}>
         <div className="couple-floral-top-left idle-sway" style={{ transformOrigin: 'top left' }}>
-          <img src="/decorations/dekor-main-kiri.png" alt="" />
+          <img src="/decorations/dekor-main-kiri.webp" alt="" />
         </div>
         <div className="couple-floral-top-right idle-sway-opposite" style={{ transformOrigin: 'top right' }}>
-          <img src="/decorations/dekor-main-kanan.png" alt="" />
+          <img src="/decorations/dekor-main-kanan.webp" alt="" />
         </div>
       </div>
 
@@ -61,15 +61,16 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
           بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
         </p>
         
-        <div className="couple-names-block">
+        <div className="couple-names-block" style={{ willChange: 'transform, opacity' }}>
           {/* BRIDE BLOCK FIRST */}
           <div className="couple-person">
             <div className="name-main-couple reveal-right" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
               {basics.brideName.includes(',') ? (
-                <>
-                  <span className="main-name">{basics.brideName.split(',')[0]}</span>
-                  <span className="name-title">{basics.brideName.split(',')[1]}</span>
-                </>
+                <div className="name-with-title-row">
+                  <span className="main-name">{basics.brideName.split(',')[0].trim()}</span>
+                  <span className="name-comma">,</span>
+                  <span className="name-title">{basics.brideName.split(',').slice(1).join(',').trim()}</span>
+                </div>
               ) : basics.brideName}
             </div>
             <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.5s" } as React.CSSProperties}>
@@ -77,20 +78,21 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
             </p>
           </div>
           
-          <div className="couple-center-divider-vivid reveal-item" style={{ "--reveal-delay": "0.6s" } as React.CSSProperties}>
-            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png" />
+          <div className="couple-center-divider-vivid reveal-item" style={{ "--reveal-delay": "0.6s", willChange: 'transform' } as React.CSSProperties}>
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png" loading="lazy" />
             <div className="center-ampersand">&amp;</div>
-            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" />
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" loading="lazy" />
           </div>
           
           {/* GROOM BLOCK SECOND */}
           <div className="couple-person">
             <div className="name-main-couple reveal-left" style={{ "--reveal-delay": "0.7s" } as React.CSSProperties}>
               {basics.groomName.includes(',') ? (
-                <>
-                  <span className="main-name">{basics.groomName.split(',')[0]}</span>
-                  <span className="name-title">{basics.groomName.split(',')[1]}</span>
-                </>
+                <div className="name-with-title-row">
+                  <span className="main-name">{basics.groomName.split(',')[0].trim()}</span>
+                  <span className="name-comma">,</span>
+                  <span className="name-title">{basics.groomName.split(',').slice(1).join(',').trim()}</span>
+                </div>
               ) : basics.groomName}
             </div>
             <p className="parent-text-couple reveal-up" style={{ "--reveal-delay": "0.8s" } as React.CSSProperties}>
@@ -108,15 +110,15 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       {/* 🌿 BOTTOM DECORATIONS (MASSIVE & SYMMETRICAL) */}
       <div className="parallax-element-fast" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
         <div className={`couple-floral-bottom left ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-1.png" alt="" />
+          <img src="/florals/floral-accent-1.webp" alt="" />
         </div>
         <div className={`couple-floral-bottom right ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-1.png" alt="" />
+          <img src="/florals/floral-accent-1.webp" alt="" />
         </div>
       </div>
       <div className="parallax-element-slow" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 4 }}>
         <div className={`couple-floral-bottom center-back ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-2.png" alt="" />
+          <img src="/florals/floral-accent-2.webp" alt="" />
         </div>
       </div>
     </section>
