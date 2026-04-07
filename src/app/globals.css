@@ -2559,11 +2559,18 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   position: relative;
   min-height: 100vh;
   background-color: var(--section-events-bg);
-  padding: 100px 20px;
+  padding: 120px 20px 150px;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+}
+
+@media (max-width: 480px) {
+  #section-events {
+    padding: 80px 15px 120px;
+  }
 }
 
 .events-header {
@@ -2584,10 +2591,22 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .events-title-vivid {
   font-family: var(--font-display);
-  font-size: clamp(36px, 7vw, 64px);
+  font-size: clamp(38px, 8vw, 64px);
   color: var(--text-primary);
   margin-bottom: 25px;
   text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 480px) {
+  .events-subtitle-vivid {
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+  .events-title-vivid {
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
 }
 
 .events-header-ornament {
@@ -2656,15 +2675,29 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .std-event-type {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: clamp(26px, 5vw, 36px);
   color: var(--gold-pale);
   font-style: italic;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   text-shadow: 0 4px 10px rgba(0,0,0,0.3);
   position: relative;
   z-index: 10;
   white-space: pre-line;
   line-height: 1.1;
+}
+
+@media (max-width: 480px) {
+  .std-arch-card {
+    max-width: 320px;
+  }
+  .std-card-inner {
+    padding: 70px 20px 50px;
+    border-radius: 180px 180px 30px 30px;
+  }
+  .std-event-type {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
 }
 
 .std-date-grid {
@@ -2704,10 +2737,10 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .std-day-big {
   font-family: var(--font-display);
-  font-size: 72px;
+  font-size: clamp(48px, 12vw, 72px);
   font-weight: 600;
   color: #FFF;
-  margin: 0 25px;
+  margin: 0 20px;
   line-height: 1;
 }
 
@@ -2717,6 +2750,14 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   letter-spacing: 3px;
   color: var(--gold-pale);
   font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .std-month { font-size: 13px; letter-spacing: 3px; }
+  .std-day-name, .std-year { font-size: 11px; letter-spacing: 2px; }
+  .std-main-row { padding: 12px 0; margin-bottom: 15px; }
+  .std-day-big { margin: 0 12px; }
+  .std-loc-divider { margin-bottom: 25px; }
 }
 
 .std-loc-divider {
@@ -2840,22 +2881,31 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 }
 
 .countdown-wrap {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .countdown-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 10px;
+  }
 }
 
 .countdown-unit {
   background: var(--card-bg);
   border: 1px solid var(--accent-gold);
   border-radius: 16px;
-  padding: 20px 28px;
-  min-width: 90px;
+  padding: 15px 10px;
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: all 0.5s var(--ease-out);
+  width: 100%;
 }
 
 .countdown-unit:hover {
