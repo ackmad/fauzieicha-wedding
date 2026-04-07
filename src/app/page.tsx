@@ -81,7 +81,7 @@ export default function Home() {
     
     if (shouldPlay) {
       if (!audioRef.current) {
-        audioRef.current = new Audio("/sound/love-story.mp3");
+        audioRef.current = new Audio("/sound/wist-list-swifts.mp3");
         audioRef.current.loop = true;
         audioRef.current.volume = 0.5;
       }

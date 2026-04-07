@@ -45,15 +45,25 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string; scale?: number }) => 
 ──────────────────────────────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
-    <div className="sd reveal-up" style={{ background: "var(--divider-1-bg)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ minHeight: "60px", display: "block" }}>
-        <defs><TornPaperFilter id="couple-torn" scale={12} /></defs>
-        <path d="M-50,-50 L1490,-50 L1490,35 C1000,5 400,55 -50,25 Z" fill="var(--divider-1-tear)" filter="url(#couple-torn)" />
-        <path d="M-50,25 C400,55 1000,5 1490,35" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.4" filter="url(#couple-torn)" />
-        <g transform="translate(720, 25)">
-          <polygon points="-8,0 0,-4 8,0 0,4" fill="var(--accent-gold)" opacity="0.9"/>
-        </g>
+    <div className="sd-minimal" style={{ background: "var(--bg-primary)", position: "relative", zIndex: 10, marginTop: "-1px" }}>
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ width: "100%", height: "40px", display: "block" }}>
+        {/* Top layer (from Couple) */}
+        <path d="M0,0 L1440,0 L1440,25 Q720,40 0,25 Z" fill="var(--bg-secondary)" />
+        {/* Gold separator line */}
+        <path d="M0,25 Q720,40 1440,25" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.5" />
       </svg>
+      {/* Centered Premium Ornament (not in SVG to avoid pixelation) */}
+      <div style={{ 
+        position: "absolute", 
+        top: "25px", 
+        left: "50%", 
+        transform: "translateX(-50%) translateY(3px) rotate(45deg)",
+        width: "8px",
+        height: "8px",
+        background: "var(--accent-gold)",
+        boxShadow: "0 0 10px rgba(212, 175, 55, 0.5)",
+        border: "1px solid rgba(255,255,255,0.4)"
+      }} />
     </div>
   );
 }
@@ -65,7 +75,7 @@ function DividerCoupleEvents() {
 function DividerEventsStory() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--divider-2-bg)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "100px" }}>
+      <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "60px" }}>
         <defs>
           <filter id="events-torn" x="-10%" y="-20%" width="120%" height="140%">
             <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="4" result="noise" />
