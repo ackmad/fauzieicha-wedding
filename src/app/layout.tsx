@@ -2,22 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fauzieicha-wedding.vercel.app'),
-  title: "The Wedding of Chairunissa & Fauzie",
-  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
-  keywords: ["Wedding", "Undangan Digital", "Chairunissa & Fauzie", "Pernikahan"],
+  metadataBase: new URL('https://chairunissa-fauzie-wedding.vercel.app'),
+  title: {
+    default: "Undangan Pernikahan Chairunissa & Fauzie",
+    template: "%s | Chairunissa & Fauzie Wedding"
+  },
+  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami, Chairunissa & Fauzie. 10 Mei 2026.",
+  keywords: ["Wedding Invitation", "Undangan Pernikahan", "Chairunissa & Fauzie", "Pernikahan Digital"],
   authors: [{ name: "Chairunissa & Fauzie" }],
   openGraph: {
-    title: "The Wedding of Chairunissa & Fauzie",
-    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
-    url: "https://fauzieicha-wedding.vercel.app/",
-    siteName: "Chairunissa & Fauzie Wedding",
+    title: "Undangan Pernikahan Chairunissa & Fauzie",
+    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami. 10 Mei 2026.",
+    url: "https://chairunissa-fauzie-wedding.vercel.app/",
+    siteName: "Undangan Pernikahan Chairunissa & Fauzie",
     images: [
       {
-        url: "/og-image.jpg?v=2",
+        url: "/og-image.png?v=3",
         width: 1200,
         height: 630,
-        alt: "Invitation to The Wedding of Chairunissa & Fauzie",
+        alt: "Undangan Pernikahan Chairunissa & Fauzie",
       },
     ],
     locale: "id_ID",
@@ -25,12 +28,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Wedding of Chairunissa & Fauzie",
-    description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.",
-    images: ["/og-image.jpg?v=2"],
+    title: "Undangan Pernikahan Chairunissa & Fauzie",
+    description: "Bismillah. Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami. 10 Mei 2026.",
+    images: ["/og-image.png?v=3"],
   },
   icons: {
     icon: "/icons/favicon.png",
+    apple: "/icons/icon.png",
   },
 };
 
