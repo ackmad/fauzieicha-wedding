@@ -56,3 +56,13 @@ export const SectionDivider = ({ className = "", color = "currentColor", style =
     <path d="M230 20L220 15V25L230 20Z" fill={color} opacity="0.6" />
   </svg>
 );
+
+export const IconLanguage = ({ className = "", color = "currentColor" }: { className?: string, color?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.5" />
+    <path d="M12 2C12 2 15 5 15 12C15 19 12 22 12 22C12 22 9 19 9 12C9 5 12 2 12 2Z" stroke={color} strokeWidth="1.5" />
+    <path d="M2 12H22" stroke={color} strokeWidth="1.5" />
+    <path d="M12 2V22" stroke={color} strokeWidth="1.5" />
+  </svg>
+);
+

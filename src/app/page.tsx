@@ -38,7 +38,7 @@ export default function Home() {
   const [invitationOpened, setInvitationOpened] = useState(false);
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [wishes, setWishes] = useState<Wish[]>([]);
-  const [showLanguageScreen, setShowLanguageScreen] = useState(true);
+  const [showLanguageScreen, setShowLanguageScreen] = useState(false);
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);
 
   // Load dummy wishes on mount to avoid hydration mismatch
