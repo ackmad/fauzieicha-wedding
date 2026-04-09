@@ -2693,9 +2693,9 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .std-floral-top {
   position: absolute;
-  top: -35px;
-  left: -25px;
-  width: 150px;
+  top: -75px;
+  left: -55px;
+  width: 170px;
   pointer-events: none;
   z-index: 5;
 }
