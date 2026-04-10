@@ -2002,9 +2002,20 @@ section {
    SECTION: WISHES
    ================================================ */
 #section-wishes { 
-  background: var(--section-wishes-bg); /* controlled via --section-wishes-bg variable */
+  background: var(--section-wishes-bg);
   position: relative;
-  padding: 120px 20px;
+  padding: 120px 20px 100px;
+}
+#section-wishes::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1F3D36 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 #section-wishes .section-label { color: var(--accent-gold); }
 #section-wishes .section-title { color: var(--text-primary); }

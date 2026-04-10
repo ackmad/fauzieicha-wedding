@@ -136,16 +136,31 @@ function DividerGiftWishes() {
   );
 }
 
-/* ─── 6. Wishes → Footer (Dark Green to Footer) ─────────────────── */
+/* ─── 6. Wishes → Footer (seamless gradient blend) ──────────────── */
 function DividerWishesFooter() {
   return (
-    <div className="sd reveal-up" style={{ background: "var(--divider-6-bg)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
-        <defs><TornPaperFilter id="wishes-footer-torn" scale={14} /></defs>
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
-          fill="var(--accent-gold)" opacity="0.1" filter="url(#wishes-footer-torn)" transform="translate(0, 6)"/>
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
-          fill="var(--bg-primary)" filter="url(#wishes-footer-torn)"/>
+    <div 
+      className="sd" 
+      style={{ 
+        background: "linear-gradient(to bottom, #1F3D36 0%, #172D27 40%, #11261D 100%)",
+        marginTop: "-2px",
+        height: "120px",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      {/* Subtle gold line accent */}
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
+        <defs>
+          <linearGradient id="gold-fade-h" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="30%" stopColor="rgba(212,175,55,0.25)" />
+            <stop offset="70%" stopColor="rgba(212,175,55,0.25)" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+        </defs>
+        <path d="M0,60 Q360,45 720,55 Q1080,65 1440,50" 
+          fill="none" stroke="url(#gold-fade-h)" strokeWidth="1" />
       </svg>
     </div>
   );
