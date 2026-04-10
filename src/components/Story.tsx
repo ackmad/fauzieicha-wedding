@@ -38,10 +38,10 @@ export default function Story({ timeline, currentLang, trans }: StoryProps) {
         <img src="/florals/floral-hanging.webp" alt="" className="story-floral-img parallax-element-slow" loading="lazy" />
       </div>
       <div className="story-floral-left-balance">
-        <img src="/effects/parallax-leaves.png" alt="" className="story-leaf-shadow" loading="lazy" />
+        <img src="/effects/parallax-leaves.webp" alt="" className="story-leaf-shadow" loading="lazy" />
       </div>
       <div className="story-glow idle-pulse">
-        <img src="/effects/light-glow.png" alt="" loading="lazy" />
+        <img src="/effects/light-glow.webp" alt="" loading="lazy" />
       </div>
 
       <div className="section-inner" style={{ position: "relative", zIndex: 2 }}>

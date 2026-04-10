@@ -60,10 +60,10 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
       </div>
       <div id="cover-overlay"></div>
       <div id="cover-leaves" className="idle-float-slow">
-        <img src="/effects/parallax-leaves.png" alt="" id="parallax-leaves-img" />
+        <img src="/effects/parallax-leaves.webp" alt="" id="parallax-leaves-img" />
       </div>
       <div id="cover-glow" className="idle-pulse">
-        <img src="/effects/light-glow.png" alt="" />
+        <img src="/effects/light-glow.webp" alt="" />
       </div>
       <div id="cover-floral-left" className="idle-sway" style={{ transformOrigin: 'top left' }}>
         <img src="/decorations/dekor-main-kiri.webp" alt="Dekorasi Kiri" />

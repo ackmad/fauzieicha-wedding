@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const FLOWER_COUNT = 10; // Even fewer for a subtle, elegant touch
-const FLOWER_IMAGES = Array.from({ length: 11 }, (_, i) => `/rain/bunga-rain-${i + 1}.png`);
+const FLOWER_IMAGES = Array.from({ length: 11 }, (_, i) => `/rain/bunga-rain-${i + 1}.webp`);
 
 interface Flower {
   id: number;

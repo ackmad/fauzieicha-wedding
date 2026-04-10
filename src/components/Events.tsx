@@ -92,7 +92,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
       {/* Background Layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.08 }}></div>
       <div className="events-bg-glow idle-pulse">
-        <img src="/effects/light-glow.png" alt="" />
+        <img src="/effects/light-glow.webp" alt="" />
       </div>
       <div className="events-floral-br idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-2.webp" alt="" />

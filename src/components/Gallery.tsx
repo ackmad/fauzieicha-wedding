@@ -12,7 +12,7 @@ export default function Gallery({ trans }: GalleryProps) {
       {/* Background layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
       <div className="gallery-glow idle-pulse">
-        <img src="/effects/light-glow.png" alt="" />
+        <img src="/effects/light-glow.webp" alt="" />
       </div>
 
       {/* Floating leaf */}
