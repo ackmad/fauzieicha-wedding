@@ -50,7 +50,7 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
       {/* 🏛 MAIN CONTENT: TYPOGRAPHY */}
       <div className={`section-inner couple-content-wrap ${revealed ? "revealed" : ""}`}>
         <div className="top-ornament-wrap reveal-item" style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}>
-          <img src="/ornaments/top-ornament.png" alt="" className="jawa-top-ornament" />
+          <img src="/ornaments/top-ornament.webp" alt="" className="jawa-top-ornament" />
         </div>
         
         <p className="couple-inviting reveal-item" style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}>
