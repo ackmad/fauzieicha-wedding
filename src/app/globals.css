@@ -4604,3 +4604,53 @@ button:active, .std-maps-btn-pill:active {
     transform: translateY(0);
   }
 }
+
+/* ─── Typing Indicator Micro-interaction ─── */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+.submit-btn.typing {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--accent-gold), #e8c755);
+}
+
+.typing-indicator .dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator .dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator .dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Wishes Glow Emphasis ─── */
+.wishes-super-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+  animation: slowPulse 8s infinite alternate;
+}

@@ -23,10 +23,10 @@ import React from "react";
 type DividerType =
   | "couple-to-events"      // 1. Couple → Events
   | "events-to-story"       // 2. Events → Story
-  | "story-to-gallery"      // 3. Story  → Gallery (ornamental)
-  | "gallery-to-wishes"     // 4. Gallery → Wishes
-  | "wishes-to-gift"        // 5. Wishes → Gift
-  | "gift-to-footer";       // 6. Gift → Footer
+  | "story-to-gallery"      // 3. Story  → Gallery
+  | "gallery-to-gift"       // 4. Gallery → Gift
+  | "gift-to-wishes"        // 5. Gift → Wishes
+  | "wishes-to-footer";     // 6. Wishes → Footer
 
 interface SectionDividerProps {
   type: DividerType;
@@ -39,20 +39,14 @@ const TornPaperFilter = ({ id, scale = 10 }: { id: string; scale?: number }) => 
   </filter>
 );
 
-/* ─── 1. Couple → Events ─────────────────────────────────────────
-   Color vars: --divider-1-bg (wrapper), --divider-1-tear (paper)
-   Default: dark green wrapper, mid-green tear from couple section
-──────────────────────────────────────────────────────────────── */
+/* ─── 1. Couple → Events ───────────────────────────────────────── */
 function DividerCoupleEvents() {
   return (
     <div className="sd-minimal" style={{ background: "var(--bg-primary)", position: "relative", zIndex: 10, marginTop: "-1px" }}>
       <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ width: "100%", height: "40px", display: "block" }}>
-        {/* Top layer (from Couple) */}
         <path d="M0,0 L1440,0 L1440,25 Q720,40 0,25 Z" fill="var(--bg-secondary)" />
-        {/* Gold separator line */}
         <path d="M0,25 Q720,40 1440,25" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.5" />
       </svg>
-      {/* Centered Premium Ornament (not in SVG to avoid pixelation) */}
       <div style={{ 
         position: "absolute", 
         top: "25px", 
@@ -68,10 +62,7 @@ function DividerCoupleEvents() {
   );
 }
 
-/* ─── 2. Events → Story ──────────────────────────────────────────
-   Color vars: --divider-2-bg (wrapper), --divider-2-tear (dark green)
-   Default: cream wrapper, dark green tear paper leaving Events
-──────────────────────────────────────────────────────────────── */
+/* ─── 2. Events → Story ────────────────────────────────────────── */
 function DividerEventsStory() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--divider-2-bg)", marginTop: "-2px" }}>
@@ -82,10 +73,8 @@ function DividerEventsStory() {
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
-        {/* Subtle shadow for depth */}
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z"
           fill="rgba(0,0,0,0.08)" filter="url(#events-torn)" transform="translate(0, 6)"/>
-        {/* Main tear fill */}
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z"
           fill="var(--divider-2-tear)" filter="url(#events-torn)"/>
       </svg>
@@ -93,10 +82,7 @@ function DividerEventsStory() {
   );
 }
 
-/* ─── 3. Story → Gallery ──────────────────────────────────────────
-   No CSS color variable — purely an ornamental gold line separator.
-   Background stays cream (continuous from Story and Gallery).
-──────────────────────────────────────────────────────────────── */
+/* ─── 3. Story → Gallery ────────────────────────────────────────── */
 function DividerStoryGallery() {
   return (
     <div className="sd reveal-blur" style={{ background: "var(--cream)", minHeight: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -116,61 +102,50 @@ function DividerStoryGallery() {
   );
 }
 
-/* ─── 4. Gallery → Wishes ─────────────────────────────────────────
-   Color vars: --divider-4-bg (dark green wrapper)
-   Tear fill = var(--cream) — cream paper landing on dark green
-──────────────────────────────────────────────────────────────── */
-function DividerGalleryWishes() {
+/* ─── 4. Gallery → Gift (Cream to Cream) ────────────────────────── */
+function DividerGalleryGift() {
+  return (
+    <div className="sd reveal-blur" style={{ background: "var(--cream)", minHeight: "80px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ position: "relative", width: "100%" }}>
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: "100%", height: "60px" }}>
+          <defs><TornPaperFilter id="gallery-gift-brush" scale={6} /></defs>
+          <path d="M 100 20 Q 720 40 1340 20" fill="none" stroke="var(--accent-gold)" strokeWidth="1" opacity="0.25" filter="url(#gallery-gift-brush)" />
+          <g transform="translate(720, 30)">
+            <circle cx="0" cy="0" r="4" fill="none" stroke="var(--accent-gold)" opacity="0.6"/>
+            <circle cx="-20" cy="0" r="2" fill="var(--accent-gold)" opacity="0.4"/>
+            <circle cx="20" cy="0" r="2" fill="var(--accent-gold)" opacity="0.4"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ─── 5. Gift → Wishes (Cream to Dark Green) ────────────────────── */
+function DividerGiftWishes() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--divider-4-bg)", marginTop: "-2px" }}>
       <svg className="sd-svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ minHeight: "100px" }}>
-        <defs><TornPaperFilter id="gallery-torn" scale={16} /></defs>
+        <defs><TornPaperFilter id="gift-torn" scale={16} /></defs>
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z"
-          fill="rgba(36,59,45,0.05)" filter="url(#gallery-torn)" transform="translate(0, 6)"/>
+          fill="rgba(36,59,45,0.05)" filter="url(#gift-torn)" transform="translate(0, 6)"/>
         <path d="M-50,-50 L1490,-50 L1490,40 C1100,80 800,0 300,50 C100,70 -50,30 -50,30 Z"
-          fill="var(--cream)" filter="url(#gallery-torn)"/>
+          fill="var(--cream)" filter="url(#gift-torn)"/>
       </svg>
     </div>
   );
 }
 
-/* ─── 5. Wishes → Gift ────────────────────────────────────────────
-   Color vars: --divider-5-bg (cream wrapper), --divider-5-tear (dark green)
-   Torn dark green paper departing downward over cream
-──────────────────────────────────────────────────────────────── */
-function DividerWishesGift() {
-  return (
-    <div className="sd reveal-up" style={{ background: "var(--divider-5-bg)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
-        <defs><TornPaperFilter id="wishes-torn" scale={22} /></defs>
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
-          fill="rgba(36,59,45,0.2)" filter="url(#wishes-torn)" transform="translate(0, 8)"/>
-        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
-          fill="var(--divider-5-tear)" filter="url(#wishes-torn)"/>
-        <path d="M-50,-50 L1490,-50 L1490,40 C1200,0 600,100 -50,20 Z"
-          fill="rgba(255,255,255,0.05)" filter="url(#wishes-torn)"/>
-      </svg>
-    </div>
-  );
-}
-
-/* ─── 6. Gift → Footer ────────────────────────────────────────────
-   Color vars: --divider-6-bg (dark green wrapper)
-   Tear fill = var(--cream) — cream paper landing on dark footer
-──────────────────────────────────────────────────────────────── */
-function DividerGiftFooter() {
+/* ─── 6. Wishes → Footer (Dark Green to Footer) ─────────────────── */
+function DividerWishesFooter() {
   return (
     <div className="sd reveal-up" style={{ background: "var(--divider-6-bg)", marginTop: "-2px" }}>
-      <svg className="sd-svg" viewBox="0 0 1440 140" preserveAspectRatio="none" style={{ minHeight: "140px" }}>
-        <defs><TornPaperFilter id="gift-torn" scale={14} /></defs>
-        <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z"
-          fill="var(--accent-gold)" opacity="0.2" filter="url(#gift-torn)" transform="translate(0, 6)"/>
-        <path d="M-50,-50 L1490,-50 L1490,80 C1100,-10 300,-10 -50,80 Z"
-          fill="var(--cream)" filter="url(#gift-torn)"/>
-        <g transform="translate(720, 20)">
-          <circle cx="0" cy="0" r="3" fill="var(--accent-gold)"/>
-          <path d="M-40,30 Q0,5 40,30" fill="none" stroke="var(--accent-gold)" strokeWidth="1" strokeDasharray="3 4" opacity="0.6"/>
-        </g>
+      <svg className="sd-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ minHeight: "120px" }}>
+        <defs><TornPaperFilter id="wishes-footer-torn" scale={14} /></defs>
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
+          fill="var(--accent-gold)" opacity="0.1" filter="url(#wishes-footer-torn)" transform="translate(0, 6)"/>
+        <path d="M-50,-50 L1490,-50 L1490,60 C1200,20 600,120 -50,40 Z"
+          fill="var(--bg-primary)" filter="url(#wishes-footer-torn)"/>
       </svg>
     </div>
   );
@@ -181,9 +156,10 @@ export default function SectionDivider({ type }: SectionDividerProps) {
     case "couple-to-events":  return <DividerCoupleEvents />;
     case "events-to-story":   return <DividerEventsStory />;
     case "story-to-gallery":  return <DividerStoryGallery />;
-    case "gallery-to-wishes": return <DividerGalleryWishes />;
-    case "wishes-to-gift":    return <DividerWishesGift />;
-    case "gift-to-footer":    return <DividerGiftFooter />;
+    case "gallery-to-gift":   return <DividerGalleryGift />;
+    case "gift-to-wishes":    return <DividerGiftWishes />;
+    case "wishes-to-footer":  return <DividerWishesFooter />;
     default:                  return null;
   }
 }
+

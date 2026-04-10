@@ -256,11 +256,11 @@ export default function Home() {
               <Story timeline={timeline} currentLang={currentLang} trans={trans} />
               <SectionDivider type="story-to-gallery" />
               <Gallery trans={trans} />
-              <SectionDivider type="gallery-to-wishes" />
-              <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
-              <SectionDivider type="wishes-to-gift" />
+              <SectionDivider type="gallery-to-gift" />
               <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
-              <SectionDivider type="gift-to-footer" />
+              <SectionDivider type="gift-to-wishes" />
+              <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
+              <SectionDivider type="wishes-to-footer" />
               <Footer basics={basics} trans={trans} />
             </div>
           </motion.div>

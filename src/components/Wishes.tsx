@@ -29,6 +29,8 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isTyping, setIsTyping] = useState(false);
+  const typingTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Key ref: points to the TOP of the wish list — we scroll here on page change
   const listTopRef = useRef<HTMLDivElement>(null);
@@ -99,7 +101,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
 
   return (
     <section id="section-wishes">
-      <div className="wishes-glow idle-pulse"><img src="/effects/light-glow.png" alt="" /></div>
+      <div className="wishes-super-glow"></div>
       <div className="section-bg-dark-soft"></div>
       <div className="wishes-floral-top idle-sway" style={{ transformOrigin: 'bottom right' }}>
         <img src="/florals/floral-accent-1.webp" alt="" style={{ opacity: 0.15 }} />
@@ -149,11 +151,28 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
               <option value="false">Maaf, Berhalangan Hadir</option>
             </select>
           </div>
-          <div className="form-row">
+          <div className="form-row" style={{ position: "relative" }}>
             <label className="form-label">{trans["wish-label-text"]}</label>
-            <textarea className="form-input" id="wish-text" name="text" placeholder={trans["message-placeholder"]} rows={3} required />
+            <textarea 
+              className="form-input" 
+              id="wish-text" 
+              name="text" 
+              placeholder={trans["message-placeholder"]} 
+              rows={3} 
+              required 
+              onChange={() => {
+                setIsTyping(true);
+                clearTimeout(typingTimeout.current);
+                typingTimeout.current = setTimeout(() => setIsTyping(false), 1500);
+              }}
+            />
+            {isTyping && (
+              <div className="typing-indicator" style={{ position: "absolute", top: "0", right: "2px", opacity: 0.7 }}>
+                <span className="dot"></span><span className="dot"></span><span className="dot"></span>
+              </div>
+            )}
           </div>
-          <button className={`submit-btn ${isLoading ? 'loading' : ''}`} type="submit" disabled={isLoading}>
+          <button className={`submit-btn ${isLoading ? 'loading' : ''} ${isTyping ? 'typing' : ''}`} type="submit" disabled={isLoading}>
             {isLoading ? "Mengirim..." : trans["submit-btn"]}
           </button>
         </form>
