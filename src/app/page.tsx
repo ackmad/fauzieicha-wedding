@@ -223,7 +223,6 @@ export default function Home() {
             style={{ willChange: 'opacity' }}
           >
             <LanguageToggle currentLang={currentLang} toggleLang={toggleLang} />
-            <FlowerRain />
             
             <MusicButton 
               musicPlaying={musicPlaying} 

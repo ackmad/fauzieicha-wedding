@@ -48,14 +48,14 @@ export default function FlowerRain() {
     <div 
       className={`flower-rain-layer ${behind ? "behind" : "front"}`} 
       style={{ 
-        position: "fixed", 
+        position: "absolute", 
         top: 0,
         left: 0,
         width: "100%",
-        height: "100vh",
+        height: "100%",
         pointerEvents: "none", 
         zIndex: behind ? 1 : 2,
-        overflow: "visible",
+        overflow: "hidden",
         perspective: "1200px",
         willChange: 'transform'
       }}

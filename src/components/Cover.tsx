@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { WeddingData } from "../types";
 import { OrnamenJawa } from "./Icons";
 import GoldMonogram from "./GoldMonogram";
+import FlowerRain from "./FlowerRain";
 
 interface CoverProps {
   isCoverRemoved: boolean;
@@ -52,6 +53,7 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
   
   return (
     <div id="cover" className={invitationOpened ? 'opening' : ''} ref={containerRef}>
+      <FlowerRain />
       <div id="cover-bg">
         <img id="cover-hero-img" src="/backgrounds/hero-background.webp" alt="Wedding Background" />
       </div>
