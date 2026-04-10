@@ -253,11 +253,11 @@ export default function Home() {
               <SectionDivider type="couple-to-events" />
               <Events events={events} basics={basics} currentLang={currentLang} trans={trans} />
               <SectionDivider type="events-to-story" />
-              <Story timeline={timeline} currentLang={currentLang} trans={trans} hashtag={basics.hashtag} />
+              <Story timeline={timeline} currentLang={currentLang} trans={trans} />
               <SectionDivider type="story-to-gallery" />
-              <Gallery trans={trans} hashtag={basics.hashtag} />
+              <Gallery trans={trans} />
               <SectionDivider type="gallery-to-wishes" />
-              <Wishes wishes={wishes} submitWish={submitWish} trans={trans} hashtag={basics.hashtag} />
+              <Wishes wishes={wishes} submitWish={submitWish} trans={trans} />
               <SectionDivider type="wishes-to-gift" />
               <Gift bankAccounts={bankAccounts} copyAcc={copyAcc} trans={trans} />
               <SectionDivider type="gift-to-footer" />
