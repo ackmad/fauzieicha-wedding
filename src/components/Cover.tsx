@@ -82,6 +82,31 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           <div className="cover-bride">{basics.brideNickname}</div>
           <div className="cover-and">&amp;</div>
           <div className="cover-groom">{basics.groomNickname}</div>
+          
+          <div 
+            className="cover-hashtag-wrap cover-hashtag-animate" 
+            style={{ 
+              marginTop: "25px", 
+              marginBottom: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <span style={{ 
+              fontFamily: "var(--font-script)", 
+              fontSize: "1.2rem", 
+              letterSpacing: "0.08em", 
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "var(--gold-pale)",
+              opacity: 0.85,
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)"
+            }}>
+              {basics.hashtag}
+            </span>
+          </div>
+
           <p className="cover-date">{basics.weddingDate}</p>
         </div>
         <div id="cover-btn-wrap">

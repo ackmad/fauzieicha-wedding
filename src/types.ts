@@ -6,6 +6,7 @@ export interface WeddingData {
     brideNickname: string;
     weddingDate: string;
     footerDate: string;
+    hashtag: string;
   };
   families: {
     id: { groom: string; bride: string };

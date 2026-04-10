@@ -7,8 +7,8 @@ export const metadata: Metadata = {
     default: "Undangan Pernikahan Chairunissa & Fauzie",
     template: "%s | Chairunissa & Fauzie Wedding"
   },
-  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami, Chairunissa & Fauzie. 10 Mei 2026.",
-  keywords: ["Wedding Invitation", "Undangan Pernikahan", "Chairunissa & Fauzie", "Pernikahan Digital"],
+  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami, Chairunissa & Fauzie. 10 Mei 2026. #theFAithfulCHApter",
+  keywords: ["Wedding Invitation", "Undangan Pernikahan", "Chairunissa & Fauzie", "Pernikahan Digital", "theFAithfulCHApter"],
   authors: [{ name: "Chairunissa & Fauzie" }],
   openGraph: {
     title: "Undangan Pernikahan Chairunissa & Fauzie",

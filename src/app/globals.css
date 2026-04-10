@@ -2693,7 +2693,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 .std-floral-top {
   position: absolute;
-  top: -75px;
+  top: -100px;
   left: -55px;
   width: 170px;
   pointer-events: none;
@@ -4542,3 +4542,65 @@ button:active, .std-maps-btn-pill:active {
   min-width: 70px;
 }
 
+
+/* =====================================================
+   HASHTAG PREMIUM DESIGN ELEMENTS (REFINED)
+   ===================================================== */
+
+@keyframes slowShimmer {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  50%, 100% { transform: translateX(150%) skewX(-25deg); }
+}
+
+.premium-hashtag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: none;
+  position: relative;
+  display: inline-block;
+  color: var(--gold-pale);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  overflow: hidden;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.premium-hashtag.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  animation: slowShimmer 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.hashtag-signature {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  font-size: 0.75rem;
+  color: var(--gold-pale);
+}
+
+
+.cover-hashtag-animate {
+  animation: hashtagEntrance 2s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes hashtagEntrance {
+  to {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}

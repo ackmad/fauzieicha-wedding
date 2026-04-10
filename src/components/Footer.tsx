@@ -12,7 +12,7 @@ export default function Footer({ basics, trans }: FooterProps) {
   const shareUndangan = () => {
     const shareData = {
       title: `Undangan Pernikahan ${basics.brideName.split(' ')[0]} & ${basics.groomName.split(' ')[0]}`,
-      text: `Mari merayakan kebahagiaan kami ${basics.brideName.split(' ')[0]} & ${basics.groomName.split(' ')[0]}`,
+      text: `Mari merayakan kebahagiaan kami ${basics.brideName.split(' ')[0]} & ${basics.groomName.split(' ')[0]} ${basics.hashtag}`,
       url: window.location.href
     };
     if (navigator.share) {
@@ -71,6 +71,11 @@ export default function Footer({ basics, trans }: FooterProps) {
             <div className="footer-name-bride">{basics.brideNickname}</div>
             <div className="footer-name-amp">&</div>
             <div className="footer-name-groom">{basics.groomNickname}</div>
+          </div>
+          <div className="footer-hashtag-wrap" style={{ margin: "10px 0 20px" }}>
+            <span className="hashtag-signature">
+              {basics.hashtag}
+            </span>
           </div>
           <p className="footer-full-date">{basics.footerDate}</p>
         </div>
