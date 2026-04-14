@@ -5,6 +5,7 @@ import { WeddingData } from "../types";
 import { OrnamenJawa } from "./Icons";
 import GoldMonogram from "./GoldMonogram";
 import FlowerRain from "./FlowerRain";
+import { motion } from "framer-motion";
 
 interface CoverProps {
   isCoverRemoved: boolean;
@@ -12,9 +13,10 @@ interface CoverProps {
   openInvitation: () => void;
   basics: WeddingData["basics"];
   trans: Record<string, string>;
+  guestName: string;
 }
 
-export default function Cover({ isCoverRemoved, invitationOpened, openInvitation, basics, trans }: CoverProps) {
+export default function Cover({ isCoverRemoved, invitationOpened, openInvitation, basics, trans, guestName }: CoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,6 +112,39 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           </div>
 
           <p className="cover-date">{basics.weddingDate}</p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
+            style={{ 
+              marginTop: "40px", 
+              marginBottom: "10px",
+              textAlign: "center"
+            }}
+          >
+            <p style={{ 
+              fontSize: "0.9rem", 
+              color: "var(--gold-pale)", 
+              opacity: 0.8,
+              letterSpacing: "0.1em",
+              marginBottom: "8px",
+              fontFamily: "var(--font-sans)"
+            }}>
+              {trans["dear"]}
+            </p>
+            <h2 style={{ 
+              fontSize: "2rem", 
+              fontFamily: "var(--font-display)", 
+              color: "white",
+              fontWeight: 500,
+              fontStyle: "italic",
+              textShadow: "0 2px 15px rgba(0,0,0,0.4)",
+              margin: 0
+            }}>
+              {guestName}
+            </h2>
+          </motion.div>
         </div>
         <div id="cover-btn-wrap">
           <div className="cover-btn-divider"></div>

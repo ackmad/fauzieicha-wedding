@@ -103,7 +103,8 @@
       "footer-made": "Dibuat dengan cinta · Undangan Pernikahan Digital",
       "wish-placeholder": "Masukkan nama Anda...",
       "message-placeholder": "Tuliskan doa dan harapan terbaik Anda...",
-      "inviting-text": "Dengan Hormat Mengundang"
+      "inviting-text": "Dengan Hormat Mengundang",
+      "dear": "Kepada Yth."
     },
     "en": {
       "the-wedding-of": "The Wedding Of",
@@ -129,7 +130,8 @@
       "footer-made": "Made with love · Digital Wedding Invitation",
       "wish-placeholder": "Enter your name...",
       "message-placeholder": "Write your best wishes and prayers...",
-      "inviting-text": "We Cordially Invite You"
+      "inviting-text": "We Cordially Invite You",
+      "dear": "Dear"
     }
   },
   "wishes": [
