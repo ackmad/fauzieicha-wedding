@@ -39,24 +39,30 @@ export default function InvitationClient({ guestName }: { guestName: string }) {
   const [showLanguageScreen, setShowLanguageScreen] = useState(false);
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);
 
-  // Load dummy wishes on mount to avoid hydration mismatch
-  useEffect(() => {
-    setWishes(
-      (weddingData as any).wishes.map((w: any) => ({
-        ...w,
-        createdAt: new Date(w.createdAt)
-      }))
-    );
-  }, []);
-
-  // useEffect for Firebase is now disabled for dummy mode
-  /*
+  // Load initial wishes from Firebase (real-time)
   useEffect(() => {
     const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => { ... });
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const firestoreWishes: Wish[] = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        text: doc.data().text,
+        isAttending: doc.data().isAttending,
+        createdAt: doc.data().createdAt?.toDate ? doc.data().createdAt.toDate() : new Date(),
+      }));
+      setWishes(firestoreWishes);
+    }, (error) => {
+      console.error("Firebase wishes error:", error);
+      // Fallback to dummy data if Firebase fails
+      setWishes(
+        (weddingData as any).wishes.map((w: any) => ({
+          ...w,
+          createdAt: new Date(w.createdAt)
+        }))
+      );
+    });
     return () => unsubscribe();
   }, []);
-  */
 
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
 
@@ -119,18 +125,32 @@ export default function InvitationClient({ guestName }: { guestName: string }) {
     const isAttending = attendanceEl.value === 'true';
     
     if (!name || !text) return;
-    
-    // Using Dummy Logic instead of Firebase addDoc
-    const newWish: Wish = {
-      id: `w-${Date.now()}`,
-      name,
-      text,
-      isAttending,
-      createdAt: new Date()
-    };
-    
-    setWishes(prev => [newWish, ...prev]);
-    return Promise.resolve(); // Match expected return type
+
+    try {
+      // Save to Firebase Firestore
+      await addDoc(collection(db, "wishes"), {
+        name,
+        text,
+        isAttending,
+        createdAt: serverTimestamp(),
+      });
+
+      // Clear form fields after success
+      nameEl.value = '';
+      textEl.value = '';
+      attendanceEl.value = 'true';
+    } catch (error) {
+      console.error("Error submitting wish:", error);
+      // Fallback: add locally if Firebase fails
+      const newWish: Wish = {
+        id: `w-${Date.now()}`,
+        name,
+        text,
+        isAttending,
+        createdAt: new Date()
+      };
+      setWishes(prev => [newWish, ...prev]);
+    }
   };
 
   const copyAcc = (num: string, e: React.MouseEvent<HTMLButtonElement>) => {
