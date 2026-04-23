@@ -24,7 +24,6 @@ const Wishes               = dynamic(() => import("../components/Wishes"),      
 const Gift                 = dynamic(() => import("../components/Gift"),                 { ssr: false });
 const Footer               = dynamic(() => import("../components/Footer"),               { ssr: false });
 const SectionDivider       = dynamic(() => import("../components/SectionDivider"),       { ssr: false });
-const ThemeToggle          = dynamic(() => import("../components/ThemeToggle"),          { ssr: false });
 const LanguageSelectorScreen = dynamic(() => import("../components/LanguageSelectorScreen"), { ssr: false });
 const FlowerRain           = dynamic(() => import("../components/FlowerRain"),           { ssr: false });
 
@@ -46,7 +45,6 @@ export default function InvitationClient({ guestName }: { guestName: string }) {
   const [showLanguageScreen, setShowLanguageScreen] = useState(false);
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);
   const [isCoverRemoved, setIsCoverRemoved] = useState(false);
-  const [theme, setTheme] = useState<"elegant-jungle" | "royal-java">("elegant-jungle");
 
   // Load wishes from Firebase (real-time)
   useEffect(() => {
@@ -75,14 +73,6 @@ export default function InvitationClient({ guestName }: { guestName: string }) {
   // Set default theme
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", "default");
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(prev => {
-      const next = prev === "elegant-jungle" ? "royal-java" : "elegant-jungle";
-      document.documentElement.setAttribute("data-theme", next === "royal-java" ? "royal-java" : "default");
-      return next;
-    });
   }, []);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -324,9 +314,6 @@ export default function InvitationClient({ guestName }: { guestName: string }) {
                 <Footer basics={basics} trans={trans} />
               </div>
             )}
-
-            {/* ThemeToggle only shown after invitation is opened */}
-            {invitationOpened && <ThemeToggle theme={theme} toggleTheme={toggleTheme} invitationOpened={invitationOpened} />}
           </motion.div>
         )}
       </AnimatePresence>

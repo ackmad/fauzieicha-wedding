@@ -207,7 +207,7 @@ export default function Gallery({ trans }: GalleryProps) {
           fontSize: 19,
           color: "rgba(212,175,55,0.8)",
         }}>
-          Fauzi & Icha
+          Chairunissa & Fauzie
         </p>
         <p style={{
           margin: "5px 0 0",
