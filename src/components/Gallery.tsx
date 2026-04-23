@@ -237,11 +237,11 @@ export default function Gallery({ trans }: GalleryProps) {
 
       <section id="section-gallery">
         <div className="section-bg-texture batik-layer" style={{ opacity: 0.1 }}></div>
-        <div className="gallery-glow idle-pulse">
-          <img src="/effects/light-glow.webp" alt="" />
+        <div className="gallery-glow">
+          <img src="/effects/light-glow.webp" alt="" aria-hidden="true" loading="lazy" />
         </div>
-        <div className="parallax-leaf gallery-leaf idle-float">
-          <img src="/effects/parallax-leaves.png" alt="" />
+        <div className="parallax-leaf gallery-leaf">
+          <img src="/effects/parallax-leaves.webp" alt="" aria-hidden="true" loading="lazy" />
         </div>
 
         <div className="section-inner">

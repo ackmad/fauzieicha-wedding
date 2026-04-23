@@ -91,11 +91,11 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
     <section id="section-events">
       {/* Background Layers */}
       <div className="section-bg-texture batik-layer" style={{ opacity: 0.08 }}></div>
-      <div className="events-bg-glow idle-pulse">
-        <img src="/effects/light-glow.webp" alt="" />
+      <div className="events-bg-glow">
+        <img src="/effects/light-glow.webp" alt="" aria-hidden="true" loading="lazy" />
       </div>
-      <div className="events-floral-br idle-sway parallax-element-slow" style={{ transformOrigin: 'bottom right' }}>
-        <img src="/florals/floral-accent-2.webp" alt="" />
+      <div className="events-floral-br" style={{ transformOrigin: 'bottom right' }}>
+        <img src="/florals/floral-accent-2.webp" alt="" aria-hidden="true" loading="lazy" />
       </div>
 
       <div className="section-inner">
@@ -144,7 +144,7 @@ export default function Events({ events, basics, currentLang, trans }: EventsPro
               <div className="std-card-inner">
                 {/* Floral corner */}
                 <div className="std-floral-top">
-                  <img src="/florals/floral-accent-1.webp" alt="" />
+                  <img src="/florals/floral-accent-1.webp" alt="" aria-hidden="true" loading="lazy" />
                 </div>
 
                 {/* Icon */}

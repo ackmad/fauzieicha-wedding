@@ -36,7 +36,7 @@ export default function Footer({ basics, trans }: FooterProps) {
         <div className="ambient-glow d-1"></div>
         <div className="ambient-glow d-2"></div>
         <div className="floating-particles">
-          {Array.from({ length: 15 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className={`particle p-${i}`}></div>
           ))}
         </div>
@@ -112,11 +112,11 @@ export default function Footer({ basics, trans }: FooterProps) {
 
       {/* ── Symmetrical Floral Borders ── */}
       <div className="footer-floral-border-wrap">
-        <div className="floral-left parallax-floral" data-speed="0.05">
-          <img src="/florals/floral-accent-1.webp" alt="Floral decoration" />
+        <div className="floral-left" data-speed="0.05">
+          <img src="/florals/floral-accent-1.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
-        <div className="floral-right parallax-floral" data-speed="0.05">
-          <img src="/florals/floral-accent-1.webp" alt="Floral decoration" style={{ transform: "scaleX(-1)" }} />
+        <div className="floral-right" data-speed="0.05">
+          <img src="/florals/floral-accent-1.webp" alt="" loading="lazy" aria-hidden="true" style={{ transform: "scaleX(-1)" }} />
         </div>
       </div>
     </footer>

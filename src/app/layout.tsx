@@ -7,8 +7,8 @@ export const metadata: Metadata = {
     default: "Undangan Pernikahan Chairunissa & Fauzie",
     template: "%s | Chairunissa & Fauzie Wedding"
   },
-  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami, Chairunissa & Fauzie. 10 Mei 2026. #theFAithfulCHApter",
-  keywords: ["Wedding Invitation", "Undangan Pernikahan", "Chairunissa & Fauzie", "Pernikahan Digital", "theFAithfulCHApter"],
+  description: "Bismillah. Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami, Chairunissa & Fauzie. 10 Mei 2026. #theFAithfulCHApters",
+  keywords: ["Wedding Invitation", "Undangan Pernikahan", "Chairunissa & Fauzie", "Pernikahan Digital", "theFAithfulCHApters"],
   authors: [{ name: "Chairunissa & Fauzie" }],
   openGraph: {
     title: "Undangan Pernikahan Chairunissa & Fauzie",
@@ -46,9 +46,14 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+        {/* display=swap in URL ensures font-display:swap for all fonts — prevents invisible text */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         {children}

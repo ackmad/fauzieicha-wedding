@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { WeddingData } from "../types";
-import { GununganSVG, OrnamenJawa } from "./Icons";
+import { OrnamenJawa } from "./Icons";
 
 interface CoupleProps {
   basics: WeddingData["basics"];
@@ -24,26 +24,25 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
 
   return (
     <section id="section-couple" ref={sectionRef}>
-      {/* 🔴 BACKGROUND LAYERS & DEPTH */}
+      {/* BACKGROUND LAYERS */}
       <div className="couple-bg-depth"></div>
       <div className="couple-bg-pattern"></div>
-      <div className="couple-noise-overlay"></div>
       
-      {/* 🟡 AMBIENT FLOW: RADIAL GLOW & GUNUNGAN */}
-      <div className="couple-radial-glow idle-pulse"></div>
-      <div className="parallax-bg" style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
+      {/* AMBIENT FLOW: RADIAL GLOW & GUNUNGAN */}
+      <div className="couple-radial-glow"></div>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
         <div className={`couple-gunungan-bg-vivid ${revealed ? "revealed" : ""}`}>
-          <img src="/ornaments/gunungan-jawa.webp" alt="" className="gunungan-png-vivid" />
+          <img src="/ornaments/gunungan-jawa.webp" alt="" loading="lazy" aria-hidden="true" className="gunungan-png-vivid" />
         </div>
       </div>
 
-      {/* 🌿 TOP DECORATIONS (Symmetrical Balance) */}
-      <div className="parallax-element-slow" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10 }}>
+      {/* TOP DECORATIONS */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10 }}>
         <div className="couple-floral-top-left idle-sway" style={{ transformOrigin: 'top left' }}>
-          <img src="/decorations/dekor-main-kiri.webp" alt="" />
+          <img src="/decorations/dekor-main-kiri.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
         <div className="couple-floral-top-right idle-sway-opposite" style={{ transformOrigin: 'top right' }}>
-          <img src="/decorations/dekor-main-kanan.webp" alt="" />
+          <img src="/decorations/dekor-main-kanan.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
       </div>
 
@@ -61,7 +60,7 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
           بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
         </p>
         
-        <div className="couple-names-block" style={{ willChange: 'transform, opacity' }}>
+        <div className="couple-names-block">
           {/* BRIDE BLOCK FIRST */}
           <div className="couple-person">
             <div className="name-main-couple reveal-right" style={{ "--reveal-delay": "0.4s" } as React.CSSProperties}>
@@ -78,10 +77,10 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
             </p>
           </div>
           
-          <div className="couple-center-divider-vivid reveal-item" style={{ "--reveal-delay": "0.6s", willChange: 'transform' } as React.CSSProperties}>
-            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png" loading="lazy" />
+          <div className="couple-center-divider-vivid reveal-item" style={{ "--reveal-delay": "0.6s" } as React.CSSProperties}>
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png" loading="lazy" aria-hidden="true" />
             <div className="center-ampersand">&amp;</div>
-            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" loading="lazy" />
+            <img src="/ornaments/divider-section.png" alt="" className="divider-jawa-png rotated" loading="lazy" aria-hidden="true" />
           </div>
           
           {/* GROOM BLOCK SECOND */}
@@ -107,18 +106,18 @@ export default function Couple({ basics, families, currentLang, trans }: CoupleP
         </div>
       </div>
 
-      {/* 🌿 BOTTOM DECORATIONS (MASSIVE & SYMMETRICAL) */}
-      <div className="parallax-element-fast" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
+      {/* BOTTOM DECORATIONS */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
         <div className={`couple-floral-bottom left ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-1.webp" alt="" />
+          <img src="/florals/floral-accent-1.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
         <div className={`couple-floral-bottom right ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-1.webp" alt="" />
+          <img src="/florals/floral-accent-1.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
       </div>
-      <div className="parallax-element-slow" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 4 }}>
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 4 }}>
         <div className={`couple-floral-bottom center-back ${revealed ? "revealed" : ""}`}>
-          <img src="/florals/floral-accent-2.webp" alt="" />
+          <img src="/florals/floral-accent-2.webp" alt="" loading="lazy" aria-hidden="true" />
         </div>
       </div>
     </section>

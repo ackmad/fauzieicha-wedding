@@ -104,7 +104,7 @@ export default function Wishes({ wishes, submitWish, trans }: WishesProps) {
       <div className="wishes-super-glow"></div>
       <div className="section-bg-dark-soft"></div>
       <div className="wishes-floral-top idle-sway" style={{ transformOrigin: 'bottom right' }}>
-        <img src="/florals/floral-accent-1.webp" alt="" style={{ opacity: 0.15 }} />
+        <img src="/florals/floral-accent-1.webp" alt="" aria-hidden="true" loading="lazy" style={{ opacity: 0.15 }} />
       </div>
 
       {/* Toast */}

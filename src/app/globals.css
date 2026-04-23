@@ -97,9 +97,15 @@
   --footer-grad-3: #3F2B26;
 }
 
-/* Global Transition for Theme Switching (excluding heavy assets) */
-body, section, div, p, span, h1, h2, h3, h4, button, svg {
-  transition: background-color var(--theme-transition), color var(--theme-transition), border-color var(--theme-transition), fill var(--theme-transition), stroke var(--theme-transition), opacity var(--theme-transition);
+/* Global Transition for Theme Switching — limited to bg/color/border only, NOT all properties */
+body, section {
+  transition: background-color var(--theme-transition), color var(--theme-transition);
+}
+div, p, span, h1, h2, h3, h4 {
+  transition: color var(--theme-transition);
+}
+button, svg {
+  transition: border-color var(--theme-transition), fill var(--theme-transition), stroke var(--theme-transition);
 }
 
 /* Theme Toggle styles */
@@ -313,7 +319,10 @@ img { display: block; max-width: 100%; }
    ================================================ */
 #cover {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
   z-index: 10000;
   display: flex;
   flex-direction: column;
@@ -540,14 +549,14 @@ img { display: block; max-width: 100%; }
   text-align: center;
   max-width: 550px;
   width: 90%;
-  height: 100vh;
-  padding-top: 8vh; /* Reduced from 25vh to push elements higher */
-  padding-bottom: 12vh; /* Push everything upwards relative to center */
+  height: 100dvh;
+  padding-top: 5vh; 
+  padding-bottom: 5vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center horizontally/vertically with padding-top push */
-  gap: 20px;
+  justify-content: center; 
+  gap: 15px;
   animation: coverContentReveal 2s var(--ease-out) forwards;
 }
 @keyframes coverContentReveal {
@@ -556,8 +565,8 @@ img { display: block; max-width: 100%; }
 }
 
 #cover-text-block {
-  margin-top: 10vh; /* Push names lower */
-  margin-bottom: 40px;
+  margin-top: 0; 
+  margin-bottom: 25px;
 }
 
 .cover-subtitle {
@@ -610,7 +619,7 @@ img { display: block; max-width: 100%; }
 
 /* Button area */
 #cover-btn-wrap {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -639,7 +648,7 @@ img { display: block; max-width: 100%; }
   font-weight: 500;
   letter-spacing: 4px;
   text-transform: uppercase;
-  padding: 14px 45px;
+  padding: 12px 35px;
   border: 1.5px solid var(--gold-pale);
   border-radius: 50px;
   cursor: pointer;
@@ -817,67 +826,72 @@ section {
   margin-bottom: 25px; /* Reduced from 50px */
 }
 
-/* --- Entrance Reveal Effects (Repeatable & Reactive) --- */
+/* --- Entrance Reveal Effects (GPU-optimized: opacity + transform only) --- */
 .reveal-up {
   opacity: 0;
-  transform: translateY(45px) scale(0.96);
-  filter: blur(8px);
-  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out);
+  transform: translateY(35px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
-.reveal-up.revealed { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.reveal-up.revealed { opacity: 1; transform: translateY(0); }
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-50px) rotate(-2deg);
-  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transform: translateX(-40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-left.revealed { opacity: 1; transform: translateX(0) rotate(0); }
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(50px) rotate(2deg);
-  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transform: translateX(40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-right.revealed { opacity: 1; transform: translateX(0) rotate(0); }
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
 
 .reveal-zoom {
   opacity: 0;
-  transform: scale(0.85) translateY(20px);
-  filter: saturate(0);
-  transition: opacity 1.2s var(--ease-spring), transform 1.2s var(--ease-spring), filter 1.2s var(--ease-out);
+  transform: scale(0.9) translateY(15px);
+  transition: opacity 0.9s var(--ease-spring), transform 0.9s var(--ease-spring);
   transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-zoom.revealed { opacity: 1; transform: scale(1) translateY(0); filter: saturate(1); }
+.reveal-zoom.revealed { opacity: 1; transform: scale(1) translateY(0); }
 
 .reveal-blur {
   opacity: 0;
-  filter: blur(15px);
-  transform: scale(1.05);
-  transition: opacity 1.4s var(--ease-out), filter 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+  transform: translateY(20px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
   transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
-.reveal-blur.revealed { opacity: 1; filter: blur(0); transform: scale(1); }
+.reveal-blur.revealed { opacity: 1; transform: translateY(0); }
 
 /* Stagger & Surprise Variants */
 .reveal-item { 
   opacity: 0; 
-  transform: translateY(30px); 
-  transition: all 1s var(--ease-out); 
-  transition-delay: var(--reveal-delay, 0s); 
+  transform: translateY(25px); 
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
 .reveal-item.revealed { opacity: 1; transform: translateY(0); }
 
 .reveal-scale { 
   opacity: 0; 
-  transform: scale(0.92); 
-  transition: all 0.8s var(--ease-spring); 
-  transition-delay: var(--reveal-delay, 0s); 
+  transform: scale(0.94); 
+  transition: opacity 0.6s var(--ease-spring), transform 0.6s var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
 }
 .reveal-scale.revealed { opacity: 1; transform: scale(1); }
+
+
 
 /* --- Continuous Idle & Micro-Animations --- */
 @keyframes float {
@@ -917,18 +931,15 @@ section {
   pointer-events: none;
 }
 
-/* --- Parallax Utilities --- */
+/* --- Parallax Utilities (will-change only applied on supported devices) --- */
 .parallax-bg {
-  transform: translateY(calc(var(--scroll-y, 0) * 0.1px));
-  will-change: transform;
+  transform: translateY(calc(var(--scroll-y, 0) * 0.08px));
 }
 .parallax-element-fast {
-  transform: translateY(calc(var(--scroll-y, 0) * -0.15px));
-  will-change: transform;
+  transform: translateY(calc(var(--scroll-y, 0) * -0.1px));
 }
 .parallax-element-slow {
-  transform: translateY(calc(var(--scroll-y, 0) * -0.05px));
-  will-change: transform;
+  transform: translateY(calc(var(--scroll-y, 0) * -0.04px));
 }
 
 /* ================================================
@@ -1051,14 +1062,13 @@ section {
    ================================================ */
 #section-couple {
   position: relative;
-  height: 100vh; /* Exactly viewport height */
-  min-height: 600px; /* Minimum fallback */
+  min-height: 100svh; /* min-height so content is never clipped */
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: clip; /* clips decorative floats but doesn't affect content scroll */
   color: var(--warm-white);
-  padding: 40px 20px; /* Reduced vertical padding */
+  padding: 40px 20px;
 }
 
 .couple-bg-depth {
@@ -1079,14 +1089,7 @@ section {
   pointer-events: none;
 }
 
-.couple-noise-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0.05;
-  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
-  pointer-events: none;
-}
+/* couple-noise-overlay removed — was using external network request (transparenttextures.com) which caused CLS and extra load */
 
 .couple-radial-glow {
   position: absolute;
@@ -1392,6 +1395,8 @@ section {
   line-height: 1.8;
   margin-top: 5px;
   white-space: pre-line;
+  word-break: break-word;      /* Prevent long names from overflowing */
+  overflow-wrap: break-word;   /* Fallback for Safari */
 }
 
 .opening-verse-container {
@@ -1444,10 +1449,12 @@ section {
     padding-top: 60px;
     padding-bottom: 80px;
   }
-  .couple-content-wrap { padding: 0 5px; }
+  .couple-content-wrap { padding: 0 16px; } /* Ensure minimum horizontal padding on mobile */
   .name-main-couple { 
     font-size: clamp(16px, 6.5vw, 28px); 
-    white-space: nowrap; /* Force one line on mobile if possible */
+    /* Removed white-space:nowrap — was causing horizontal overflow on small screens (S.Ag cut-off) */
+    white-space: normal;
+    overflow: visible;
   }
   .name-with-title-row {
     gap: 4px;
@@ -1573,17 +1580,15 @@ section {
 }
 
 .event-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.85);
   border: 2.5px solid var(--gold);
   border-radius: 45px;
   padding: 90px 60px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: all 0.6s var(--ease-out);
-  box-shadow: 0 40px 100px rgba(45, 74, 53, 0.18), inset 0 0 30px rgba(255, 255, 255, 0.5); /* Inner shadow depth */
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.5s var(--ease-out);
+  box-shadow: 0 20px 60px rgba(45, 74, 53, 0.15);
 }
 .event-card:hover {
   transform: translateY(-12px) scale(1.03);
@@ -1593,16 +1598,16 @@ section {
 .event-card::before {
   content: '';
   position: absolute;
-  top: 0; left: -100%;
+  top: 0; left: 0;
   width: 50%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: skewX(-25deg);
   animation: shineLoop 4s infinite;
+  will-change: transform;
 }
 @keyframes shineLoop {
-  0% { left: -100%; }
-  20% { left: 200%; }
-  100% { left: 200%; }
+  0% { transform: skewX(-25deg) translateX(-250%); }
+  20% { transform: skewX(-25deg) translateX(400%); }
+  100% { transform: skewX(-25deg) translateX(400%); }
 }
 .event-card-divider {
   width: 130px;
@@ -1872,18 +1877,16 @@ section {
 }
 
 .tl-content {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.88);
   padding: 24px 28px;
   border-radius: 20px;
   border: 1px solid rgba(212, 175, 55, 0.15);
-  box-shadow: 0 10px 35px rgba(45, 74, 53, 0.05);
-  transition: all 0.5s var(--ease-out);
+  box-shadow: 0 8px 25px rgba(45, 74, 53, 0.07);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
   width: 100%;
   position: relative;
-  text-align: justify; /* Justify text as requested */
-  line-height: 1.85; /* Improved line height for readability */
+  text-align: justify;
+  line-height: 1.85;
   letter-spacing: 0.2px;
 }
 
@@ -2957,14 +2960,13 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 }
 
 .countdown-unit {
-  background: var(--card-bg);
+  background: rgba(31, 61, 54, 0.7);
   border: 1px solid var(--accent-gold);
   border-radius: 16px;
   padding: 15px 10px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: all 0.5s var(--ease-out);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transition: transform 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
   width: 100%;
 }
 
@@ -4117,8 +4119,8 @@ button:active, .std-maps-btn-pill:active {
 
 /* --- Entrance animation (shared) --- */
 @keyframes monogram-reveal {
-  0%   { opacity: 0; transform: scale(0.82); filter: blur(6px); }
-  100% { opacity: 1; transform: scale(1);    filter: blur(0); }
+  0%   { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes monogram-breathe {
@@ -4665,3 +4667,102 @@ button:active, .std-maps-btn-pill:active {
   z-index: 1;
   animation: slowPulse 8s infinite alternate;
 }
+
+/* ================================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================================ */
+
+/* ─── Prefers Reduced Motion ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .idle-float, .idle-float-slow, .idle-sway, .idle-sway-opposite,
+  .idle-pulse, .cover-hashtag-animate,
+  .gunungan-png-vivid, .couple-floral-top-left, .couple-floral-top-right,
+  .couple-floral-bottom img, .std-floral-top img,
+  .story-floral-img, .story-leaf-shadow, .wishes-floral-top {
+    animation: none !important;
+  }
+
+  .cover-hashtag-animate {
+    opacity: 0.85 !important;
+    transform: none !important;
+  }
+}
+
+/* ─── Mobile Performance: Limit heavy animations ── */
+@media (max-width: 768px) {
+  /* Disable continuous glow pulses on mobile (expensive paint) */
+  .gallery-glow, .story-glow, .wishes-super-glow, .couple-radial-glow {
+    animation: none !important;
+    opacity: 0.08;
+  }
+
+  /* Disable complex idle animations on mobile */
+  .idle-float, .idle-float-slow {
+    animation: none;
+  }
+
+  /* Keep sway only for cover florals, disable elsewhere */
+  .couple-floral-top-left, .couple-floral-top-right,
+  .couple-floral-bottom img, .std-floral-top img,
+  .story-leaf-shadow {
+    animation: none;
+  }
+
+  /* Simplify parallax — disable JS-driven parallax on mobile */
+  .parallax-bg, .parallax-element-fast, .parallax-element-slow {
+    transform: none !important;
+  }
+
+  /* Remove will-change from ambient elements on mobile */
+  .parallax-bg, .parallax-element-fast, .parallax-element-slow,
+  .idle-float, .idle-float-slow, .idle-sway, .idle-pulse {
+    will-change: auto;
+  }
+
+  /* Simplify backdrop blurs on mobile */
+  .wish-form {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(31, 61, 54, 0.9);
+  }
+
+  .ambient-glow {
+    filter: blur(40px); /* Reduce from 80px — less GPU cost */
+  }
+
+  /* Speed up reveal animations on mobile for snappier feel */
+  .reveal-up, .reveal-left, .reveal-right, .reveal-zoom, .reveal-blur, .reveal-item, .reveal-scale {
+    transition-duration: 0.5s !important;
+  }
+}
+
+/* ─── GPU Compositing Hints (Applied Selectively) ── */
+#cover,
+#cover-content,
+#cover-floral-left,
+#cover-floral-right {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animations settle */
+#cover.opening {
+  will-change: auto;
+}
+
+/* ─── Contain Paint for Heavy Sections ──────────────
+   NOTE: contain:layout is REMOVED from couple & events
+   because it clips absolutely-positioned decorative elements
+   and causes text overflow cut-off on mobile.
+   Only gallery uses contain:paint (images are bounded). ── */
+#section-gallery {
+  contain: paint;
+}
+
+

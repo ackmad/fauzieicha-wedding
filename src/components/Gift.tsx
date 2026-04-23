@@ -156,7 +156,7 @@ export default function Gift({ bankAccounts, copyAcc, trans }: GiftProps) {
     <section id="section-amplop">
       <div className="premium-batik-bg"></div>
       <div className="amplop-glow">
-        <img src="/effects/light-glow.webp" alt="" />
+        <img src="/effects/light-glow.webp" alt="" aria-hidden="true" loading="lazy" />
       </div>
 
       <div className="section-inner" style={{ textAlign: "center", position: "relative", zIndex: 2 }}>

@@ -16,17 +16,17 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   useEffect(() => {
     setIsMounted(true);
     // Generate particles ONLY on client to avoid hydration mismatch
-    const p = [...Array(12)].map(() => ({
+    const p = [...Array(6)].map(() => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 5}s`,
-      duration: `${10 + Math.random() * 15}s`
+      delay: `${Math.random() * 4}s`,
+      duration: `${8 + Math.random() * 10}s`
     }));
     setParticles(p);
 
-    // Simulate natural loading progress
-    const duration = 2400; // 2.4s total for a premium feel
-    const interval = 20;   // Update every 20ms
+    // Simulate natural loading progress — faster = better perceived performance
+    const duration = 1800; // 1.8s total
+    const interval = 20;
     const step = 100 / (duration / interval);
     
     let current = 0;
@@ -42,8 +42,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           setIsVisible(false);
           if (onComplete) onComplete();
           // Remove from DOM after transition finishes
-          setTimeout(() => setShouldRender(false), 1200);
-        }, 600);
+          setTimeout(() => setShouldRender(false), 800);
+        }, 400);
       } else {
         setPercent(Math.floor(current));
       }

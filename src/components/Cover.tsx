@@ -22,32 +22,39 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
   useEffect(() => {
     if (isCoverRemoved || invitationOpened) return;
 
+    let rafId: number;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      
-      containerRef.current.style.setProperty('--mouse-x', x.toString());
-      containerRef.current.style.setProperty('--mouse-y', y.toString());
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        containerRef.current.style.setProperty('--mouse-x', x.toString());
+        containerRef.current.style.setProperty('--mouse-y', y.toString());
+      });
     };
 
     const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
       if (!containerRef.current) return;
-      
-      // Beta (x-axis rotation) and Gamma (y-axis rotation) 
-      const beta = e.beta ? Math.min(Math.max(e.beta, -45), 45) / 45 : 0;
-      const gamma = e.gamma ? Math.min(Math.max(e.gamma, -45), 45) / 45 : 0;
-      
-      containerRef.current.style.setProperty('--mouse-y', (beta * 1.5).toString());
-      containerRef.current.style.setProperty('--mouse-x', (gamma * 1.5).toString());
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const beta  = e.beta  ? Math.min(Math.max(e.beta,  -45), 45) / 45 : 0;
+        const gamma = e.gamma ? Math.min(Math.max(e.gamma, -45), 45) / 45 : 0;
+        containerRef.current.style.setProperty('--mouse-y', (beta  * 1.5).toString());
+        containerRef.current.style.setProperty('--mouse-x', (gamma * 1.5).toString());
+      });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('deviceorientation', handleDeviceOrientation as EventListener);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('deviceorientation', handleDeviceOrientation as EventListener, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('deviceorientation', handleDeviceOrientation as EventListener);
+      cancelAnimationFrame(rafId);
     };
   }, [isCoverRemoved, invitationOpened]);
 
@@ -57,31 +64,31 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
     <div id="cover" className={invitationOpened ? 'opening' : ''} ref={containerRef}>
       <FlowerRain />
       <div id="cover-bg">
-        <img id="cover-hero-img" src="/backgrounds/hero-background.webp" alt="Wedding Background" />
+        <img id="cover-hero-img" src="/backgrounds/hero-background.webp" alt="Wedding Background" fetchPriority="high" />
       </div>
       <div id="cover-batik">
-        <img src="/backgrounds/batik-pattern.webp" alt="" />
+        <img src="/backgrounds/batik-pattern.webp" alt="" aria-hidden="true" />
       </div>
       <div id="cover-overlay"></div>
       <div id="cover-leaves" className="idle-float-slow">
-        <img src="/effects/parallax-leaves.webp" alt="" id="parallax-leaves-img" />
+        <img src="/effects/parallax-leaves.webp" alt="" aria-hidden="true" id="parallax-leaves-img" />
       </div>
-      <div id="cover-glow" className="idle-pulse">
-        <img src="/effects/light-glow.webp" alt="" />
+      <div id="cover-glow">
+        <img src="/effects/light-glow.webp" alt="" aria-hidden="true" />
       </div>
       <div id="cover-floral-left" className="idle-sway" style={{ transformOrigin: 'top left' }}>
-        <img src="/decorations/dekor-main-kiri.webp" alt="Dekorasi Kiri" />
+        <img src="/decorations/dekor-main-kiri.webp" alt="" aria-hidden="true" />
       </div>
       <div id="cover-floral-right" className="idle-sway" style={{ transformOrigin: 'top right' }}>
-        <img src="/decorations/dekor-main-kanan.webp" alt="Dekorasi Kanan" />
+        <img src="/decorations/dekor-main-kanan.webp" alt="" aria-hidden="true" />
       </div>
       <div id="cover-content">
         <div id="cover-top-ornament">
           <OrnamenJawa color="var(--gold)" className="ornament-svg" />
         </div>
         <div id="cover-text-block">
-          <GoldMonogram variant="hero" style={{ margin: "0 auto 18px" }} />
-          <p className="cover-subtitle">{trans["the-wedding-of"]}</p>
+          <GoldMonogram variant="hero" style={{ margin: "0 auto 10px" }} />
+          <p className="cover-subtitle" style={{ marginBottom: "10px" }}>{trans["the-wedding-of"]}</p>
           <div className="cover-divider-line"></div>
           <div className="cover-bride">{basics.brideNickname}</div>
           <div className="cover-and">&amp;</div>
@@ -90,8 +97,8 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
           <div 
             className="cover-hashtag-wrap cover-hashtag-animate" 
             style={{ 
-              marginTop: "25px", 
-              marginBottom: "20px",
+              marginTop: "15px", 
+              marginBottom: "12px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center"
@@ -118,8 +125,8 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
             style={{ 
-              marginTop: "40px", 
-              marginBottom: "10px",
+              marginTop: "25px", 
+              marginBottom: "5px",
               textAlign: "center"
             }}
           >
@@ -134,7 +141,7 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
               {trans["dear"]}
             </p>
             <h2 style={{ 
-              fontSize: "2rem", 
+              fontSize: "clamp(1.5rem, 6vw, 2.2rem)", 
               fontFamily: "var(--font-display)", 
               color: "white",
               fontWeight: 500,
@@ -146,8 +153,8 @@ export default function Cover({ isCoverRemoved, invitationOpened, openInvitation
             </h2>
           </motion.div>
         </div>
-        <div id="cover-btn-wrap">
-          <div className="cover-btn-divider"></div>
+        <div id="cover-btn-wrap" style={{ marginTop: "25px" }}>
+          <div className="cover-btn-divider" style={{ marginBottom: "8px" }}></div>
           <button id="open-btn" onClick={openInvitation}>{trans["open-btn-text"]}</button>
         </div>
       </div>
